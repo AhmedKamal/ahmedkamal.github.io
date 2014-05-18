@@ -8,10 +8,7 @@ categories: [personal]
 sharing: false
 ---
 
-Been working at Microsoft for a while. Currently, I'm a dev lead on the Windows Azure Web Sites team, and having a blast doing that!
+A 4th year Computer Engineering Student. I am passionate about computer science and technology in general.
 
-My team is lucky enough to be able to do most of its development as OSS, as part of [Project Kudu](https://github.com/projectkudu/kudu).
+I always look for challenging opportunities. I hope I can be part of projects help a lot of people and affect their lives.
 
-Outside of work, I've recently started running, and I'm hoping to run a half-marathon later this in 2014. I've essentially *never* run before in my life, so it's a pretty big lifestyle change.
-
-I also play some table tennis; well enough to beat most casual players, and poorly enough to get soundly beaten by much older dudes when I step into a club.

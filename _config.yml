@@ -1,30 +1,30 @@
 #
 # Blog Settings
 #
-name: David Ebbo
+name: Ahmed Kamal
 description:
-url: http://blog.davidebbo.com
-title: David Ebbo
-subtitle: Azure Web Sites, Kudu, ASP.NET and random other things
-gravatar_url: http://www.gravatar.com/avatar/3c4e7f8b11f8b8c1d77ebb70678097b4?s=128
-subscribe_rss: http://feeds.feedburner.com/DavidEbbo
+url: http://ahmedkamal.github.io/
+title: Ahmed Kamal
+subtitle: Coding , Technical Stuff and other things
+gravatar_url: https://en.gravatar.com/userimage/29648221/8807968df1965e8cac2c75a2ec55a8c4.jpg
+subscribe_rss: 
 encoding: utf-8
 
 # Github repositories
-github_user: davidebbo
-github_repo_url: https://github.com/davidebbo/davidebbo.github.io/
+github_user: AhmedKamal
+github_repo_url: https://github.com/AhmedKamal/ahmedkamal.github.io
 
 # Twitter
-twitter_user: davidebbo
+twitter_user: A7med_Kamal
 twitter_tweet_button: true
 
 # Disqus Comments
-disqus_short_name: davidebbo
+disqus_short_name: ahmedkamal
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id: UA-9774206-2
-google_analytics_domain: davidebbo.com
+google_analytics_tracking_id: UA-51102645-1
+google_analytics_domain: http://ahmedkamal.github.io
 
 
 #
