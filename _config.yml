@@ -1,0 +1,38 @@
+#
+# Blog Settings
+#
+name: David Ebbo
+description:
+url: http://blog.davidebbo.com
+title: David Ebbo
+subtitle: Azure Web Sites, Kudu, ASP.NET and random other things
+gravatar_url: http://www.gravatar.com/avatar/3c4e7f8b11f8b8c1d77ebb70678097b4?s=128
+subscribe_rss: http://feeds.feedburner.com/DavidEbbo
+encoding: utf-8
+
+# Github repositories
+github_user: davidebbo
+github_repo_url: https://github.com/davidebbo/davidebbo.github.io/
+
+# Twitter
+twitter_user: davidebbo
+twitter_tweet_button: true
+
+# Disqus Comments
+disqus_short_name: davidebbo
+disqus_show_comment_count: true
+
+# Google Analytics
+google_analytics_tracking_id: UA-9774206-2
+google_analytics_domain: davidebbo.com
+
+
+#
+# Jekyll Settings
+#
+markdown: redcarpet
+pygments: true
+permalink: /:year/:month/:title.html
+paginate: 20
+paginate_path: "page/:num"
+category_dir: categories
