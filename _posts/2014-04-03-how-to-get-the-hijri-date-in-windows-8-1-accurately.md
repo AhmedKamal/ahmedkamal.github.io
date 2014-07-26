@@ -18,7 +18,7 @@ I will share with you the code I wrote to get the date from this service
 <div class="csharpcode">
 
 [sourcecode language="csharp"]
-    ConnectionProfile connection = NetworkInformation.GetInternetConnectionProfile();
+            ConnectionProfile connection = NetworkInformation.GetInternetConnectionProfile();
             bool internet = connection != null &amp;&amp; connection.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             if (internet)
             {
@@ -44,10 +44,10 @@ I will share with you the code I wrote to get the date from this service
 <div class="csharpcode">
 
 [sourcecode language="csharp"]
-      DateTimeFormatter df = new DateTimeFormatter(&quot;longdate&quot;, new string[] { &quot;ar-sa&quot; });
+            DateTimeFormatter df = new DateTimeFormatter(&quot;longdate&quot;, new string[] { &quot;ar-sa&quot; });
             var date = df.Format(DateTime.Now);
             return date.ToString();
-                    [/sourcecode]
+[/sourcecode]
 
 </div>
 Combining these two ways should satisfy your user who wants to be aware of the Hijri Date anytime.
