@@ -18,21 +18,22 @@ I will share with you the code I wrote to get the date from this service
 <div class="csharpcode">
 
 {% highlight c# %}
-            ConnectionProfile connection = NetworkInformation.GetInternetConnectionProfile();
-            bool internet = connection != null &amp;&amp; connection.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
-            if (internet)
-            {
-                HttpClient client = new HttpClient();
-                string res = await client.GetStringAsync(&quot;http://www.dar-alifta.org/dateservice.aspx?LangID=1&quot;);
-                HtmlDocument doc = new HtmlDocument();
-                doc.LoadHtml(res);
+           ConnectionProfile connection = NetworkInformation.GetInternetConnectionProfile();
+           bool internet = connection != null && connection.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+        if (internet)
+        {
+            HttpClient client = new HttpClient();
+            string res = await client.GetStringAsync("http://www.dar-alifta.org/dateservice.aspx?LangID=1");
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(res);
+ 
+            DateTimeFormatter df = new DateTimeFormatter("longdate", new string[] { "ar-sa" });
+            var date = df.Format(DateTime.Now);
+ 
+            return doc.GetElementbyId("lblDate").InnerText;
+ 
+        }
 
-                DateTimeFormatter df = new DateTimeFormatter(&quot;longdate&quot;, new string[] { &quot;ar-sa&quot; });
-                var date = df.Format(DateTime.Now);
-
-                return doc.GetElementbyId(&quot;lblDate&quot;).InnerText;
-
-            }
 {% endhighlight %}
 </div>
 <em><span style="color:#ff0000;">To parse the HTML result , I used HTML Agility Library.</span></em>
@@ -43,9 +44,10 @@ I will share with you the code I wrote to get the date from this service
 <div class="csharpcode">
 
 {% highlight c# %}
-            DateTimeFormatter df = new DateTimeFormatter(&quot;longdate&quot;, new string[] { &quot;ar-sa&quot; });
-            var date = df.Format(DateTime.Now);
-            return date.ToString();
+DateTimeFormatter df = new DateTimeFormatter("longdate", new string[] { "ar-sa" });
+      var date = df.Format(DateTime.Now);
+      return date.ToString();
+
 {% endhighlight %}
 
 </div>
