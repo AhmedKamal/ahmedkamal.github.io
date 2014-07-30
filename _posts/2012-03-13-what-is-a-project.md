@@ -11,6 +11,7 @@ categories: [Project Management]
 <strong><span style="color:#0000ff;">A project is a unique thing that has a specific goal and a beginning and an end in addition to a budget.</span></strong>
 
 Let's try to break down this definition into small pieces.
+<br/>
 <h2><span style="color:#ff0000;">Unique </span></h2>
 Every project is different. This is a rule.  Even If you do something more than one time , you should know that you won't face the same difficulties and problems.
 
