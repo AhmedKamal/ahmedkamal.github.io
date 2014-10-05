@@ -72,9 +72,9 @@ Example on using SortCollection method would be :
 > , you will only need to pass sorter object of type Func only.
 > Expressions trees are needed here because they can be easily converted
 > to sql through linq to sql. For more info about the difference between
-> Func<T> and Expression<Func<T>> check this [SO answer]
+> Func<T> and Expression<Func<T>> check this [SO answer](http://stackoverflow.com/questions/793571/why-would-you-use-expressionfunct-rather-than-funct)
 
-(http://stackoverflow.com/questions/793571/why-would-you-use-expressionfunct-rather-than-funct)
+
 
 That is all what I wanted to show for this post. Feel free to comment 
 if you have a question or if you have a better way that you want to show. Thanks :)
