@@ -1,0 +1,80 @@
+---
+layout: post
+title: Sorting elements coming from db without repeating code
+date: 2014-10-05 11:53
+author: a7medkamal
+comments: true
+categories: [Learn, .NET, Programming]
+---
+
+This week I was working on developing an ASP.NET Web Api service which would talk with a javascript client and one of the needed features was sorting. The case was that we need to get a feed of items sorted by each field of our database entity (I will call it **Person** in the post).
+
+Let's suppose we have a model class called **Person**. Our properties would be *ID , Name , Age , Email , Address*
+
+In the webservice side we would have a method called GetSortedItems which takes two parameters 
+
+ 1. SortDirection which can be 0 (ASC) or  1 (DESC)
+ 2. SortAttribute which can be one of our five properties
+
+The naive approach would be to check the type of sort (SortDirection) then write a sort function that contains five conditions to match the number of properties/attributes we have.
+
+Instead , using the power of C# especially [Func](http://msdn.microsoft.com/en-us/library/bb549151%28v=vs.110%29.aspx) and [Lambda Expressions](http://msdn.microsoft.com/en-us/library/bb397687.aspx) this can be implemented much easier
+
+    public IQueryable<Person> SortCollection<T>(int direction, ref IQueryable<Person> list ,  Expression<Func<Person , T>> sorter) 
+            {
+                    if (direction == 0)
+                        list = list.OrderBy(sorter);
+                        
+                    else
+                        list = list.OrderByDescending(sorter);
+    
+                    return list;
+                
+            }
+
+The previous function would take the direction and the list as parameters in addition to an object called sorter. sorter is of type expression and it should points to the property that our sorting would be based on.
+
+Example on using SortCollection method would be :
+
+     public IQueryable<Person> GetSortedItems(int SortDirection, string sortColumn) {
+    
+            IQueryable<Person> data;
+            switch (sortColumn)
+    	        {
+                case "ID" :
+                    SortCollection(sortType,ref  data, x => x.ID);
+                    break;
+                case "Name" :
+                    SortCollection(sortType,ref  data, x => x.Name);
+                    break;
+    
+                case "Age" :
+                    SortCollection(sortType,ref  data, x => x.Age);
+    
+                    break;
+    
+                case "Email" :
+                    SortCollection(sortType, ref data, x => x.Email);
+                    break;
+                    
+                case "Address" :
+                    SortCollection(sortType, ref data, x => x.Address);
+                    break;
+    
+                default:
+                    data = db.Persons;
+                    break;
+    	        }
+            return data;
+            }
+
+> Final Note : If you are working with normal collection not a database
+> , you will only need to pass sorter object of type Func only.
+> Expressions trees are needed here because they can be easily converted
+> to sql through linq to sql. For more info about the difference between
+> Func<T> and Expression<Func<T>> check this [SO answer]
+
+(http://stackoverflow.com/questions/793571/why-would-you-use-expressionfunct-rather-than-funct)
+
+That is all what I wanted to show for this post. Feel free to comment 
+if you have a question or if you have a better way that you want to show. Thanks :)
