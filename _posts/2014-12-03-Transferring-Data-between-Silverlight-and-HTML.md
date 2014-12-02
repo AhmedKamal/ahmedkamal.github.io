@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Transferring Data between Silverlight and HTML
-date: 2012-03-02 15:32
+date: 2014-12-02 17:00
 author: Ahmed Kamal
 comments: true
 categories: [Silverlight, C# , Javascript , Iframe]
