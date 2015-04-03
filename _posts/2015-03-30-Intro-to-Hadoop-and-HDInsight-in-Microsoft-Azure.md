@@ -52,11 +52,10 @@ In the next blog posts , I will try to dive deeper into HDinsight in Azure. Than
 
 **References :**
 
-http://en.wikipedia.org/wiki/Apache_Hadoop
+[http://en.wikipedia.org/wiki/Apache_Hadoop](http://en.wikipedia.org/wiki/Apache_Hadoop)
 
-http://en.wikipedia.org/wiki/MapReduce
+[http://en.wikipedia.org/wiki/MapReduce](http://en.wikipedia.org/wiki/MapReduce)
 
-http://hadoop.apache.org/
+[http://hadoop.apache.org/](http://hadoop.apache.org/)
 
-http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/
-
+[http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/](http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/)
