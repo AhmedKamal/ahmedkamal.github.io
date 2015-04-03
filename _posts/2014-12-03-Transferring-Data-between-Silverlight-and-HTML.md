@@ -4,7 +4,7 @@ title: Transferring Data between Silverlight and HTML
 date: 2014-12-02 17:00
 author: Ahmed Kamal
 comments: true
-categories: [Silverlight, C# , Javascript , Iframe]
+tags: [Silverlight, C# , Javascript , Iframe]
 ---
 In the last few years, html and JavaScript became one of the most used technologies and a lot of applications are now being rewritten in them because of the known multiple benefits of them. At the same time, Silverlight was one of the promising technologies few years ago especially for .Net developers and thus many big applications are already written in it.  In this blog I will try to discuss how Silverlight can communicate with HTML pages and vice versa. 
 
