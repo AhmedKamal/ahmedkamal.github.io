@@ -7,7 +7,7 @@ comments: true
 tags: [Hadoop ,BigData , Azure]
 ---
 
-Hi, in this blog post, I will try to give you some info about Microsoft distribution of Hadoop. Hadoop is one of the most famous No Sql and big data solutions. Hadoop is now used by big entities like Facebook ,  Twitter , yahoo and many other companies that have a lot of data to store and process.
+Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big data solutions. Hadoop is already used by big entities like Facebook ,  Twitter , yahoo and many other companies that have a lot of data to store and process.
 Let’s dive in a little deeper. If you don’t know what Hadoop is, let me give you one of the definitions that you can get easily from google :) 
 
 > Hadoop is a free, Java-based programming framework that supports the
@@ -30,7 +30,8 @@ Back to Hadoop, the core of Apache Hadoop consists of two things:
 > performs a summary operation (such as counting the number of students  in each queue, yielding name frequencies).
 
 To process the data, Hadoop Map/Reduce transfers code (specifically Jar files) to nodes that have the required data, which the nodes then process in parallel. 
-There are multiple projects that can be used on top of Hadoop like:
+
+## There are multiple projects that can be used on top of Hadoop like:
 
 **Mahout™**: A Scalable machine learning and data mining library.
 
@@ -50,7 +51,7 @@ HDInsight also integrates with business intelligence (BI) tools such as Excel, S
 
 In the next blog posts , I will try to dive deeper into HDinsight in Azure. Thanks for reading :) Feel free to comment or contact me if you have any questions.
 
-**References :**
+## References :
 
 [http://en.wikipedia.org/wiki/Apache_Hadoop](http://en.wikipedia.org/wiki/Apache_Hadoop)
 
