@@ -4,7 +4,7 @@ title: Intro to Hadoop and HDInsight in Microsoft Azure
 date: 2015-03-30 17:00
 author: Ahmed Kamal
 comments: true
-categories: [Hadoop ,BigData , Azure]
+tags: [Hadoop ,BigData , Azure]
 ---
 
 Hi, in this blog post, I will try to give you some info about Microsoft distribution of Hadoop. Hadoop is one of the most famous No Sql and big data solutions. Hadoop is now used by big entities like Facebook ,  Twitter , yahoo and many other companies that have a lot of data to store and process.
