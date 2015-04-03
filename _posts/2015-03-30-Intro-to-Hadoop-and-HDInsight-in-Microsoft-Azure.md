@@ -18,7 +18,9 @@ For example, if you are working on a solution that tries to give your customer s
 Also In this example the data we are getting are unstructured that’s why storing them in a relational database won’t be useful and won’t help at all.
 
 Back to Hadoop, the core of Apache Hadoop consists of two things:
+
 1-	Storage Part which is called **HDFS** (Hadoop Distributed File System)
+
 2-	Processing Part which is Map Reduce
 
 > **MapReduce** is a programming model for processing and generating large data sets with a parallel, distributed algorithm on a cluster. A
@@ -31,9 +33,13 @@ To process the data, Hadoop Map/Reduce transfers code (specifically Jar files) t
 There are multiple projects that can be used on top of Hadoop like:
 
 **Mahout™**: A Scalable machine learning and data mining library.
+
 **Hive™**: A data warehouse infrastructure that provides data summarization and ad hoc querying.
+
 **Pig™**: A high-level data-flow language and execution framework for parallel computation.
+
 **Spark™**: A fast and general compute engine for Hadoop data. Spark provides a simple and expressive programming model that supports a wide range of applications, including machine learning, stream processing, and graph computation.
+
 **Storm™**: A free and open source distributed realtime computation system. Storm makes it easy to reliably process unbounded streams of data, doing for realtime processing what Hadoop did for batch processing.
 
 and many other projects that are concerned with big data in general.
@@ -47,7 +53,10 @@ In the next blog posts , I will try to dive deeper into HDinsight in Azure. Than
 **References :**
 
 http://en.wikipedia.org/wiki/Apache_Hadoop
+
 http://en.wikipedia.org/wiki/MapReduce
+
 http://hadoop.apache.org/
+
 http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/
 
