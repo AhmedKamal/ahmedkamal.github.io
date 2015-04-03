@@ -4,7 +4,7 @@ title: Sorting elements coming from db without repeating code
 date: 2014-10-05 11:53
 author: a7medkamal
 comments: true
-categories: [Learn, .NET, Programming]
+tags: [Learn, .NET, Programming]
 ---
 
 This week I was working on developing an ASP.NET Web Api service which would talk with a javascript client and one of the needed features was sorting. The case was that we need to get a feed of items sorted by each field of our database entity (I will call it **Person** in the post).
