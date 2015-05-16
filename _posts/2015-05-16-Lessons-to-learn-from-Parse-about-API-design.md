@@ -26,6 +26,7 @@ APIs are sometimes called services or web services but web service is a broad co
 
 ##It should be intuitive
 
+
 ----------
 >  A good API needs to appeal to the most powerful emotion: Laziness - Kevin Lacker
 
@@ -42,6 +43,7 @@ For example, imagine you have an API that is providing mobile developers with an
 
 
 ##Well documented
+
 
 ----------
 > A bug in the code is worth two in the documentation.   -- unknown
@@ -63,6 +65,7 @@ I think you should check Parse [docs](https://parse.com/docs) especially the qui
 
 
 ##Opinionated
+
 
 ----------
 > You need to be opinionated even when there is no right and wrong - Kevin Lacker
