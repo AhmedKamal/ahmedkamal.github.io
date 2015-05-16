@@ -24,10 +24,7 @@ Feel free to check this [link](https://www.pinterest.com/pin/481111172665337191/
 
 APIs are sometimes called services or web services but web service is a broad concept that can represent  different things. The question that the session revolved around was **what are the best qualities that any grate API should have ?**
 
-##It should be intuitive
-
-
-----------
+#It should be intuitive
 >  A good API needs to appeal to the most powerful emotion: Laziness - Kevin Lacker
 
  
@@ -42,10 +39,7 @@ At the same time, if you have some important and dangerous options that the API 
 For example, imagine you have an API that is providing mobile developers with an easier way for data synchronization between their app and the server. If you have an option that will force the start of the download process from the beginning each time the connection is disconnected then you shouldn't just call it "SupportFreshDownload" no, in this case , you should choose a more terrifying name "CancelPreviousProgressWhenDisconnected". I hope you got the idea.
 
 
-##Well documented
-
-
-----------
+#Well documented
 > A bug in the code is worth two in the documentation.   -- unknown
 
 Imagine, you have found a very cool API that would help you get the latest currency conversion prices easily and fast. It is also a free one! You tried to connect to it. You wrote some code, tried and tried but in vain. You can't get what you need so you decided you need some help. You tried to look here and there, to search for an official documentation but also you can't find something useful regarding it. 
@@ -64,10 +58,7 @@ I think you should check Parse [docs](https://parse.com/docs) especially the qui
 
 
 
-##Opinionated
-
-
-----------
+#Opinionated
 > You need to be opinionated even when there is no right and wrong - Kevin Lacker
 
 While building your API , you can be hesitated about taking decisions. If there is a debate about something then you should take side from the the two. 
