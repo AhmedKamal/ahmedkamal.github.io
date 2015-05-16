@@ -219,12 +219,6 @@ a {
     border: 1px solid #EF7522;
 }
 #sub-nav .social a.rss:hover { border: 1px solid #cf5d0f }
-
-#sub-nav .social a.medium:hover {border: 1px solid #55cff8}
-#sub-nav .social a.medium {
-    background: url('/images/social/medium.jpeg?1385702818') center no-repeat #ef7522;
-    border: 1px solid #EF7522;
-}
 #pagenavi {
     padding: 20px 0;
     height: 20px;
