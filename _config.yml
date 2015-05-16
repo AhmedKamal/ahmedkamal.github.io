@@ -18,7 +18,6 @@ github_repo_url: https://github.com/AhmedKamal/ahmedkamal.github.io
 twitter_user: A7med_Kamal
 twitter_tweet_button: true
 
-
 # Disqus Comments
 disqus_short_name: ahmedkamal
 disqus_show_comment_count: true
@@ -26,6 +25,7 @@ disqus_show_comment_count: true
 # Google Analytics
 google_analytics_tracking_id: UA-51102645-1
 google_analytics_domain: http://ahmedkamal.github.io
+
 
 #
 # Jekyll Settings
