@@ -1,9 +1,0 @@
----
-layout: post
-title: Moved to (ahmedkamal.me)
-date: 2015-06-21 17:00
-author: Ahmed Kamal
-comments: true
-tags: [general]
----
-I have moved to [ahmedkamal.me](http://ahmedkamal.me). I hope you will like this move. Please feel free to check it and to let me know if you have any feedback ! See you there !
