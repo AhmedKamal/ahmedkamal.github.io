@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Moved to AhmedKamal.ME
+title: Moved to (ahmedkamal.me)
 date: 2015-06-21 17:00
 author: Ahmed Kamal
 comments: true
