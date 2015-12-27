@@ -8,7 +8,5 @@ categories: [personal]
 sharing: false
 ---
 
-A 4th year Computer Engineering Student. I am passionate about computer science and technology in general.
-
-I always look for challenging opportunities. I hope I can be part of projects help a lot of people and affect their lives.
+I'm Ahmed Kamal, a Computer Engineering fresh graduate, seeking a challenging SW Engineering career where I could satisfy my passion for building products that could change people's lives.Currently, I'm a big data engineer at Seeloz building the next generation hyper-local shopper engagement platform for retailers and manufacturers.
 
