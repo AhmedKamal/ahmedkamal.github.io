@@ -1,24 +1,56 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ahmed Kamal</title>
 
-{% assign index = true %}
-<div itemscope itemtype="http://schema.org/Blog">
-{% for post in paginator.posts %}
-{% unless post.redirect %}
-{% assign content = post.content %}
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-        {% include article.html %}
-    </article>
-{% endunless %}
-{% endfor %}
-</div>
-<nav id="pagenavi">
-    {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}" class="prev">Prev</a>
-    {% endif %}
-    {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="next">Next</a>
-    {% endif %}
-    <div class="center"><a href="/archive">Blog Archives</a></div>
-</nav>
+	<meta charset="UTF-8">
+  	<meta name="description" content="Ahmed Kamal Website">
+  	<meta name="keywords" content="AHMED,KAMAL,SOFTWARE,ENGINEER,DATA,SPARK,HADOOP,CAREEM,DataSCIENCE,DATA-ENGINEERING">
+  	<meta name="author" content="Ahmed Kamal">	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div id="wrapper">
+		
+		<div id="section1">
+			<div id="section1-img" style="background-image: url('ak.jpg');" ></div>
+		</div>
+
+		<div id="section2">
+			<p id="section2-name">Ahmed Kamal</p>
+			<p id="section2-title">Data Science Engineer in Dubai, UAE</p>
+			
+			<a id="section2-readblog" href="blog.ahmedkamal.me"><i class="fa fa-align-left"></i> <span>Read My Blog</span></a>
+			
+			<p id="section2-about">
+				I'm Ahmed Kamal, a Computer Engineering grad, seeking a challenging career that could satisfy my passion for building data products that could change people's lives.
+				Currently, I'm a data science engineer @ Careem, the MENA region leading ride-hailing service and newest tech unicorn. With 30% monthly growth, we now operate in 50+ cities across 11 countries and host over 6 M users.
+			</p>
+			
+			<ul id="section2-hashtags">
+				<li>#reading</li> 
+				<li>#productdevelopment</li>
+				<li>#datascience</li>
+				<li>#technology</li>
+				<li>#programming</li>
+			</ul>
+
+			<ul id="section2-social">
+				<li><a href="a.abdelfatah@live.com" alt="Email"><i class="fa fa-envelope"></i></a></li> 
+				<li><a href="https://www.twitter.com/_akamal8_" alt="Twitter"><i class="fa fa-twitter-square"></i></a></li> 
+				<li><a href="https://www.linkedin.com/in/akamal8" alt="Linkedin"><i class="fa fa-linkedin-square"></i></a></li> 
+				<li><a href="https://medium.com/@akamal8?source=rss-7b2946c472b6------2" alt="Medium"><i class="fa fa-medium"></i></a></li> 
+				<li><a href="https://github.com/AhmedKamal" alt="Github"><i class="fa fa-github"></i></a></li> 
+			</ul>
+
+			<div id="section2-bottom"></div>
+		</div>
+	</div>
+</body>
+</html>

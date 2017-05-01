@@ -1,2 +1,3 @@
-# ahmedkamal.github.io
-I used the theme of Haacked and David Ebbo Blog  :)
+# ahmedkamal.me
+
+Thanks to @AhmedAlaa23 for helping with designing this cover :) 
