@@ -1,71 +1,207 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124188722-1"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-
 	  gtag('config', 'UA-124188722-1');
 	</script>
+
 	<title>Ahmed Kamal</title>
 
 	<meta charset="UTF-8">
-  	<meta name="description" content="Ahmed Kamal Website">
-  	<meta name="keywords" content="AHMED,KAMAL,SOFTWARE,ENGINEER,AI,DATA,SPARK,MLOPS,ML-ENGINEERING,DATA-ENGINEERING">
-  	<meta name="author" content="Ahmed Kamal">	
-
+	<meta name="description" content="Ahmed Kamal. Building the data and AI behind Hudhud Maps, MENA's first local maps. Previously Uber, Careem, Stream.">
+	<meta name="keywords" content="Ahmed Kamal, Data and AI, Hudhud Maps, MENA, geospatial AI, Careem, Uber, Stream, Riyadh, Saudi Arabia">
+	<meta name="author" content="Ahmed Kamal">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+
+		body {
+			font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+			background: #faf7f2;
+			color: #2a2823;
+			line-height: 1.65;
+			font-size: 18.5px;
+			padding: 72px 24px 80px;
+		}
+
+		main {
+			max-width: 760px;
+			margin: 0 auto;
+		}
+
+		.header {
+			display: flex;
+			gap: 32px;
+			align-items: center;
+			margin-bottom: 44px;
+			padding-bottom: 32px;
+			border-bottom: 1px solid #d8d2c6;
+		}
+
+		.photo {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background-image: url('ak.jpg');
+			background-size: cover;
+			background-position: 30% 20%;
+			flex-shrink: 0;
+		}
+
+		.header-text { flex: 1; }
+
+		@media (max-width: 640px) {
+			.header {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 20px;
+			}
+			.photo {
+				width: 160px;
+				height: 160px;
+			}
+		}
+
+		h1 {
+			font-family: "Fraunces", Georgia, serif;
+			font-size: 50px;
+			font-weight: 500;
+			color: #1a1815;
+			line-height: 1.05;
+			letter-spacing: -0.02em;
+			margin-bottom: 10px;
+			font-variation-settings: "opsz" 96, "SOFT" 50;
+		}
+
+		.subtitle {
+			font-family: "Inter", sans-serif;
+			font-size: 15px;
+			color: #6b6455;
+			font-weight: 500;
+			letter-spacing: 0.01em;
+		}
+
+		p { margin-bottom: 24px; color: #2a2823; }
+
+		h2 {
+			font-family: "Fraunces", Georgia, serif;
+			font-size: 28px;
+			font-weight: 500;
+			color: #1a1815;
+			letter-spacing: -0.01em;
+			margin-top: 44px;
+			margin-bottom: 20px;
+			font-variation-settings: "opsz" 48;
+		}
+
+		ul.talks { list-style-type: none; }
+
+		ul.talks li {
+			margin-bottom: 18px;
+			font-size: 17px;
+			line-height: 1.6;
+		}
+
+		ul.talks strong {
+			font-family: "Fraunces", Georgia, serif;
+			font-weight: 500;
+			font-size: 18px;
+			color: #1a1815;
+			font-variation-settings: "opsz" 24;
+		}
+
+		a {
+			color: #a04f3c;
+			text-decoration: underline;
+			text-decoration-thickness: 1px;
+			text-underline-offset: 3px;
+			text-decoration-color: #d0aa9d;
+			transition: color 0.15s, text-decoration-color 0.15s;
+		}
+
+		a:hover {
+			color: #7a3a2b;
+			text-decoration-color: #a04f3c;
+		}
+
+		.social {
+			list-style: none;
+			margin-top: 44px;
+			padding-top: 24px;
+			border-top: 1px solid #d8d2c6;
+		}
+
+		.social li {
+			display: inline-block;
+			margin-right: 26px;
+			font-size: 32px;
+		}
+
+		.social li a {
+			color: #6b6455;
+			text-decoration: none;
+			transition: color 0.15s;
+		}
+
+		.social li a:hover { color: #a04f3c; }
+	</style>
 </head>
 <body>
-
-	<div id="wrapper">
-		
-		<div id="section1">
-			<div id="section1-img" style="background-image: url('ak.jpg');" ></div>
+	<main>
+		<div class="header">
+			<div class="photo"></div>
+			<div class="header-text">
+				<h1>Ahmed Kamal</h1>
+				<p class="subtitle">Building Hudhud Maps. Previously Uber, Careem, Stream.</p>
+			</div>
 		</div>
 
-		<div id="section2">
-			<p id="section2-name">Ahmed Kamal</p>
-			<p id="section2-title">Data & AI Technology Leader</p>
-			
-			<a id="section2-readblog" href="http://blog.ahmedkamal.me"><i class="fa fa-align-left"></i> <span>Read My Blog</span></a>
-			
-			<p id="section2-about">
+		<p>I grew up between the Nile and the Mediterranean. I build the data and AI behind products that tens of millions of people across MENA use every day. Right now that means <a href="https://hudhud.sa">Hudhud</a>, MENA's first local maps.</p>
 
-			<blockquote id="section2-about">
-    			My passion is to build & ship data products that improve the lives of millions of people.
-			</blockquote>
-		
-		</br>
-			Ahmed leads Data & AI at Hudhud Maps, Saudi Arabia’s homegrown mapping platform. He builds highly detailed maps with geospatial AI and a modern data stack. Over the past decade, he’s built systems and led teams across MENA, Europe, and the US most notably at Careem, where he founded and scaled the company’s data infrastructure and ML platform teams.
-		        </p>
-			
-			<ul id="section2-hashtags">
-				<li>#building_products</li>
-				<li>#dataengineering</li>
-				<li>#machinelearning</li>
-				<li>#mlengineering</li>
-				<li>#technology</li>
-				<li>#AI</li> 
-			</ul>
+		<p>Before Hudhud, six years at <a href="https://careem.com">Careem</a> then <a href="https://uber.com">Uber</a> (2016 to 2022), building the data and ML infrastructure behind the region's super-app: the first big data platform, the ML platform (<a href="https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195">Yoda</a>) that shipped millions of predictions daily, search ranking, forecasting. Careem was acquired by Uber in 2019 for $3.1B. Then a stretch at Stream, where I founded and sold <a href="https://getstream.io/moderation/">AI Moderation</a> to B2B customers. Then Riyadh, 2024, to start Hudhud with the founding team.</p>
 
-			<ul id="section2-social">
-				<li><a href="mailto:me@ahmedkamal.me" alt="Email"><i class="fa fa-envelope"></i></a></li> 
-				<li><a href="https://www.twitter.com/_ahmdkamal_" alt="Twitter"><i class="fa fa-twitter-square"></i></a></li> 
-				<li><a href="https://www.linkedin.com/in/ahmdkamal" alt="Linkedin"><i class="fa fa-linkedin-square"></i></a></li> 
-				<li><a href="https://medium.com/@ahmdkamal?source=rss-7b2946c472b6------2" alt="Medium"><i class="fa fa-medium"></i></a></li> 
-				<li><a href="https://github.com/ahmedkamal" alt="Github"><i class="fa fa-github"></i></a></li> 
-			</ul>
+		<p>I write occasionally at <a href="https://blog.ahmedkamal.me">blog.ahmedkamal.me</a>.</p>
 
-			<div id="section2-bottom"></div>
-		</div>
-	</div>
+		<h2 id="talks">Talks</h2>
+		<ul class="talks">
+			<li><strong>HudHud Maps: A Living Map That Evolves Every Day.</strong> HudHud Launch Event, Riyadh, July 2026. <a href="https://youtu.be/DVOlqyWuZrE">Video</a>.</li>
+			<li><strong>The best engineers are writing less code, how the tech industry is changing forever.</strong> Tamara's Sandbox, April 2026. <a href="https://youtu.be/kJXikdw8rl8">Video</a>.</li>
+			<li><strong>Scaling machine learning at Careem.</strong> <a href="https://conferences.oreilly.com/artificial-intelligence/ai-eu-2019/public/schedule/speaker/348072.html">O'Reilly AI Conference</a>, London, October 2019. <a href="https://youtu.be/8GJOcn_OQiU">Video</a>.</li>
+			<li><strong>Scaling machine learning at Careem.</strong> AI Monday, Berlin, June 2019. <a href="https://youtu.be/ZzBfLjVmDzo">Video</a>.</li>
+		</ul>
+
+		<h2 id="advising">Advising</h2>
+		<p>I advise startups, corporates, and NGOs on data and AI products, platforms, and teams. <a class="email-link" data-u="me" data-d="ahmedkamal.me" href="#">Get in touch</a>.</p>
+
+		<ul class="social">
+			<li><a class="email-link" data-u="me" data-d="ahmedkamal.me" href="#" aria-label="Email"><i class="fa fa-envelope"></i></a></li>
+			<li><a href="https://www.twitter.com/_ahmdkamal_" aria-label="Twitter"><i class="fa fa-twitter-square"></i></a></li>
+			<li><a href="https://www.linkedin.com/in/ahmdkamal" aria-label="LinkedIn"><i class="fa fa-linkedin-square"></i></a></li>
+			<li><a href="https://www.youtube.com/@ahmd_kamal" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a></li>
+			<li><a href="https://github.com/AhmedKamal" aria-label="GitHub"><i class="fa fa-github"></i></a></li>
+		</ul>
+	</main>
+
+	<script>
+	(function() {
+		document.querySelectorAll('.email-link').forEach(function(el) {
+			el.addEventListener('click', function(e) {
+				e.preventDefault();
+				window.location.href = 'mailto:' + el.dataset.u + '@' + el.dataset.d;
+			});
+		});
+	})();
+	</script>
 </body>
 </html>
