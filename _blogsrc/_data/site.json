@@ -11,5 +11,8 @@
   "ga4_id": "G-7SGXTR10EE",
 
   "_comment_disqus": "Disqus shortname from disqus.com admin (Settings > General). Empty = the comments block is omitted entirely.",
-  "disqus_shortname": ""
+  "disqus_shortname": "ahmed-kamal",
+
+  "_comment_disqus_counts": "Show 'N Comments' on the index. Off because it loads Disqus JS for every visitor to the index, which is the cost click-to-load avoids, and an index of '0 Comments' reads worse than no counts. Turn on once threads have activity.",
+  "disqus_counts": false
 }

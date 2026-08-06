@@ -201,6 +201,34 @@ We can list 6 profiles that together compose a capable data team able to push it
 		</footer>
 
 		
+<section class="comments" id="comments">
+	<button type="button" class="comments-open" id="comments-open">Show comments</button>
+	<div id="disqus_thread"></div>
+</section>
+<script>
+// Disqus is ~1MB of third-party JavaScript. Loading it only on click keeps the
+// page fast and keeps its trackers off readers who never open the thread.
+(function () {
+	var btn = document.getElementById('comments-open');
+	if (!btn) return;
+	btn.addEventListener('click', function () {
+		btn.disabled = true;
+		btn.textContent = 'Loading comments…';
+		window.disqus_config = function () {
+			this.page.url = 'https://ahmedkamal.me/blog/how-to-be-a-machine-learning-engineer/';
+			this.page.identifier = 'how-to-be-a-machine-learning-engineer';
+			this.page.title = "How to become a machine learning engineer";
+		};
+		var s = document.createElement('script');
+		s.src = 'https://ahmed-kamal.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', String(+new Date()));
+		s.onload = function () { btn.remove(); };
+		(document.head || document.body).appendChild(s);
+		if (window.gtag) gtag('event', 'comments_open', { post: "How to become a machine learning engineer" });
+	});
+})();
+</script>
+
 
 	</article>
 </div>
