@@ -65,7 +65,7 @@
 			"https://twitter.com/_ahmdkamal_",
 			"https://github.com/AhmedKamal",
 			"https://www.youtube.com/@ahmd_kamal",
-			"https://blog.ahmedkamal.me"
+			"https://ahmedkamal.me/blog/"
 		],
 		"alumniOf": [
 			{"@type": "Organization", "name": "Careem", "url": "https://careem.com"},
@@ -75,13 +75,21 @@
 	}
 	</script>
 
-	<!-- Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124188722-1"></script>
+	<!-- Google Analytics 4 -->
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-	  gtag('config', 'UA-124188722-1');
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	// Local previews must not land in the property.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
 	</script>
 
 	<!-- Fonts (async-loaded to avoid render-blocking) -->
@@ -204,6 +212,8 @@
 			text-decoration-color: #a04f3c;
 		}
 
+		.talks-more { font-size: 16px; margin-top: 4px; }
+
 		.social {
 			list-style: none;
 			margin-top: 44px;
@@ -245,9 +255,9 @@
 
 		<p>I grew up between the Nile and the Mediterranean. I build the data and AI behind products that tens of millions of people across MENA use every day. Right now that means <a href="https://hudhud.sa">Hudhud</a>, MENA's first local maps.</p>
 
-		<p>Before Hudhud, six years at <a href="https://careem.com">Careem</a> then <a href="https://uber.com">Uber</a> (2016 to 2022), building the data and ML infrastructure behind the region's super-app: the first big data platform, the ML platform (<a href="https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195">Yoda</a>) that shipped millions of predictions daily, search ranking, forecasting. Careem was acquired by Uber in 2019 for $3.1B. Then a stretch at <a href="https://getstream.io">Stream</a>, chat, feeds, and video for 1+ billion end users, where I founded and sold <a href="https://getstream.io/moderation/">AI Moderation</a>. Then Riyadh, 2024, to start Hudhud with the founding team.</p>
+		<p>Before Hudhud, six years at <a href="https://careem.com">Careem</a> then <a href="https://uber.com">Uber</a>, building the data and ML infrastructure behind the region's super-app: the first big data platform, the ML platform (<a href="https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195">Yoda</a>) that shipped millions of predictions daily, search ranking, forecasting. Careem was acquired by Uber in 2019 for $3.1B. Then a stretch at <a href="https://getstream.io">Stream</a>, chat, feeds, and video for 1+ billion end users, where I founded and sold <a href="https://getstream.io/moderation/">AI Moderation</a>. Then Riyadh, 2024, to start Hudhud with the founding team.</p>
 
-		<p>I write occasionally at <a href="https://blog.ahmedkamal.me">blog.ahmedkamal.me</a>, and in Arabic at <a href="/ar/" hreflang="ar" lang="ar">قصاصات علي الطريق</a>.</p>
+		<p>I write occasionally <a href="/blog/">here</a>, and in Arabic at <a href="/ar/" hreflang="ar" lang="ar">قصاصات علي الطريق</a>.</p>
 
 		<h2 id="talks">Talks</h2>
 		<ul class="talks">
@@ -256,6 +266,8 @@
 			<li><strong>Scaling machine learning at Careem.</strong> <a href="https://conferences.oreilly.com/artificial-intelligence/ai-eu-2019/public/schedule/speaker/348072.html">O'Reilly AI Conference</a>, London, October 2019. <a href="https://youtu.be/8GJOcn_OQiU">Video</a>.</li>
 			<li><strong>Scaling machine learning at Careem.</strong> AI Monday, Berlin, June 2019. <a href="https://youtu.be/ZzBfLjVmDzo">Video</a>.</li>
 		</ul>
+
+		<p class="talks-more"><a href="/speaking/">All talks, a speaker bio, and how to invite me</a>.</p>
 
 		<h2 id="advising">Advising</h2>
 		<p>I advise startups, corporates, and NGOs on data and AI products, platforms, and teams. <a class="email-link" data-u="me" data-d="ahmedkamal.me" href="#">Get in touch</a>.</p>

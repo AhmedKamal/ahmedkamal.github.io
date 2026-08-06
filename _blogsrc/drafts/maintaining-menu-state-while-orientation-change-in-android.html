@@ -1,0 +1,24 @@
+---
+title: "Maintaining application state during orientation change in Android"
+slug: "maintaining-menu-state-while-orientation-change-in-android"
+note: "Ghost draft, never published. Not built."
+---
+<p>Hi, in this post I would like to talk about how you should handle the change of orientation in android activities.</p>
+<h4 id="1flexibleui">1- Flexible UI</h4>
+<p>While designing the UI you should try to make the width, height, margins, padding and other properties of element relative to other elements instead of hard writing the values.</p>
+<p>It is also encouraged to use dpi instead of pixel.</p>
+<blockquote>
+<p><strong>Density-independent pixel (dp)</strong>: A virtual pixel unit that you should use when defining UI layout, to express layout dimensions or position in a density-independent way.</p>
+</blockquote>
+<p>You can also create different layout for each orientation in addition to creating layouts for different screen sizes.</p>
+<h4 id="2savingthestate">2- Saving the state</h4>
+<p>One of the things you should care about during mobile development is maintaining the state of the app each time the user take an action (Change Rotation, Closing the app, going to another page)</p>
+<p>When the orientation of the app changes, the app loses the state of the screen so we have to save this state before going anywhere. We can create a data structure for our activity where each property represent something that we are interested in saving.</p>
+<p>For example, if we have a new android app. This applications supports the following operations</p>
+<p>1- Searching News Articles<br>
+2- Filtering News Items by <strong>Week Days</strong><br>
+3- Filtering News Items by <strong>Category</strong></p>
+<p>We may be interested in saving the the following things:</p>
+<p>1- The query that the user may type<br>
+2- The selected filters (Date &amp; Category)</p>
+<h4 id="3handlingmenus">3- Handling Menus</h4>

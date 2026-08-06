@@ -1,0 +1,32 @@
+---
+title: "[Clean Code] Clean Code Debate!"
+date: "2018-02-26"
+slug: "clean-code-clean-code-debate"
+description: "In this series of posts, I try to share with you some of my highlights on Clean Code Chapters."
+archived: true
+layout: "post.njk"
+tags_original: ["clean-code", "Java", "class-design"]
+---
+<p>In this series of posts, I try to share with you some of my highlights on Clean Code Chapters.</p>
+<p>Lots of people argue about the necessity of applying clean code principles and whether spending time on refactoring is an important step of the software development process or just a waste of time.</p>
+<p>In this post, I discuss some arguments that discourage spending efforts on cleaning code.</p>
+<p><mark><strong>Argument: Writing cleaner classes results in a lot of small classes which makes it harder to absorb to the big picture.</strong></mark></p>
+<p>Usually some initial efforts should be exerted to understand and follow the code but <strong>do you prefer to read a short cohesive class that is only doing one thing</strong> or a mega size class that affects a lot of components and is coupled with multiple dependencies?</p>
+<p>Which design would help you find the part you want to change or augment and which design would <strong>make the code modification and testing easier and faster</strong>?</p>
+<p><mark><strong>Argument: Writing Cleaner classes would usually mean writing more code</strong></mark></p>
+<p>This correct because in clean code you have:<br>
+1- More descriptive variable names.<br>
+2- Uses function and class declarations as a way to add commentary to the code.<br>
+3- Ensures SRP, and thus result in a lot of code seperation.</p>
+<p>But the gains we made are huge, we have a self-documented code that isn't a source of horror for its maintainers and readers. Testing would be doable and replacing one part by a newly designed web service for example won't be a task that requires months of continuous hard work.</p>
+<p>Lastly, what is the most frequent part of the coding process? It is change and thus you need to design and write your code for change.</p>
+<p><mark><strong>Argument: Following Clean Code principles oftens leads to drowning in code design and over-design?</strong></mark></p>
+<p>You can avoid this by following YAGNI (You are not gonna need it) principle.</p>
+<p>In simple words,</p>
+<p>1- Build the smallest, simplest thing that solves the problem.<br>
+2- Improve it.<br>
+3- If you found a class/component that gets modified a lot then a redesign/refactoring can be proposed to make change smooth and easy. By making change easy we refer to OCP principle which simply imply that the design should encourage adding features and doing changes as an extension to the current system not as a modification to the current coded part.<br>
+4- Iterate :)</p>
+<p><strong>Resources:</strong></p>
+<p>1- <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">https://en.wikipedia.org/wiki/You_aren't_gonna_need_it</a><br>
+2- <a href="https://stackoverflow.com/questions/1702052/ways-to-prevent-over-engineering#_=_">https://stackoverflow.com/questions/1702052/ways-to-prevent-over-engineering#_=_</a></p>

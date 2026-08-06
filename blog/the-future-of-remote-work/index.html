@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>The virtual workspace: how AI is shaping the future of remote work · Ahmed Kamal</title>
+	<meta name="description" content="Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/the-future-of-remote-work/">
+	<meta name="theme-color" content="#faf7f2">
+	
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="The virtual workspace: how AI is shaping the future of remote work">
+	<meta property="og:description" content="Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/the-future-of-remote-work/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2020-10-09T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="The virtual workspace: how AI is shaping the future of remote work">
+	<meta name="twitter:description" content="Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "The virtual workspace: how AI is shaping the future of remote work",
+		"datePublished": "2020-10-09T00:00:00.000Z",
+		"description": "Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…",
+		"url": "https://ahmedkamal.me/blog/the-future-of-remote-work/",
+		"author": {
+			"@type": "Person",
+			"name": "Ahmed Kamal",
+			"url": "https://ahmedkamal.me/"
+		}
+	}
+	</script>
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	<nav class="toc" aria-label="Table of contents"><p class="toc-head">Contents</p><ul><li class="toc-l2"><a href="#from-virtual-meetings-to-virtual-workspaces">From virtual meetings to virtual workspaces</a></li><li class="toc-l2"><a href="#what-if-we-can-mix-deep-learning-and-vr-worlds">What if we can mix Deep Learning and VR worlds?</a></li><li class="toc-l2"><a href="#still-not-convinced-that-this-is-doable">Still not convinced that this is doable?</a></li></ul></nav>
+
+	<article>
+		<header class="post-head">
+			<h1>The virtual workspace: how AI is shaping the future of remote work</h1>
+			<p class="post-meta">
+				<time datetime="2020-10-09T00:00:00.000Z">Oct 9, 2020</time>
+				· 4 min read
+			</p>
+			
+		</header>
+
+		<div class="post-body">
+			<p>Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long period.</p><p>Definitely, this is the largest experiment of remote work that have been ever conducted and since there was no other option than making it succeed, a lot of companies have done their best to deeply understand the real needs of the business as well as the conditions under which its employees will stay productive.</p><p>One of the important needs is to maintain a healthy relationship between different employees either the ones that have to collaborate closely or the ones that just happen to work under the same business group. And one of the big reasons why many teams are still able to work so effectively is that we are relying on the long term relationship that we have built in the pre-covid period.</p><p>Now, the big question is how we can make up for the missing real life interactions between people that normally get lost when everyone is working remotely.</p><p>For some companies, the solution is to have a hybrid model where teams get to meet from time to time either in the office or through <a href="https://m.signalvnoise.com/how-to-build-social-connection-in-a-remote-team/" rel="noopener">organized outings</a> but in my opinion, this is not the ultimate solution.</p><p>Earlier <a href="/blog/the-remote-work-wave/" rel="noopener">I have written about why I think that COVID is a perfect time for the world to address all the remote work challenges </a>through technology and I still believe in this.</p><p>The first problem we need to solve is to replace all these voice conversations with face 2 face video chats. In the end, we are humans and so there is a lot to understand from looking at the other person’s face. That is how we get to trust and feel for each other.</p><p>So step one shall be to have everyone on camera that is focused on their faces, definitely not a low-quality video stream that shows a group of people from a bad angle.</p><a class="link-card" href="https://www.wsj.com/articles/seven-rules-of-zoom-meeting-etiquette-from-the-pros-11594551601" rel="noopener"><span class="lc-title">Seven Rules of Zoom Meeting Etiquette From the Pros</span><span class="lc-desc">No more dogs, chips or ‘lurkers’—as video-conferencing becomes a fixture in working life, it’s time to shed the rookie moves</span><span class="lc-meta">The Wall Street Journal</span></a><p>The challenge here is the reliability of our internet speeds which can sometimes be a blocker, also the head pose, the background, and the lightning can be a challenge.</p><p>Many of us have heard about the virtual background feature that zoom has released that smoothly replace your background with a virtual one thanks to <a href="https://medium.com/ai-in-plain-english/heres-how-zoom-s-virtual-background-feature-works-ca5cdcad15ac">deep learning</a>.</p><figure><img src="/blog/media/2020/10/image-4.webp" alt="" loading="lazy"><figcaption>photo from <a href="https://blog.zoom.us/zoom-virtual-background/" rel="nofollow noopener">https://blog.zoom.us/zoom-virtual-background/</a></figcaption></figure><a class="link-card" href="https://medium.com/ai-in-plain-english/heres-how-zoom-s-virtual-background-feature-works-ca5cdcad15ac" rel="noopener"><span class="lc-title">Here’s How Zoom’s Virtual Background Feature Works</span><span class="lc-desc">During the coronavirus pandemic, Zoom has become a favorite video communication platform among companies and organizations whose in-person meetings have been replaced digitally. A primary reason for…</span><span class="lc-meta">AI In Plain English</span></a><p>But the real innovation comes from Nvidia that tackled the last three problems by using GANs. Rather than sending the whole bulky video stream, it just sends data about the key facial points (eyes, nose, mouse). Thanks to GANs, and given this small amount of info, the receiver can easily re-construct the same exact live video of the face with much higher quality while consuming a lot less bandwidth. And additionally, the newly produced video will easily be adjusted to give the perfect pose that ensures natural eye contact between the participants.</p><div class="video-embed" data-video="NqmMnjJ6GEg"><button type="button" class="video-play" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play video</span></button></div><h2 id="from-virtual-meetings-to-virtual-workspaces">From virtual meetings to virtual workspaces</h2><p>For the longest time, people have been excited about creating a <a href="https://en.wikipedia.org/wiki/Virtual_world" rel="noopener">virtual world</a>. A computer-simulated environment where everyone can have their own avatar and simultaneously and independently explore the virtual world, participate in its activities, and communicate with others. And while most of the virtual world environments have been created for entertainment, social, and education purposes like SecondLife, there is still a nice opportunity to leverage fit this to our need for a virtual workspace where everyone can get to meet and interact with others.</p><figure><img src="/blog/media/2020/10/image-2.webp" alt="" loading="lazy"><figcaption>Facebook Horizon, photo from <a href="https://youtu.be/brd0jPjYPU0" rel="nofollow noopener">https://youtu.be/brd0jPjYPU0</a></figcaption></figure><p>A Virtual reality workspace can even push us to leave the desk and move around while being fully immersed in a VR-based world. Facebook has already developed Horizon as a VR gaming environment but who said that we can’t borrow the same ideas for work?</p><h2 id="what-if-we-can-mix-deep-learning-and-vr-worlds">What if we can mix Deep Learning and VR worlds?</h2><p>In my opinion, very soon, we could start seeing a virtual workspace where we remote workers can have <a href="https://www.fastcompany.com/90456164/silicon-valleys-hot-new-commodity-creepy-ai-powered-avatars" rel="noopener">life-like digital avatars</a> that represent our emotions, interactions, and facial expressions in a way that has never been expressed before.</p><figure><img src="/blog/media/2020/10/image-3.webp" alt="" loading="lazy"></figure><h2 id="still-not-convinced-that-this-is-doable">Still not convinced that this is doable? </h2><p>Part of this is already a reality! Samsung NEON, a project that aims to build artificial human avatars that look and act exactly like the original characters it simulates was shown recently in CES 2020.</p><p>And the other part is already being used. Once I got these thoughts I was curious to see anyone worked on a similar solution and I was blessed and surprised to find that VirBELA, a virtual work-oriented virtual environment which is based on the same gaming engine that powers “Fortnite,” has already hosted an event with more than 200 people!</p><p>Additionally, companies started using RecRoom, the famous virtual world game for having some meetings, virtual outings and team events.    </p><figure><img src="/blog/media/2020/10/image-5.webp" alt="" loading="lazy"><figcaption>photo from @Judith_ARTVR twitter account</figcaption></figure><figure><img src="/blog/media/2020/10/image-6.webp" alt="" loading="lazy"><figcaption>photo from @recroom twitter account</figcaption></figure><p>In a virtual world, in addition to having more engagement in meetings, trainings and close collaboration, you will be able to have the same office routines you used to have. So whether you want to go to the pantry and have some small talk over lunch, or just some random chat over coffee. </p><p>This way we will be able to move the office to the cloud! And rather than choosing between the office or home, we will basically bring all the features of the office to our homes.</p><p>Personally, I’m super excited to see how AI and VR will enable us to balance more between work and life. And how this era could drastically change the perception of work and productivity forever!</p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

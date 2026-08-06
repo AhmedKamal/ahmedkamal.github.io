@@ -1,0 +1,22 @@
+---
+title: "The best language for data scientists/engineers!?"
+date: "2016-04-12"
+slug: "the-best-language-for"
+description: "I recently answered this questions from a friend and I would like to share my answer with you. The question originally was"
+archived: true
+layout: "post.njk"
+tags_original: ["Java", "data-science", "data-engineering", "python", "NLP", "text-mining"]
+---
+<p>I recently answered this questions from a friend and I would like to share my answer with you. The question originally was</p>
+<blockquote>
+<p>As a data scientist or data engineer, what the best language for your job java or python?<br>
+specially in NLP and text mining field.</p>
+</blockquote>
+<p>It mainly depends on your targets. If you are building a component in a system built on top JVM. Java would be a better option. Most of the NLP libraries are C at the core so there are sometime multiple wrappers for the single library in different languages or a common interface for example (REST Endpoint for example).</p>
+<p>If you are doing a side project, then list your requirements, explore the available different tools and choose the language that would fit best with this library.</p>
+<p>In the NLP field, I'm aware of Apache Lucene,  <a href="http://nlp.stanford.edu/software/">Stanford NLP tools</a>, <a href="http://mallet.cs.umass.edu/">Mallet</a> and <a href="http://project.carrot2.org/">Carrot2</a> and they all are in Java.</p>
+<p>I'm sure that there are a lot of NLP tools for python users too, I can recall <a href="http://www.nltk.org/">NLTK</a>.</p>
+<p>You also shouldn't limit yourself to the only very specific tools for NLP. For example, you may need a classifier and in that case a general machine learning library like Spark MLib or Apache Mahout may help.</p>
+<p>To wrap up, as a data engineer, it is recommended to know Java even if your day to day work isn't in it as most of the big data tools are written in JVM languages (Java, Scala).</p>
+<p>Python is also used heavily especially for data exploration and prototyping scenarios so it is a good knife to have under your belt.</p>
+<p>At the end, it depends mainly on the problem, the environment you are working on, the skills of your team mates and other things :)</p>

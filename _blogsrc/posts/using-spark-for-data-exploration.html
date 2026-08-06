@@ -1,0 +1,147 @@
+---
+title: "Using Spark For Data Exploration"
+date: "2016-07-21"
+slug: "using-spark-for-data-exploration"
+description: "Spark is actively supported by Apache Open Source community, and it is used in production by many famous firms and companies."
+archived: true
+layout: "post.njk"
+tags_original: ["BigData", "apache-spark", "livy", "notebook", "jupyter"]
+---
+<p>Spark is actively supported by Apache Open Source community, and it is used in production by many famous firms and companies.</p>
+<p>In this blog, the focus would be on productionizing Apache Spark. I will discuss the use cases of Spark and how to enable each of them on production environment.</p>
+<p>Currently, Spark has 2 deployment modes (Client, Cluster) with 3 different supported cluster managers:<br>
+1- Standalone<br>
+2- YARN<br>
+3- Apache Mesos</p>
+<p>A lot of resources are discussing in details these different deployment ways, so I will skip discussing the differences and assume you are already aware of them.</p>
+<p>For more information, you can start from Spark Documentation and also check this post discussing Spark On YARN and Standalone in details.</p>
+<p>One of the main advantages of Spark is its capability to fill the gap between production frameworks (like C++, JAVA) and data exploration tools (like R and python). That makes Spark a suitable tool to be shared between different types of people inside the same organization.</p>
+<p>“Spark is better at being an operational system than most exploratory systems and better for data exploration than the technologies commonly used in operational systems” (Advanced Analytics with Spark).</p>
+<p>Actually, our main challenge is usually to allow these different people (Data Scientists and Engineers) to access and submit jobs to Spark. Let’s start with defining the possible use cases of Spark.</p>
+<h2 id="sparkmainusecasesare">Spark Main Use Cases are:</h2>
+<p>1- Data Exploration Scenarios.<br>
+2- Production Data Pipelines (like Cron Jobs, ETL Jobs or Machine Learning Services)</p>
+<p>The first question here is how Spark enables each use case natively? What are the alternatives?</p>
+<h3 id="1dataexplorationusecase">1- Data exploration Use Case:</h3>
+<h5 id="11sparkshell"><strong>1-1- Spark Shell</strong></h5>
+<p>Spark shell is a console tool where you interactively receive the results with each Spark Action (like .SaveAsTextFile() or .count()). Spark starts the context, submits the jobs and gets you the result inside your shell.</p>
+<div dir="ltr" style="margin-left: 0pt;">  
+<table style="border-collapse: collapse; border: none; width: 624px;"><colgroup><col width="*"><col width="*"></colgroup><tbody>  
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">PROS</span></div>  
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">CONS</span></div>  
+</td></tr>  
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Easy to use. No configurations needed.</span></div>  
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Lack of  Visualizations</span></div>  
+</td></tr>  
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Support for different languages (Scala, Python and R)</span></div>  
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">No way to save your work.</span></div>  
+</td></tr>  
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">  
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Deployment mode independent.</span></div>  
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><br></td></tr>  
+</tbody></table>  
+</div>  
+<h5 id="12sparknotebooks"><strong>1-2- Spark Notebooks</strong></h5>
+<p>Inspired by IPython Notebook, several Spark notebooks have been developed. None of them is mature enough to be superior so you may need to define your requirements and then choose from the available options.</p>
+<p>Notebooks in general provides some features like:</p>
+<p>1- Support for different languages including Markdown, python and others.<br>
+2- The ability to save your work, re-run and share it easily.<br>
+3- Different visualization capabilities.<br>
+4- Collaboration between different users.</p>
+<h3 id="aclouderashuesparknotebook">a- Cloudera’s Hue Spark NoteBook</h3>
+<figure><img src="https://gethue.com//img/hue-logo.svg" alt="" loading="lazy"><figcaption>Hue Spark NoteBook is promising. You can go for it especially if you are already using Cloudera’s CDH or Hue but be aware that behind the scenes it mainly depend on Spark On Yarn.</figcaption></figure>
+<p>Hue Spark NoteBook Demo</p>
+<iframe src="https://player.vimeo.com/video/125792752" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/125792752">Hadoop Tutorial: the new beta Notebook app for Spark &amp; SQL</a> from <a href="https://vimeo.com/gethue">The Hue Team</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+Hue is not kind of new. It offers more than just a Spark Notebook, it integrates well with all the Hadoop ecosystem components (Oozie, Solr, Impala, HBase, Pig...). The notebook allows using Scala, Python and R interactively on Spark. Hue Spark Notebook depends on Cloudera’s Livy Job Server for submitting batch and interactive jobs.
+<h3 id="bjupyternotebook">B- Jupyter Notebook</h3>
+<p>The famous Jupyter notebook is now supporting Spark via a kernel developed by IBM. It supports Scala, python and R on Spark. You can try it from here!<br>
+Another kernel for jupyter is also being developed by Microsoft based on Cloudera’s Livy under the name Spark-Magic.</p>
+<h3 id="capachezeppelinnotebook">C- Apache Zeppelin Notebook</h3>
+<figure><img src="http://zeppelin-project.org/assets/themes/nflabs-sb/img/zeppelin-logo.svg" alt="" loading="lazy"><figcaption>Similar to Jupyter, Zeppelin provides a notebook for Spark and supports using Scala and python. Zeppelin is incubated by Apache. The main difference is Jupyter is built on Python while Zeppelin is built on JVM.</figcaption></figure>
+<p>Zeppelin shines with a distinguished support for visualizations with Scala.</p>
+<h3 id="dandypetrellassparknotebook">D- Andypetrella’s Spark Notebook</h3>
+<p>Another available notebook is provided by Andy Petrella with support from LightBend (Formerly TypeSafe) and Data Fellas. It is based on Akka Framework, mainly targeted for Scala users and has a rich visualization support.</p>
+<h5 id="comparison">Comparison:</h5>
+<div dir="ltr" style="margin-left: 0pt;">
+<table style="border-collapse: collapse; border: none; width: 624px;"><colgroup><col width="*"></col><col width="*"></col><col width="*"></col></colgroup><tbody>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Jupyter Notebook</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Apache Zeppelin</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Andy’s Notebook</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Connect to Spark via separate modules called Kernels</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Spark Comes packaged with Zeppelin although using kernels is possible too</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Spark Comes packaged with the notebook</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Scala, Python and R</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Scala, Python and R</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Scala</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">One context per notebook</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Only one shared context per all nodes</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">One context per notebook</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Built on Python</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Built on JVM</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Built On JVM</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Can be shared and viewed via a web viewer</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Can be shared and viewed via a web viewer</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 7px 7px 7px 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="background-color: transparent; color: #333333; font-family: Arial; font-size: 14.666666666666666px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Missing</span></div>
+</td></tr>
+</tbody></table>
+</div>
+<p>There are a lot of available tools in this domain and their feature set are changing every day. It is hard to keep up of course but this was our try to explore the existing alternatives. If you had an opportunity to use any of these tools, please don’t hesitate to share your experience with me.</p>
+<p>In this post we focused on the first use case of Spark and discussed the available alternatives for doing data exploration. A second post will be available soon to cover the second use case too in details.</p>
+<table>
+<thead>
+<tr>
+<th>Scala, Python and R</th>
+<th style="text-align:center">Scala, Python and R</th>
+<th style="text-align:right">Scala</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One context per notebook</td>
+<td style="text-align:center">Only one shared context per all nodes</td>
+<td style="text-align:right">One context per notebook</td>
+</tr>
+<tr>
+<td>Built on Python</td>
+<td style="text-align:center">Built on JVM</td>
+<td style="text-align:right">Built On JVM</td>
+</tr>
+<tr>
+<td>Can be shared and viewed via a web viewer</td>
+<td style="text-align:center">Can be shared and viewed via a web viewer</td>
+<td style="text-align:right">NA</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references"><strong>References</strong></h2>
+<p><a href="http://stackoverflow.com/questions/32748099/evaluating-spark-notebook">http://stackoverflow.com/questions/32748099/evaluating-spark-notebook</a></p>

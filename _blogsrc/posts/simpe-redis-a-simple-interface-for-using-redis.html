@@ -1,0 +1,43 @@
+---
+title: "Simpe Redis: A Simple Interface For Using Redis"
+date: "2016-03-28"
+slug: "simpe-redis-a-simple-interface-for-using-redis"
+description: "In my last post , I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from…"
+archived: true
+layout: "post.njk"
+tags_original: ["BigData", "Java", "simple-redis", "redis", "lettuce"]
+---
+<p>In my <a href="http://ahmedkamal.me/redis-installation-configuration-and-usage/">last post</a>, I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from Java.</p>
+<p>At first I would like to introduce you to some important commands in Redis.</p>
+<p>Redis has a very nice documentation so I will only list them with reference links for each one. If you are interested in playing with these commands, you can use the interactive web redis command line from <a href="http://try.redis.io">here</a></p>
+<p><strong>String Value Storage Commands</strong></p>
+<p>Mainly for very basic scenaios</p>
+<ul>
+<li><a href="http://redis.io/commands/set">SET</a></li>
+<li><a href="http://redis.io/commands/get">GET</a></li>
+<li><a href="http://redis.io/commands/delete">DELETE</a></li>
+</ul>
+<p><strong>Hashed Value Storage Commands</strong></p>
+<p>Mainly with data structures and complex objects</p>
+<ul>
+<li><a href="http://redis.io/commands/hset">HSET</a></li>
+<li><a href="http://redis.io/commands/hget">HGET</a></li>
+<li><a href="http://redis.io/commands/hdelete">HDELETE</a></li>
+</ul>
+<p><strong>Administration Commands</strong></p>
+<p>Good To know :)</p>
+<ul>
+<li><a href="http://redis.io/commands/ping">PING</a></li>
+<li><a href="http://redis.io/commands/flushdb">Flushdb</a></li>
+<li><a href="http://redis.io/commands/flushall">FlushAll</a></li>
+</ul>
+<p>For the full list of commands, check <a href="http://redis.io/commands/">this</a>.</p>
+<p>The next step from here should be using Redis as part of your project. As I mentioned in the previous blog, <a href="http://redis.io/clients">a lot of clients</a> are available for redis for different languages. But I will focus here on Java users.</p>
+<p>One of the best libraries available for Java is <a href="https://github.com/mp911de/lettuce">Lettuce</a>. It may seems complex some how but it shines very well when it comes to scalability scenarios.</p>
+<p>One of the missing things in Lettuce is a simple interface for very basic usage scenarios (without having to write too much code or be aware of the very specific details of the library.)</p>
+<p>Here comes my interface <mark><a href="https://github.com/AhmedKamal/simple-redis">simple-redis</a></mark>.</p>
+<p>Let's see a code snippet!</p>
+
+<p>You just need to pass a redis client object from lettuce and you can in seconds cache, retrieve and clear your data without caring about anything else. A default provided java serializer allows Simple-Redis to handle java objects just like Strings.</p>
+<p>Using Simple-Redis won't prevent you from making use of all lettuce power. <a href="https://github.com/AhmedKamal/simple-redis">Simple-Redis</a> is opensource and available on github. I hope you would consider it in your next projects, especially when you have simple caching scenario to implement.</p>
+<p>If you have any feedback, please don't hesitate to reach me either through mail or the comments inside this post. Thanks a lot!</p>

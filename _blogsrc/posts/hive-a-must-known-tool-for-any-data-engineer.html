@@ -1,0 +1,69 @@
+---
+title: "Hive, a must known tool for any data engineer"
+date: "2016-05-10"
+slug: "hive-a-must-known-tool-for-any-data-engineer"
+description: "Hive is a data warehouse system built on top of hadoop for allowing querying and managing data sets."
+archived: true
+layout: "post.njk"
+tags_original: ["Hadoop", "BigData", "hive", "apache-hive"]
+---
+<p>Hive is a data warehouse system built on top of hadoop for allowing querying and managing data sets.</p>
+<h4 id="who">Who?</h4>
+<p>Hive was created by Facebook and is currently highly adopted by many firms including Netflix, Facebook and Bookings.</p>
+<h4 id="why">Why?</h4>
+<p>Actually not everyone is fond of writing java programs for every problem they have especially data analysts. Hive provides a high level interface through sql like language for processing data through map reduce jobs. This is an important use case especially for business and data analysts. Hive can be somehow slow compared to other systems but at the end it is a trade off.</p>
+<p>Hive is also seen as an OLAP system over hadoop.</p>
+<blockquote>
+<p>OLAP (online analytical processing) is computer processing that enables a user to easily and selectively extract and view data from different points of view.</p>
+</blockquote>
+<p>In general Hive is trying to adopt most of the common database concepts and one of them is SQL of course.<br>
+The sql interface it is providing is called HiveQL.</p>
+<h4 id="hivemodes">Hive Modes</h4>
+<p>Hive has two execution modes:</p>
+<ul>
+<li>Local</li>
+<li>Map Reduce</li>
+</ul>
+<p>In addition Hive can run in interactive mode via Console or batch mode.</p>
+<h4 id="hivedataunits">Hive Data Units</h4>
+<p><strong>Databases</strong>: The highest data unit.</p>
+<p><strong>Tables</strong>: similar to database tables. Each table maps to a HDFS directory.</p>
+<p><strong>Partitions</strong>: follows the same rules of partitioning in databases horizontal scaling. Each partition maps to sub-directories under the table. If most of our queries are focused on peoples of certain countries for example we can partition our data on the country column.</p>
+<blockquote>
+<p>Having too much partitions may<br>
+affect the <mark>performance of queries</mark> that your partitioning isn't targeting heavily in addition to the <mark>headache on the Hadoop namenode</mark> because of the number of created sub directories.</p>
+</blockquote>
+<p><strong>Buckets</strong>: Buckets is very critical to the performance of Hive especially Joins. Buckets handles the issue of having many sub-directories in the case of partitioning by allowing you to specify a fixed number of buckets for your data distribution. The data is hashed and distributed based on that hashing on the predetermined buckets. This guarantees equal sized sub-directories.</p>
+<p>Buckets makes sampling much faster as you don't have to go over all the data each time you want to take a sample.</p>
+<h4 id="hivedatastructures">Hive Data Structures</h4>
+<ul>
+<li>
+<p>Inspired from Java, Hive has normal data types like Integer, Double, Floats, String.</p>
+</li>
+<li>
+<p>In addition, it supports Maps (Associative Arrays), Lists, Structs. This of course makes it more flexible than your normal database.</p>
+</li>
+</ul>
+<h4 id="architecture">Architecture</h4>
+<figure><img src="/blog/media/2020/05/hive-architecture-and-its-components.webp" alt="" loading="lazy"></figure>
+<p>Hive is composed of five major components.</p>
+<ul>
+<li>Shell</li>
+<li>Driver</li>
+<li>Compiler</li>
+<li>Meta Store</li>
+<li>Execution Engine</li>
+</ul>
+<h4 id="databaseconceptsinhive">Database Concepts in Hive</h4>
+<p>Hive supports the <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL">main commands</a> found in ny normal database. It has tables, rows, columns. You can do operations on tables including (Show, Describe, Create, Alter, Truncate and drop)</p>
+<p>You can also do Join operation between tables. Different types of join are availalble including OUTER and INNER Join.</p>
+<p>Hive supports Views too. The views aren't store in HDFS but on the hive's meta store.</p>
+<pre><code>SELECT EMPLOYEE.id as ID, COMPANY.avgSalary
+FROM EMPLOYEE JOIN COMPANY ON (EMPLOYEE.company = COMPONY.name)
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code>CREATE TABLE Employee (id INT, name STRING, company STRING)
+PARTITIONED BY (position STRING)
+</code></pre>
+<h3 id="whatisdifferent">What is different?</h3>
+<p>In Hive, you can specify the format of the data while table creation. There are different options (Text File, Parquet, ORC .. etc). Depending on your requirements you can choose what suits you. The default option is Text files.</p>

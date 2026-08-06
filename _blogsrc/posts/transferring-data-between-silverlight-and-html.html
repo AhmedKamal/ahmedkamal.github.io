@@ -1,0 +1,68 @@
+---
+title: "Transferring Data between Silverlight and HTML"
+date: "2014-12-12"
+slug: "transferring-data-between-silverlight-and-html"
+description: "In the last few years, html and JavaScript became one of the most used technologies and a lot of applications are now being rewritten in them because of the known multiple benefits of…"
+archived: true
+layout: "post.njk"
+tags_original: ["Silverlight", "C#", "Javascript", "Iframe"]
+---
+<p>In the last few years, html and JavaScript became one of the most used technologies and a lot of applications are now being rewritten in them because of the known multiple benefits of them. At the same time, Silverlight was one of the promising technologies few years ago especially for .Net developers and thus many big applications are already written in it.  In this blog I will try to discuss how Silverlight can communicate with HTML pages and vice versa.</p>
+<p>First, there are two main techniques to show html pages inside Silverlight applications.<br>
+1-	Web Browser Control<br>
+2-	Using Iframe element</p>
+<blockquote>
+<p>Note: An IFrame (Inline Frame) is an HTML document embedded inside<br>
+another HTML document on a website. The IFrame HTML element is often<br>
+used to show content from another source, such as an advertisement,<br>
+into a Web page.</p>
+</blockquote>
+<p>You can also check <a href="http://weblogs.asp.net/dwahlin/integrating-html-into-silverlight-applications">Dan Whalen</a> blog post for further details about these options. In this post I will choose the second option because of its simplicity and backward compatibility.</p>
+<p>The challenge now is to make this html page that appears inside the iframe able to invoke specific action that affects the Silverlight application and to make Silverlight able to control the html page too.<br>
+Before explaining how to do so, I ‘d like to remind you that Silverlight is hosted inside an asp.net application and so our asp.net page like any web application can contain JavaScript code. Through this JavaScript code, we can invoke any scriptable C# methods.<br>
+To make our C# code ready to be invoked by javascript, we need to</p>
+<p>1-	Create a class containing all our methods such that each method has <strong>[ScriptableMember]</strong> attribute above it.</p>
+<p>2-	Register an instance of this class in app.xaml.cs file inside Application_Startup method to guarantee that it will be registered when the Silverlight app starts.</p>
+<p>ScriptableMethods scriptMethods = new ScriptableMethods();<br>
+HtmlPage.RegisterScriptableObject(&quot;SL2JS&quot;, scriptMethods);<br>
+Let’s say we need to expose a method called GetMyMagicalSecret(), this method would be called by Javascript code</p>
+<pre><code> public class ScriptableMethods{
+
+        [ScriptableMember]
+        public void GetMyMagicalSecret (int index){
+        if(index == -1) 
+            ShowText(&quot;-1 isn’t a good place for secrets&quot;);
+        else ShowText(&quot;Work Smarter Not Harder&quot;);
+        
+        }
+
+        public void ShowText(string text){
+        //Some Code
+        }
+    }
+</code></pre>
+<p>In the default.aspx file we will notice few things:<br>
+1-	Our Silverlight control is hosted in a div inside HTML which is passed the XAP file of our Silverlight application.<br>
+2-	There are few parameters inside the Silverlight object that can be configured. One of the parameters is “OnLoad” which will be attached to a javascript method</p>
+<pre><code>  &lt;param name=&quot;onLoad&quot; value=&quot;pluginLoaded&quot; /&gt;
+</code></pre>
+<p>This event is fired when the application is fully loaded.</p>
+<pre><code>function pluginLoaded(sender, args) {
+              slCtrl = sender.getHost();
+          }
+</code></pre>
+<p>This way we will have a variable through which we can control our Silverlight application<br>
+If we want for example to know my magical secret, you should call it this way<br>
+slCtrl.Content.SL2JS.GetMyMagicalSecret(1);</p>
+<blockquote>
+<p>Don’t forget that SL2JS is our instance of ScriptableMethods class<br>
+that was created inside our app.xaml.cs file.</p>
+</blockquote>
+<p>Ok, so now we can need to do the reverse which is calling JavaScript code from Silverlight. This can be achieved through a method called invoke. Example:<br>
+Html.Window.Invoke(“MethodName”, params);</p>
+<blockquote>
+<p>Params can be multiple variables not just one.</p>
+</blockquote>
+<p><strong>Question:</strong> In all these examples, we used JavaScript that exists in the aspx file. What if we want for example to depend on JavaScript code that exists inside our frame?<br>
+I guess it would be better to answer it in a new blog post :)</p>
+<p>Thanks for your time. If you have any other ideas / suggested solutions or feedback, please let me know through comments.</p>

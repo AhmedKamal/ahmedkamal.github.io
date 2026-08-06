@@ -1,0 +1,44 @@
+---
+title: "Intro to Hadoop and HDInsight in Microsoft Azure"
+date: "2015-03-30"
+slug: "intro-to-hadoop-and-hdinsight-in-microsoft-azure"
+description: "Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big…"
+archived: true
+layout: "post.njk"
+tags_original: ["Azure", "Hadoop", "BigData"]
+---
+<p>Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big data solutions. Hadoop is already used by big entities like Facebook,  Twitter, yahoo and many other companies that have a lot of data to store and process.<br>
+Let’s dive in a little deeper. If you don’t know what Hadoop is, let me give you one of the definitions that you can get easily from google :)</p>
+<blockquote>
+<p>Hadoop is a free, Java-based programming framework that supports the<br>
+processing of large data sets in a distributed computing environment</p>
+</blockquote>
+<p>One of the scenarios when the usage of a technology like Hadoop is essential is when you have large amount of data that you want to analyze to get some information.<br>
+For example, if you are working on a solution that tries to give your customer some information about people’s conversation about their companies in twitter. In this example, we have a large amount of data (tweet feeds) and at the same time you have to do a lot of processing (sentimental analysis) to be able to understand these tweets and decide if they are satisfied about the company or not. This would requires distributing this processing between multiple machines so that we could get the results in a reasonable amount of time.<br>
+Also In this example the data we are getting are unstructured that’s why storing them in a relational database won’t be useful and won’t help at all.</p>
+<p>Back to Hadoop, the core of Apache Hadoop consists of two things:</p>
+<p>1-	Storage Part which is called <strong>HDFS</strong> (Hadoop Distributed File System)</p>
+<p>2-	Processing Part which is Map Reduce</p>
+<blockquote>
+<p><strong>MapReduce</strong> is a programming model for processing and generating large data sets with a parallel, distributed algorithm on a cluster. A<br>
+MapReduce program is composed of a Map() procedure that performs<br>
+filtering and sorting (such as sorting students by first name into<br>
+queues, one queue for each name) and a Reduce() procedure that<br>
+performs a summary operation (such as counting the number of students  in each queue, yielding name frequencies).</p>
+</blockquote>
+<p>To process the data, Hadoop Map/Reduce transfers code (specifically Jar files) to nodes that have the required data, which the nodes then process in parallel.</p>
+<h2 id="therearemultipleprojectsthatcanbeusedontopofhadooplike">There are multiple projects that can be used on top of Hadoop like:</h2>
+<p><strong>Mahout™</strong>: A Scalable machine learning and data mining library.</p>
+<p><strong>Hive™</strong>: A data warehouse infrastructure that provides data summarization and ad hoc querying.</p>
+<p><strong>Pig™</strong>: A high-level data-flow language and execution framework for parallel computation.</p>
+<p><strong>Spark™</strong>: A fast and general compute engine for Hadoop data. Spark provides a simple and expressive programming model that supports a wide range of applications, including machine learning, stream processing, and graph computation.</p>
+<p><strong>Storm™</strong>: A free and open source distributed realtime computation system. Storm makes it easy to reliably process unbounded streams of data, doing for realtime processing what Hadoop did for batch processing.</p>
+<p>and many other projects that are concerned with big data in general.</p>
+<p>Microsoft has worked with Hortonworks (the creator of Hadoop) to deliver <strong>HDInsight</strong> which is provided through Azure or as on premise solution. HDInsight is a framework for the Microsoft Azure cloud implementation of Hadoop. It includes implementations of Storm, Pig, Hive, Sqoop and so on.</p>
+<p>HDInsight also integrates with business intelligence (BI) tools such as Excel, SQL Server Analysis Services, and SQL Server Reporting Services.</p>
+<p>In the next blog posts, I will try to dive deeper into HDinsight in Azure. Thanks for reading :) Feel free to comment or contact me if you have any questions.</p>
+<h2 id="references">References:</h2>
+<p><a href="http://en.wikipedia.org/wiki/Apache_Hadoop">http://en.wikipedia.org/wiki/Apache_Hadoop</a></p>
+<p><a href="http://en.wikipedia.org/wiki/MapReduce">http://en.wikipedia.org/wiki/MapReduce</a></p>
+<p><a href="http://hadoop.apache.org/">http://hadoop.apache.org/</a></p>
+<p><a href="http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/">http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/</a></p>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Your absolute guide to managing Hadoop logging configurations · Ahmed Kamal</title>
+	<meta name="description" content="Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/managing-emr-cluster-logs/">
+	<meta name="theme-color" content="#faf7f2">
+	
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Your absolute guide to managing Hadoop logging configurations">
+	<meta property="og:description" content="Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/managing-emr-cluster-logs/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2019-04-23T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Your absolute guide to managing Hadoop logging configurations">
+	<meta name="twitter:description" content="Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "Your absolute guide to managing Hadoop logging configurations",
+		"datePublished": "2019-04-23T00:00:00.000Z",
+		"description": "Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…",
+		"url": "https://ahmedkamal.me/blog/managing-emr-cluster-logs/",
+		"author": {
+			"@type": "Person",
+			"name": "Ahmed Kamal",
+			"url": "https://ahmedkamal.me/"
+		}
+	}
+	</script>
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	<nav class="toc" aria-label="Table of contents"><p class="toc-head">Contents</p><ul><li class="toc-l2"><a href="#yarnlogs">YARN Logs</a></li><li class="toc-l3"><a href="#healthservice">Health Service</a></li><li class="toc-l3"><a href="#logsaggregation">Logs Aggregation</a></li><li class="toc-l2"><a href="#accessingyarnlogs">Accessing YARN Logs</a></li><li class="toc-l2"><a href="#sparklogs">Spark Logs</a></li><li class="toc-l2"><a href="#yarncache">YARN Cache</a></li><li class="toc-l2"><a href="#resources">Resources</a></li></ul></nav>
+
+	<article>
+		<header class="post-head">
+			<h1>Your absolute guide to managing Hadoop logging configurations</h1>
+			<p class="post-meta">
+				<time datetime="2019-04-23T00:00:00.000Z">Apr 23, 2019</time>
+				· 3 min read
+			</p>
+			
+		</header>
+
+		<div class="post-body">
+			<p>Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera, Databricks and AWS. The distribution managed by AWS is named EMR. This distribution is supposdly fully managed by AWS (<a href="https://forums.aws.amazon.com/thread.jspa?threadID=263139">Not everything</a>).</p>
+<p>One of the things that has to be properly managed in order to get a scalable performance from Hadoop and Spark is the logs written by YARN and Spark. In this post, I will walk you through the different configurations that have to be twaeked in YARN and Spark in order to ensure getting clear visibility through logs without bottlnecking the scalability of your setup.</p>
+<h2 id="yarnlogs">YARN Logs</h2>
+<p>By default, YARN writes all the applications logs on the local disk of each worker instance.</p>
+<h3 id="healthservice">Health Service</h3>
+<p>These logs keeps adding up overtime till the disk gets full. By default, YARN will mark nodes as unhealthy once the disk space utilization pass 90% threshold. This config and others could be configured through yarn-site.xml file.</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage&lt;/name&gt;
+  &lt;value&gt;98.5&lt;/value&gt;
+&lt;/property&gt;
+</code></pre>
+<p>More params to check,</p>
+<ul>
+<li>yarn.nodemanager.disk-health-checker.min-healthy-disks</li>
+<li>yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb</li>
+</ul>
+<h3 id="logsaggregation">Logs Aggregation</h3>
+<p>In order to clean these logs while keeping the disk storage within required limits, YARN does allow regular logs aggregation and storage on HDFS.</p>
+<p>By default, it is enabled on EMR</p>
+<pre><code>  &lt;property&gt;
+    &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>Everytime, YARN does the aggregation, it cleans the local disk once the data is stored on HDFS. The cleaning is controlled by two main attributes that could also be tweaked.</p>
+<p>The cleaning of the local disk is controlled by:</p>
+<pre><code>  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.delete.debug-delay-sec&lt;/name&gt;
+    &lt;value&gt;0&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>While the cleaning of the aggregated data on HDFS is controlled by:</p>
+<pre><code>  &lt;property&gt;
+    &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;
+    &lt;value&gt;172800&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>Since EMR AMI 4.3.0, YARN Log aggregation and EMR log aggregation can work together. EMR basically introduced a patch described in <a href="https://issues.apache.org/jira/browse/YARN-3929">https://issues.apache.org/jira/browse/YARN-3929</a> exclusivly as part of EMR Hadoop.</p>
+<p>After this patch, the local files are kept on the local file system to allow EMR based aggregation to collec the data.</p>
+<pre><code>  &lt;property&gt;
+    &lt;name&gt;yarn.log-aggregation.enable-local-cleanup&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>This property is not public and can only be set on EMR distributions. This option is by default set to False which means the cleanup on local machines will not take place.</p>
+<p>Logpusher will need this logs on local machines to push to S3 and LogPusher is the one which is responsible for removing those local logs after they are copied over and after certain retention period (4 hours for containers ). This <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-debugging.html">configuration could be very useful</a> if you rely on ephemeral clusters as any data on HDFS would be lost if not moved to S3.</p>
+<h2 id="accessingyarnlogs">Accessing YARN Logs</h2>
+<p>YARN logs can be accessed in different ways depending on the configurations set. If automatic aggregation isn't enabled. You can gather the logs from the Hadoop UI</p>
+<p>Otherwise, you can easily rely on YARN CLI after passing the application Id.</p>
+<pre><code>yarn logs -applicationId application_1432041223735_0001 &gt; appID_1432041223735_0001.log
+</code></pre>
+<h2 id="sparklogs">Spark Logs</h2>
+<p>In addition to the traditional yarn logs, Apache Spark does writeJob history files on filesystem. Cleaning these files regularly is also necessary to avoid filling up the space. Spark configs (spark-defaults) allows us to enable the history server to periodically clean up event logs from storage.</p>
+<ul>
+<li>spark.hadoop.yarn.timeline-service.enabled true</li>
+<li>spark.history.fs.cleaner.maxAge	1d</li>
+<li>spark.history.fs.cleaner.interval 1d</li>
+</ul>
+<h2 id="yarncache">YARN Cache</h2>
+<p>NodeManager maintains and manages serveral local-cache of all the files downloaded for any job. The resources are uniquely identified based on the remote-url originally used while copying that file. There are a lot of configs that control resource localization and caching in general but the important note here is that there is also a limit that can be set to auto trigger the cleaning of the cache before the disk fills up unncessarily.</p>
+<ul>
+<li>yarn.nodemanager.localizer.cache.target-size-mb = 4GB.</li>
+<li>yarn.nodemanager.localizer.cache.cleanup.interval-ms = 300000</li>
+</ul>
+<p>YARN and Spark have a lot of interesting configurations that drasitcally change the performance of the execution engine in a surprising way. By investing some time to understand more the ins and outs of different pieces, you can easily save yourself a lot of headache and ensure a smooth and consistent scalable performance.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service">https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service</a></li>
+<li><a href="https://datameer.zendesk.com/hc/en-us/articles/207221216">https://datameer.zendesk.com/hc/en-us/articles/207221216</a></li>
+<li><a href="https://spark.apache.org/docs/latest/monitoring.html">https://spark.apache.org/docs/latest/monitoring.html</a></li>
+</ul>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

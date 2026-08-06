@@ -1,0 +1,29 @@
+---
+title: "Spark Glossary"
+slug: "glossary"
+note: "Ghost draft, never published. Not built."
+---
+<p>Application: User program built on Spark. Consists of a driver program and executors on the cluster.</p>
+<p>Application jar	: A jar containing the user's Spark application. In some cases users will want to create an &quot;uber jar&quot; containing their application along with its dependencies. The user's jar should never include Hadoop or Spark libraries, however, these will be added at runtime.<br>
+Driver program	: The process running the main() function of the application and creating the SparkContext</p>
+<p>Cluster manager	: An external service for acquiring resources on the cluster (e.g. standalone manager, Mesos, YARN)</p>
+<p>Deploy mode	Distinguishes where the driver process runs. In &quot;cluster&quot; mode, the framework launches the driver inside of the cluster. In &quot;client&quot; mode, the submitter launches the driver outside of the cluster.</p>
+<p>Worker node	: Any node that can run application code in the cluster</p>
+<p>Executor: A process launched for an application on a worker node, that runs tasks and keeps data in memory or disk storage across them. Each application has its own executors.</p>
+<p>Task: A unit of work that will be sent to one executor</p>
+<p>Job: A parallel computation consisting of multiple tasks that gets spawned in response to a Spark action (e.g. save, collect); you'll see this term used in the driver's logs.</p>
+<p>Stage	Each job gets divided into smaller sets of tasks called stages that depend on each other (similar to the map and reduce stages in MapReduce); you'll see this term used in the driver's logs.</p>
+<p>Spark Context: Main entry point for Spark functionality. A SparkContext represents the connection to a Spark cluster, and can be used to create RDDs, accumulators and broadcast variables on that cluster.</p>
+<p>To use Spark, developers write a driver program that implements the high-level control flow of their applicationand launches various operations in parallel.</p>
+<p>These datasets will be stored as a chain of objects cap-turing the lineage of each RDD.</p>
+<p>Eachdata set object contains a pointer to its parent and information about how the parent was transformed.Internally, each RDD object implements the same sim-ple interface, which consists of three operations:<br>
+• getPartitions, which returns a list of partition IDs.<br>
+• getIterator(partition), which iterates over a partition.<br>
+• getPreferredLocations(partition), which is used fortask scheduling to achieve data locality.</p>
+<p>When a parallel operation is invoked on a dataset, Spark creates a task to process each partition of the dataset and sends these tasks to worker nodes.</p>
+<h1 id="sparkinternals">Spark Internals:</h1>
+<p>Master</p>
+<p>Worker Node: a node machine that host one or multiple Workers.</p>
+<p>A Worker is launched within a single JVM (1 process) and has access to a configured number of resources in the node machine, eg number of used cores per Worker, RAM memory. A Worker can spawn  and own multiple Executors.</p>
+<p>An Executor is also launched within a single JVM (1 process), created by the Worker, and in charge of running multiple Tasks in a ThreadPool.</p>
+<p>Each Spark application (instance of SparkContext) runs an independent set of executor processes.</p>

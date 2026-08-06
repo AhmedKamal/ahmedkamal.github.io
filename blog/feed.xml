@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Ahmed Kamal · Writing</title>
+	<subtitle>Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.</subtitle>
+	<link href="https://ahmedkamal.me/blog/feed.xml" rel="self"/>
+	<link href="https://ahmedkamal.me/blog/"/>
+	<updated>2025-04-05T00:00:00.000Z</updated>
+	<id>https://ahmedkamal.me/blog/</id>
+	<author>
+		<name>Ahmed Kamal</name>
+		<uri>https://ahmedkamal.me</uri>
+	</author>
+	
+	<entry>
+		<title>How to manage teams as your organization scales</title>
+		<link href="https://ahmedkamal.me/blog/how-to-effectively-manage-teams-as-your-organization-scales/"/>
+		<updated>2025-04-05T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/how-to-effectively-manage-teams-as-your-organization-scales/</id>
+		<summary>As your team grows both horizontally (more people) and vertically (more management levels), new challenges arise. One of the biggest is maintaining alignment across teams without…</summary>
+		<content type="html">&lt;p&gt;As your team grows both horizontally (more people) and vertically (more management levels), new challenges arise. One of the biggest is maintaining alignment across teams without constant meetings and check-ins.&lt;/p&gt;&lt;p&gt;Here are a few insights I&apos;ve gathered:&lt;/p&gt;&lt;p&gt;Focus on the roadmap: As a leader, you naturally focus on the roadmap, but as your organization scales quickly, it becomes harder to dive into every detail.&lt;/p&gt;&lt;p&gt;Regular reviews: While regular check-ins ensure that big projects are on track, they often become more about fixing project trajectories than about maintaining org alignment.&lt;/p&gt;&lt;p&gt;Use writing as a leadership tool: The big lesson I’ve learned from &lt;a href=&quot;https://www.linkedin.com/in/will-larson-a44b543/&quot;&gt;Will Larson&lt;/a&gt;’s writings is the importance of writing as a scalable leadership tool. Sharing a clear vision and strategy with the team helps keep everyone aligned in an async manner.&lt;/p&gt;&lt;p&gt;- Vision: Provides an inspiring picture of the future, giving broad guidelines without overwhelming details.&lt;/p&gt;&lt;p&gt;- Strategy: Tackles specific challenges in a practical, detailed way, helping teams know what needs to be done.&lt;/p&gt;&lt;p&gt;A well-crafted vision leaves room for teams to adjust as they face challenges, empowering them to navigate obstacles while staying aligned with the overall goal. Before sharing the vision and strategy, gather input from your team leaders to ensure the alignment and quality of the message.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>The virtual workspace: how AI is shaping the future of remote work</title>
+		<link href="https://ahmedkamal.me/blog/the-future-of-remote-work/"/>
+		<updated>2020-10-09T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/the-future-of-remote-work/</id>
+		<summary>Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…</summary>
+		<content type="html">&lt;p&gt;Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long period.&lt;/p&gt;&lt;p&gt;Definitely, this is the largest experiment of remote work that have been ever conducted and since there was no other option than making it succeed, a lot of companies have done their best to deeply understand the real needs of the business as well as the conditions under which its employees will stay productive.&lt;/p&gt;&lt;p&gt;One of the important needs is to maintain a healthy relationship between different employees either the ones that have to collaborate closely or the ones that just happen to work under the same business group. And one of the big reasons why many teams are still able to work so effectively is that we are relying on the long term relationship that we have built in the pre-covid period.&lt;/p&gt;&lt;p&gt;Now, the big question is how we can make up for the missing real life interactions between people that normally get lost when everyone is working remotely.&lt;/p&gt;&lt;p&gt;For some companies, the solution is to have a hybrid model where teams get to meet from time to time either in the office or through &lt;a href=&quot;https://m.signalvnoise.com/how-to-build-social-connection-in-a-remote-team/&quot; rel=&quot;noopener&quot;&gt;organized outings&lt;/a&gt; but in my opinion, this is not the ultimate solution.&lt;/p&gt;&lt;p&gt;Earlier &lt;a href=&quot;/blog/the-remote-work-wave/&quot; rel=&quot;noopener&quot;&gt;I have written about why I think that COVID is a perfect time for the world to address all the remote work challenges &lt;/a&gt;through technology and I still believe in this.&lt;/p&gt;&lt;p&gt;The first problem we need to solve is to replace all these voice conversations with face 2 face video chats. In the end, we are humans and so there is a lot to understand from looking at the other person’s face. That is how we get to trust and feel for each other.&lt;/p&gt;&lt;p&gt;So step one shall be to have everyone on camera that is focused on their faces, definitely not a low-quality video stream that shows a group of people from a bad angle.&lt;/p&gt;&lt;a class=&quot;link-card&quot; href=&quot;https://www.wsj.com/articles/seven-rules-of-zoom-meeting-etiquette-from-the-pros-11594551601&quot; rel=&quot;noopener&quot;&gt;&lt;span class=&quot;lc-title&quot;&gt;Seven Rules of Zoom Meeting Etiquette From the Pros&lt;/span&gt;&lt;span class=&quot;lc-desc&quot;&gt;No more dogs, chips or ‘lurkers’—as video-conferencing becomes a fixture in working life, it’s time to shed the rookie moves&lt;/span&gt;&lt;span class=&quot;lc-meta&quot;&gt;The Wall Street Journal&lt;/span&gt;&lt;/a&gt;&lt;p&gt;The challenge here is the reliability of our internet speeds which can sometimes be a blocker, also the head pose, the background, and the lightning can be a challenge.&lt;/p&gt;&lt;p&gt;Many of us have heard about the virtual background feature that zoom has released that smoothly replace your background with a virtual one thanks to &lt;a href=&quot;https://medium.com/ai-in-plain-english/heres-how-zoom-s-virtual-background-feature-works-ca5cdcad15ac&quot;&gt;deep learning&lt;/a&gt;.&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;/blog/media/2020/10/image-4.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;figcaption&gt;photo from &lt;a href=&quot;https://blog.zoom.us/zoom-virtual-background/&quot; rel=&quot;nofollow noopener&quot;&gt;https://blog.zoom.us/zoom-virtual-background/&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;a class=&quot;link-card&quot; href=&quot;https://medium.com/ai-in-plain-english/heres-how-zoom-s-virtual-background-feature-works-ca5cdcad15ac&quot; rel=&quot;noopener&quot;&gt;&lt;span class=&quot;lc-title&quot;&gt;Here’s How Zoom’s Virtual Background Feature Works&lt;/span&gt;&lt;span class=&quot;lc-desc&quot;&gt;During the coronavirus pandemic, Zoom has become a favorite video communication platform among companies and organizations whose in-person meetings have been replaced digitally. A primary reason for…&lt;/span&gt;&lt;span class=&quot;lc-meta&quot;&gt;AI In Plain English&lt;/span&gt;&lt;/a&gt;&lt;p&gt;But the real innovation comes from Nvidia that tackled the last three problems by using GANs. Rather than sending the whole bulky video stream, it just sends data about the key facial points (eyes, nose, mouse). Thanks to GANs, and given this small amount of info, the receiver can easily re-construct the same exact live video of the face with much higher quality while consuming a lot less bandwidth. And additionally, the newly produced video will easily be adjusted to give the perfect pose that ensures natural eye contact between the participants.&lt;/p&gt;&lt;div class=&quot;video-embed&quot; data-video=&quot;NqmMnjJ6GEg&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;video-play&quot; aria-label=&quot;Play video&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M8 5v14l11-7z&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Play video&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;&lt;h2 id=&quot;from-virtual-meetings-to-virtual-workspaces&quot;&gt;From virtual meetings to virtual workspaces&lt;/h2&gt;&lt;p&gt;For the longest time, people have been excited about creating a &lt;a href=&quot;https://en.wikipedia.org/wiki/Virtual_world&quot; rel=&quot;noopener&quot;&gt;virtual world&lt;/a&gt;. A computer-simulated environment where everyone can have their own avatar and simultaneously and independently explore the virtual world, participate in its activities, and communicate with others. And while most of the virtual world environments have been created for entertainment, social, and education purposes like SecondLife, there is still a nice opportunity to leverage fit this to our need for a virtual workspace where everyone can get to meet and interact with others.&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;/blog/media/2020/10/image-2.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;figcaption&gt;Facebook Horizon, photo from &lt;a href=&quot;https://youtu.be/brd0jPjYPU0&quot; rel=&quot;nofollow noopener&quot;&gt;https://youtu.be/brd0jPjYPU0&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;A Virtual reality workspace can even push us to leave the desk and move around while being fully immersed in a VR-based world. Facebook has already developed Horizon as a VR gaming environment but who said that we can’t borrow the same ideas for work?&lt;/p&gt;&lt;h2 id=&quot;what-if-we-can-mix-deep-learning-and-vr-worlds&quot;&gt;What if we can mix Deep Learning and VR worlds?&lt;/h2&gt;&lt;p&gt;In my opinion, very soon, we could start seeing a virtual workspace where we remote workers can have &lt;a href=&quot;https://www.fastcompany.com/90456164/silicon-valleys-hot-new-commodity-creepy-ai-powered-avatars&quot; rel=&quot;noopener&quot;&gt;life-like digital avatars&lt;/a&gt; that represent our emotions, interactions, and facial expressions in a way that has never been expressed before.&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;/blog/media/2020/10/image-3.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;/figure&gt;&lt;h2 id=&quot;still-not-convinced-that-this-is-doable&quot;&gt;Still not convinced that this is doable? &lt;/h2&gt;&lt;p&gt;Part of this is already a reality! Samsung NEON, a project that aims to build artificial human avatars that look and act exactly like the original characters it simulates was shown recently in CES 2020.&lt;/p&gt;&lt;p&gt;And the other part is already being used. Once I got these thoughts I was curious to see anyone worked on a similar solution and I was blessed and surprised to find that VirBELA, a virtual work-oriented virtual environment which is based on the same gaming engine that powers “Fortnite,” has already hosted an event with more than 200 people!&lt;/p&gt;&lt;p&gt;Additionally, companies started using RecRoom, the famous virtual world game for having some meetings, virtual outings and team events.    &lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;/blog/media/2020/10/image-5.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;figcaption&gt;photo from @Judith_ARTVR twitter account&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src=&quot;/blog/media/2020/10/image-6.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;figcaption&gt;photo from @recroom twitter account&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;In a virtual world, in addition to having more engagement in meetings, trainings and close collaboration, you will be able to have the same office routines you used to have. So whether you want to go to the pantry and have some small talk over lunch, or just some random chat over coffee. &lt;/p&gt;&lt;p&gt;This way we will be able to move the office to the cloud! And rather than choosing between the office or home, we will basically bring all the features of the office to our homes.&lt;/p&gt;&lt;p&gt;Personally, I’m super excited to see how AI and VR will enable us to balance more between work and life. And how this era could drastically change the perception of work and productivity forever!&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Your absolute guide to managing Hadoop logging configurations</title>
+		<link href="https://ahmedkamal.me/blog/managing-emr-cluster-logs/"/>
+		<updated>2019-04-23T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/managing-emr-cluster-logs/</id>
+		<summary>Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…</summary>
+		<content type="html">&lt;p&gt;Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera, Databricks and AWS. The distribution managed by AWS is named EMR. This distribution is supposdly fully managed by AWS (&lt;a href=&quot;https://forums.aws.amazon.com/thread.jspa?threadID=263139&quot;&gt;Not everything&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;One of the things that has to be properly managed in order to get a scalable performance from Hadoop and Spark is the logs written by YARN and Spark. In this post, I will walk you through the different configurations that have to be twaeked in YARN and Spark in order to ensure getting clear visibility through logs without bottlnecking the scalability of your setup.&lt;/p&gt;
+&lt;h2 id=&quot;yarnlogs&quot;&gt;YARN Logs&lt;/h2&gt;
+&lt;p&gt;By default, YARN writes all the applications logs on the local disk of each worker instance.&lt;/p&gt;
+&lt;h3 id=&quot;healthservice&quot;&gt;Health Service&lt;/h3&gt;
+&lt;p&gt;These logs keeps adding up overtime till the disk gets full. By default, YARN will mark nodes as unhealthy once the disk space utilization pass 90% threshold. This config and others could be configured through yarn-site.xml file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;98.5&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More params to check,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;yarn.nodemanager.disk-health-checker.min-healthy-disks&lt;/li&gt;
+&lt;li&gt;yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;logsaggregation&quot;&gt;Logs Aggregation&lt;/h3&gt;
+&lt;p&gt;In order to clean these logs while keeping the disk storage within required limits, YARN does allow regular logs aggregation and storage on HDFS.&lt;/p&gt;
+&lt;p&gt;By default, it is enabled on EMR&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation-enable&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Everytime, YARN does the aggregation, it cleans the local disk once the data is stored on HDFS. The cleaning is controlled by two main attributes that could also be tweaked.&lt;/p&gt;
+&lt;p&gt;The cleaning of the local disk is controlled by:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.nodemanager.delete.debug-delay-sec&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;0&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While the cleaning of the aggregated data on HDFS is controlled by:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation.retain-seconds&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;172800&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since EMR AMI 4.3.0, YARN Log aggregation and EMR log aggregation can work together. EMR basically introduced a patch described in &lt;a href=&quot;https://issues.apache.org/jira/browse/YARN-3929&quot;&gt;https://issues.apache.org/jira/browse/YARN-3929&lt;/a&gt; exclusivly as part of EMR Hadoop.&lt;/p&gt;
+&lt;p&gt;After this patch, the local files are kept on the local file system to allow EMR based aggregation to collec the data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation.enable-local-cleanup&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This property is not public and can only be set on EMR distributions. This option is by default set to False which means the cleanup on local machines will not take place.&lt;/p&gt;
+&lt;p&gt;Logpusher will need this logs on local machines to push to S3 and LogPusher is the one which is responsible for removing those local logs after they are copied over and after certain retention period (4 hours for containers ). This &lt;a href=&quot;https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-debugging.html&quot;&gt;configuration could be very useful&lt;/a&gt; if you rely on ephemeral clusters as any data on HDFS would be lost if not moved to S3.&lt;/p&gt;
+&lt;h2 id=&quot;accessingyarnlogs&quot;&gt;Accessing YARN Logs&lt;/h2&gt;
+&lt;p&gt;YARN logs can be accessed in different ways depending on the configurations set. If automatic aggregation isn&apos;t enabled. You can gather the logs from the Hadoop UI&lt;/p&gt;
+&lt;p&gt;Otherwise, you can easily rely on YARN CLI after passing the application Id.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yarn logs -applicationId application_1432041223735_0001 &amp;gt; appID_1432041223735_0001.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;sparklogs&quot;&gt;Spark Logs&lt;/h2&gt;
+&lt;p&gt;In addition to the traditional yarn logs, Apache Spark does writeJob history files on filesystem. Cleaning these files regularly is also necessary to avoid filling up the space. Spark configs (spark-defaults) allows us to enable the history server to periodically clean up event logs from storage.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;spark.hadoop.yarn.timeline-service.enabled true&lt;/li&gt;
+&lt;li&gt;spark.history.fs.cleaner.maxAge	1d&lt;/li&gt;
+&lt;li&gt;spark.history.fs.cleaner.interval 1d&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;yarncache&quot;&gt;YARN Cache&lt;/h2&gt;
+&lt;p&gt;NodeManager maintains and manages serveral local-cache of all the files downloaded for any job. The resources are uniquely identified based on the remote-url originally used while copying that file. There are a lot of configs that control resource localization and caching in general but the important note here is that there is also a limit that can be set to auto trigger the cleaning of the cache before the disk fills up unncessarily.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;yarn.nodemanager.localizer.cache.target-size-mb = 4GB.&lt;/li&gt;
+&lt;li&gt;yarn.nodemanager.localizer.cache.cleanup.interval-ms = 300000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;YARN and Spark have a lot of interesting configurations that drasitcally change the performance of the execution engine in a surprising way. By investing some time to understand more the ins and outs of different pieces, you can easily save yourself a lot of headache and ensure a smooth and consistent scalable performance.&lt;/p&gt;
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&quot;&gt;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://datameer.zendesk.com/hc/en-us/articles/207221216&quot;&gt;https://datameer.zendesk.com/hc/en-us/articles/207221216&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spark.apache.org/docs/latest/monitoring.html&quot;&gt;https://spark.apache.org/docs/latest/monitoring.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>My reflections on the Careem–Uber deal</title>
+		<link href="https://ahmedkamal.me/blog/my-reflections-on-careem-deal-with-uber/"/>
+		<updated>2019-03-27T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/my-reflections-on-careem-deal-with-uber/</id>
+		<summary>I still remember when I was very happy to see Souq acquired in 2017 anticipating the potential, this will bring to the region.</summary>
+		<content type="html">&lt;p&gt;I still remember when I was very happy to see Souq acquired in 2017 anticipating the potential, this will bring to the region.&lt;/p&gt;
+&lt;p&gt;Now, after the acquisition of Careem, this will create a ripple effect which will isA change the whole region. It won&apos;t just open the door for a lot of new tech startups to grow and flourish and exit on high valuations but many will continue till their IPO.&lt;/p&gt;
+&lt;p&gt;These 3.1 B$ will massively motivate many people to come to the region to build and innovate new solutions for our problems. We already may have a couple of companies that got millions in funding but surely this will turn on the green light for more and more successes.&lt;/p&gt;
+&lt;p&gt;Careem has set an example for how to build a successful tech startup in the region and certainly, there are a lot of lessons that will guide a lot of aspiring entrepreneurs towards more similar success stories.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.thenational.ae/business/technology/impact-of-uber-careem-deal-is-impossible-to-overstate-1.841453&quot;&gt;https://www.thenational.ae/business/technology/impact-of-uber-careem-deal-is-impossible-to-overstate-1.841453&lt;/a&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>How to become a machine learning engineer</title>
+		<link href="https://ahmedkamal.me/blog/how-to-be-a-machine-learning-engineer/"/>
+		<updated>2018-08-25T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/how-to-be-a-machine-learning-engineer/</id>
+		<summary>Recently I posted a job post for a machine learning engineer position in my team @ Careem. I got a lot of questions from people who are curious to know more about the position itself,…</summary>
+		<content type="html">&lt;p&gt;Recently I posted a job post for a machine learning engineer position in my team @ Careem. I got a lot of questions from people who are curious to know more about the position itself, how to prepare for it and what kind of problems does it face?&lt;/p&gt;
+&lt;h2 id=&quot;datasciencevsmachinelearningengineering&quot;&gt;Data Science vs Machine Learning Engineering&lt;/h2&gt;
+&lt;p&gt;Let&apos;s start with defining the position itself. What is machine learning engineering? Is it a new thing? Does it differ from the so-called sexist job in the 21th century, the data scientist?&lt;/p&gt;
+&lt;p&gt;When people invented the term (Data Scientist), they were looking for superheros who excel at the following:&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&quot;/blog/media/2018/08/data-scientist-def--1-.webp&quot; alt=&quot;&quot; loading=&quot;lazy&quot;&gt;&lt;figcaption&gt;via Big Data [sorry] &amp;amp; Data Science: What Does a Data Scientist Do?&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;1- Acquiring the data, cleaning it, identifying problems and asking the right questions as well as setting the correct measures for different KPIs.&lt;/p&gt;
+&lt;p&gt;2- Doing necessary statistical analysis to come up with different hypothesis about the solution&lt;/p&gt;
+&lt;p&gt;3- Using statistical methods to validate the different suggested solutions.&lt;/p&gt;
+&lt;p&gt;4- At some point, the solution could be more than a mathematical model (equation), it could include some complexity requiring the usage of machine learning. Thus, developing a suitable ML model through different iterations become necessary.&lt;/p&gt;
+&lt;p&gt;5- Once this model is ready, you need to design an engineering system that will serve this model in addition to other aspects that requires careful engineering to ensure continuous effectiveness of this model.&lt;/p&gt;
+&lt;p&gt;6- Do the necessary continuous analysis and investigations for the model results as well as the must-have monitoring.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Truly they exist on our planet but they are very rare ;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Since human-beings are limited in their ability to acquire knowledge and to keep up with the non-stop changes in each different sub-field. Specialization became a must. We started to see different job profiles working on different areas of the pre-mentioned workflow.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For example, some data engineers/scientists who are more excited about infrastructure, specialized in data engineering. This gives them more bandwidth to absorb the internals of different distributed processing systems (ex: Apache Spark, Apache Hadoop, ..etc) and thus be capable of extending these systems to handle very custom use-cases that may not be easy to handle with the standard APIs&lt;br&gt;
+We can list 6 profiles that together compose a capable data team able to push its organization to be data driven and then AI driven at a later stage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;&lt;li&gt;Data Analyst &amp;amp; Data Viz&lt;/li&gt;&lt;li&gt;Data Scientist&lt;/li&gt;&lt;li&gt;Data Engineer&lt;/li&gt;&lt;li&gt;Machine Learning Engineer&lt;/li&gt;&lt;li&gt;Data Infrastructure Engineer&lt;/li&gt;&lt;li&gt;Data Ops&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;Still, it is hard to generalize this to every single organization as the needs and size of each are the deciding factors while considering the boundaries between each profile under the data team umbrella.&lt;/p&gt;
+&lt;h2 id=&quot;sowhatisamachinelearningengineer&quot;&gt;So What is a machine learning engineer?&lt;/h2&gt;
+
+&lt;p&gt;I will quote the excellent &lt;a href=&quot;https://www.oreilly.com/ideas/what-are-machine-learning-engineers&quot;&gt;article from Oreilly&lt;/a&gt; which describe them as the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;They have stronger software engineering skills than typical data scientists.&lt;/li&gt;
+&lt;li&gt;Machine learning engineers are able to work with engineers who maintain production systems.&lt;/li&gt;
+&lt;li&gt;They understand software development methodology, agile practices, and the full range of tools that modern software developers use: everything from IDEs like Eclipse and IntelliJ to the components of a continuous deployment pipeline.&lt;/li&gt;
+&lt;li&gt;They are involved in software architecture and design&lt;/li&gt;
+&lt;li&gt;Because their focus is on making data products work in production, they think holistically and factor in components like the logging or A/B testing infrastructure.&lt;/li&gt;
+&lt;li&gt;They are up to speed on issues that are specific to monitoring data products in production. There are many resources on application monitoring, but machine learning has requirements that go even further. Data pipelines and models can go stale and need to be retrained, or they might be attacked by adversaries in ways that don&apos;t make sense for traditional web applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;howtogettheexperience&quot;&gt;How to get the experience?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Be a solid software engineer&lt;/li&gt;
+&lt;li&gt;Get ML experience&lt;/li&gt;
+&lt;li&gt;For the theoritical part, you can take any of the existing MOOCs on &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;Coursera&lt;/a&gt;, Edx or Udacity. One option is &lt;a href=&quot;https://www.udacity.com/course/aws-machine-learning-engineer-nanodegree--nd189&quot;&gt;Udacity Machine Learning Engineer Nanodegree&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Get practical experience through doing real projects on real data. &lt;a href=&quot;https://www.kaggle.com/alexisbcook/titanic-tutorial&quot;&gt;Kaggle is the best source for problems&lt;/a&gt; if you don&apos;t have some already :)&lt;/li&gt;
+&lt;li&gt;Read, Listen and Watch. There are dozens of awesome articles, podcasts and video sessions that are available on the internet. You can also join many subreddit that gives you updates about different ML topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;recommendedresources&quot;&gt;Recommended resources&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Podcasts&lt;/strong&gt;&lt;br&gt;
+[ Machine Learning - SE Daily]&lt;br&gt;
+[The O&apos;Reilly Data Show]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For theoretical background&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&apos;quora-content-embed&apos; data-name=&apos;What-are-the-recommended-courses-should-I-take-in-my-graduate-studies-to-become-a-Machine-Learning-Engineer/answer/Alex-Smola-1&apos;&gt;Read &lt;a class=&apos;quora-content-link&apos; data-width=&apos;560&apos; data-height=&apos;260&apos; href=&apos;https://www.quora.com/What-are-the-recommended-courses-should-I-take-in-my-graduate-studies-to-become-a-Machine-Learning-Engineer/answer/Alex-Smola-1&apos; data-type=&apos;answer&apos; data-id=&apos;21177622&apos; data-key=&apos;31aeeb57b61acd8381778d6fe349c124&apos; load-full-answer=&apos;False&apos; data-embed=&apos;nYnYCVO&apos;&gt;&lt;a href=&apos;https://www.quora.com/Alex-Smola-1&apos;&gt;Alex Smola&lt;/a&gt;&apos;s &lt;a href=&apos;https://ahmedkamal.me/blog/What-are-the-recommended-courses-should-I-take-in-my-graduate-studies-to-become-a-Machine-Learning-Engineer#ans21177622&apos;&gt;answer&lt;/a&gt; to &lt;a href=&apos;https://ahmedkamal.me/blog/What-are-the-recommended-courses-should-I-take-in-my-graduate-studies-to-become-a-Machine-Learning-Engineer&apos; ref=&apos;canonical&apos;&gt;&lt;span class=&quot;rendered_qtext&quot;&gt;What are the recommended courses should I take in my graduate studies to become a Machine Learning Engineer?&lt;/span&gt;&lt;/a&gt;&lt;/a&gt; on &lt;a href=&apos;https://www.quora.com&apos;&gt;Quora&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;whatdoesinterviewslooklike&quot;&gt;What does interviews look like?&lt;/h2&gt;
+&lt;p&gt;As it seems most companies will interview you the same way they interview other software engineers. In addition, you may be interviewed on your machine learning theoretical knowledge, data engineering and ML product design.&lt;/p&gt;
+&lt;p&gt;You can get more details by reading &lt;a href=&quot;https://medium.com/@XiaohanZeng/i-interviewed-at-five-top-companies-in-silicon-valley-in-five-days-and-luckily-got-five-job-offers-25178cf74e0f&quot;&gt;Xiaohan Zeng interviewing experience&lt;/a&gt; as a Machine Learning Engineer.&lt;/p&gt;
+&lt;h2 id=&quot;wherecanifindsuitableopportunities&quot;&gt;Where can I find suitable opportunities?&lt;/h2&gt;
+&lt;p&gt;Most of the big companies including the big five have their own machine learning and data teams. It should be easy to find suitable opportunities given that you have the right experience. You can always start from Linkedin.&lt;/p&gt;
+&lt;p&gt;For Egypt, I found this amazing list of companies that do data and AI.&lt;/p&gt;
+&lt;a class=&quot;link-card&quot; href=&quot;http://qr.ae/TUNI32&quot; rel=&quot;noopener&quot;&gt;&lt;span class=&quot;lc-title&quot;&gt;AI Driven Companies in Egypt&lt;/span&gt;&lt;span class=&quot;lc-desc&quot;&gt;After graduation, I started searching for a good job in the area of Artificial intelligence, specially machine learning, ranking systems, recommendation systems and search engines. It was a hard long journey for me; because I didn&apos;t know anything about the Egyptian market in these fields, so I se...&lt;/span&gt;&lt;/a&gt;
+
+&lt;h2 id=&quot;wrapup&quot;&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;I tried to give some answers for the what, where and how questions about machine learning engineering positions. It would be nice if you can share your experience getting into the field. As always thanks for reading!&lt;/p&gt;
+</content>
+	</entry>
+	
+</feed>

@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Scaling Machine Learning at Careem",
+    "url": "https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195",
+    "venue": "Tech @ Careem",
+    "date": "2019-03-14",
+    "note": "How we built Yoda, Careem's ML platform, and shipped ETA prediction on it."
+  },
+
+  {
+    "_comment": "archived: true lists it on /blog/archive/ only, never on the index.",
+    "title": "Clean Code Debate!",
+    "url": "https://medium.com/@ahmdkamal/clean-code-debate-e1bd5eab2538",
+    "venue": "Medium",
+    "date": "2018-02-19",
+    "archived": true
+  },
+  {
+    "title": "How to make Windows developer friendly again?!",
+    "url": "https://medium.com/@ahmdkamal/how-to-make-windows-developer-friendly-again-c7d85fad824d",
+    "venue": "Medium",
+    "date": "2017-02-12",
+    "archived": true
+  },
+  {
+    "title": "Why should you care about big data & data science?",
+    "url": "https://medium.com/@ahmdkamal/why-should-you-care-about-big-data-data-science-cbf3ea5c7aef",
+    "venue": "Medium",
+    "date": "2016-01-02",
+    "archived": true
+  },
+  {
+    "title": "It isn't just a football match!",
+    "url": "https://medium.com/@ahmdkamal/it-isnt-a-football-match-3ac8a3129d12",
+    "venue": "Medium",
+    "date": "2015-01-01",
+    "archived": true
+  }
+]

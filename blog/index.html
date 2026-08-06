@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Writing</title>
+	<meta name="description" content="Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/">
+	<meta name="theme-color" content="#faf7f2">
+	
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Writing">
+	<meta property="og:description" content="Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Writing">
+	<meta name="twitter:description" content="Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/" aria-current="page">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<main class="page">
+	<header class="page-head">
+		<h1>Writing</h1>
+		<p class="page-intro">
+			Notes on building data and AI systems, and on doing it from this part of
+			the world. I also write in Egyptian Arabic at
+			<a href="/ar/" hreflang="ar" lang="ar">قصاصات علي الطريق</a>,
+			and post more often on
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> and
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a>.
+		</p>
+		<p class="page-intro">
+			Outside of work, I keep a personal page:
+			<a href="/thoughts/">A Muslim's thoughts</a>.
+		</p>
+	</header>
+
+	
+	
+	<section class="start-here">
+		<h2>Start here</h2>
+		<ul>
+			
+			<li>
+				<a href="/blog/managing-emr-cluster-logs/">Your absolute guide to managing Hadoop logging configurations</a>
+				<span class="sh-year">2019</span>
+			</li>
+			
+			<li>
+				<a href="/blog/my-reflections-on-careem-deal-with-uber/">My reflections on the Careem–Uber deal</a>
+				<span class="sh-year">2019</span>
+			</li>
+			
+			<li>
+				<a href="/blog/how-to-be-a-machine-learning-engineer/">How to become a machine learning engineer</a>
+				<span class="sh-year">2018</span>
+			</li>
+			
+		</ul>
+	</section>
+	
+
+	<section class="post-list">
+		
+		<article class="post-item">
+			<h2><a href="/blog/how-to-effectively-manage-teams-as-your-organization-scales/">How to manage teams as your organization scales</a></h2>
+			<p class="meta">
+				<time datetime="2025-04-05T00:00:00.000Z">Apr 5, 2025</time>
+				· 1 min read
+			</p>
+			<p class="excerpt">As your team grows both horizontally (more people) and vertically (more management levels), new challenges arise. One of the biggest is maintaining alignment across teams without…</p>
+		</article>
+		
+		<article class="post-item">
+			<h2><a href="/blog/the-future-of-remote-work/">The virtual workspace: how AI is shaping the future of remote work</a></h2>
+			<p class="meta">
+				<time datetime="2020-10-09T00:00:00.000Z">Oct 9, 2020</time>
+				· 4 min read
+			</p>
+			<p class="excerpt">Since the start of the pandemic, lots of people have been working outside of their offices and for some of them, this was the first time they have ever experienced it for such a long…</p>
+		</article>
+		
+		<article class="post-item">
+			<h2><a href="/blog/managing-emr-cluster-logs/">Your absolute guide to managing Hadoop logging configurations</a></h2>
+			<p class="meta">
+				<time datetime="2019-04-23T00:00:00.000Z">Apr 23, 2019</time>
+				· 3 min read
+			</p>
+			<p class="excerpt">Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…</p>
+		</article>
+		
+		<article class="post-item">
+			<h2><a href="/blog/my-reflections-on-careem-deal-with-uber/">My reflections on the Careem–Uber deal</a></h2>
+			<p class="meta">
+				<time datetime="2019-03-27T00:00:00.000Z">Mar 27, 2019</time>
+				· 1 min read
+			</p>
+			<p class="excerpt">I still remember when I was very happy to see Souq acquired in 2017 anticipating the potential, this will bring to the region.</p>
+		</article>
+		
+		<article class="post-item">
+			<h2><a href="/blog/how-to-be-a-machine-learning-engineer/">How to become a machine learning engineer</a></h2>
+			<p class="meta">
+				<time datetime="2018-08-25T00:00:00.000Z">Aug 25, 2018</time>
+				· 4 min read
+			</p>
+			<p class="excerpt">Recently I posted a job post for a machine learning engineer position in my team @ Careem. I got a lot of questions from people who are curious to know more about the position itself,…</p>
+		</article>
+		
+	</section>
+
+	
+	
+	<section class="elsewhere">
+		<h2>Published elsewhere</h2>
+		<ul>
+			
+			<li>
+				<a href="https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195">Scaling Machine Learning at Careem</a>
+				<span class="el-venue">Tech @ Careem, 2019</span>
+				<span class="el-note">How we built Yoda, Careem&#39;s ML platform, and shipped ETA prediction on it.</span>
+			</li>
+			
+		</ul>
+	</section>
+	
+
+	<p class="archive-link">
+		<a href="/blog/archive/">Older writing, 2012–2021 →</a>
+	</p>
+</main>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

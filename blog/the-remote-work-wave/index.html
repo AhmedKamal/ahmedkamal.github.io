@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>The remote-work startups&#39; wave · Ahmed Kamal</title>
+	<meta name="description" content="Two months ago, I posted about why I think the current situation will change the perspective of many people about remote work.">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/the-remote-work-wave/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="The remote-work startups&#39; wave">
+	<meta property="og:description" content="Two months ago, I posted about why I think the current situation will change the perspective of many people about remote work.">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/the-remote-work-wave/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2020-05-22T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="The remote-work startups&#39; wave">
+	<meta name="twitter:description" content="Two months ago, I posted about why I think the current situation will change the perspective of many people about remote work.">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>The remote-work startups&#39; wave</h1>
+			<p class="post-meta">
+				<time datetime="2020-05-22T00:00:00.000Z">May 22, 2020</time>
+				· 2 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2020 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>Two months ago, I posted about why I think the current situation will change the perspective of many people about remote work.</p><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6645003299282001921" height="613" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe><p>These days we are witnessing a dramatic change coming into effect with companies like Twitter and Facebook spearheading the trend and questioning many of the things we used to take for granted like the correlation between collaboration, productivity, and working from an open and noisy workspace. Additionally many companies are now setting<a href="https://github.com/arjunmadgavkar/Newly-Remote-Companies/blob/master/List.md"> new processes</a> to adopt to the new norm.</p><blockquote class="tweet-card"><p>Zuckerberg says production has been consistent with people wfh, and there are lots of other benefits as well: More diversity in hiring, but also a potential environmental impact with people commuting less.</p><a class="tweet-src" href="https://twitter.com/KurtWagner8/status/1263519798106832897" rel="noopener">@KurtWagner8 · May 21, 2020</a></blockquote> <p>The next stage, in my opinion, could be a new wave of  business and work tools that put online collaboration at the center of its functionality.</p><p>A couple of years ago, Microsoft Word was the go-to tool for editing and proof-reading when everyone was mainly using a desktop for most of the writings, a few years later, we got Grammarly, a $1B+ startup which maybe is offering some similar functionalities but it is an ubiquitous tool that is available everywhere and is centered around the writing on the web experience which is what most people are doing now. New opportunities will emerge  for those who can understand them and act ASAP.</p><p>Innovation come from the trial and error. But someone has to be bold to try and it seems we have few companies that already started. Overtime, we will see few issues and problems while trying to adapt our current tools to the new reality and that is where the new opportunities will emerge. As a believer in the usefulness of working from home and working remotely, I'm so excited for what is coming and hopeful that this will help us all be more productive and have a balanced life and that this revolution could reach other industries soon. </p><p>Edit: I will add a list of the interesting new tools for remote work.</p><ul><li> <a href="https://ref.krisp.ai/u/ud1f57517a">Krisp</a>, With a single button, It removes all background noises for incoming and outgoing calls. Increase your productivity by having professional and noiseless conference calls.</li></ul><p><a href="https://ref.krisp.ai/u/ud1f57517a">Get one month premium trial</a> </p><ul><li><a href="https://www.mmhmm.app/">mmhmm</a>, your personal video presence!</li></ul><p><strong>#startup</strong> <strong>#remotework</strong> <strong>#workfromhome</strong></p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

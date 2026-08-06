@@ -1,0 +1,180 @@
+---
+title: "Cursor Adapter in Android"
+date: "2015-07-20"
+slug: "cursor-adapter-in-android"
+description: "Cursor adapters provide a high-performance way to scroll through long lists of data that are stored in SQLite.The consuming code must define an SQL query in a Cursor object and then…"
+archived: true
+layout: "post.njk"
+tags_original: ["Learn", "Android", "Cursor-Adapter"]
+---
+<p>Cursor adapters provide a <a href="https://thinkandroid.wordpress.com/2010/01/13/an-analysis-between-baseadapters-and-cursoradapters/">high-performance way</a> to scroll through long lists of data that are stored in SQLite.The consuming code must define an SQL query in a Cursor object and then describe how to create and populate the views for each row.</p>
+<p>The CursorAdapter fits in between a Cursor (data source from SQLite query) and the ListView (visual representation) and configures two aspects:</p>
+<ul>
+<li>Which layout template to inflate for an item</li>
+<li>Which fields of the cursor to bind to views in the template</li>
+</ul>
+<blockquote>
+<p>The cursor query must have an integer column _id for the CursorAdapter to work. If the underlying table does not have an integer column named _id then use a column alias for another unique integer in the query that makes up the cursor.</p>
+</blockquote>
+<h4 id="creatingcursor">Creating Cursor</h4>
+<p>RawQuery is used to turn an SQL query into a Cursor object. The column list that is returned from the cursor defines the data columns that are available for display in the cursor adapter.</p>
+<pre><code class="language-language-csharp">db = SQLiteDatabase.OpenDatabase(path);
+var cursor = db.RawQuery(&quot;SELECT * FROM myDatabase&quot;, null); // cursor query
+StartManagingCursor(cursor);
+// use either SimpleCursorAdapter or CursorAdapter subclass here!`
+</code></pre>
+<blockquote>
+<p>You will always need to start and stop the cursor when you want to use it. This can be handled through <strong>StartManagingCursor</strong> and <strong>StopManagingCursor</strong></p>
+</blockquote>
+<h6 id="importantnote">Important Note</h6>
+<blockquote>
+<p>StartManagingCursor and StopManagingCursor are <mark>now depreciated and it is advised not to use them in production code.</mark> Instead CursorLoader are highly preferred. You can understand Cursor Load Manager and how it works through this <a href="http://www.androiddesignpatterns.com/2012/07/loaders-and-loadermanager-background.html">blog series</a>.</p>
+</blockquote>
+<p>In general we have two ways of using Cursor Adapter in Android which are<br>
+<strong>SimpleCursorAdapter</strong> or a subclass of <strong>CusorAdapter</strong> to display rows in a ListView.</p>
+<h6 id="asimplecursoradapter">a- Simple Cursor Adapter</h6>
+<p>SimpleCursorAdapter is like the ArrayAdapter, but specialized for use with SQLite.</p>
+<p>The parameters for the SimpleCursorAdapter constructor are:</p>
+<p><strong>Context</strong> – A reference to the containing Activity.</p>
+<p><strong>Layout</strong> – The resource ID of the row view to use.</p>
+<p><strong>ICursor</strong> – A cursor containing the SQLite query for the data to display.</p>
+<p><strong>From</strong> string array – An array of strings corresponding to the names of columns in the cursor.</p>
+<p><strong>To</strong> integer array – An array of layout IDs that correspond to the controls in the row layout. The value of the column specified in the from array will be bound to the ControlID specified in this array at the same index.</p>
+<blockquote>
+<p>The from and to arrays must have the same number of entries because they form a mapping from the data source to the layout controls in the view.</p>
+</blockquote>
+<pre><code class="language-language-csharp">// which columns map to which layout controls
+string[] fromColumns = new string[] {&quot;name&quot;};
+int[] toControlIDs = new int[] {Android.Resource.Id.Text1};
+// use a SimpleCursorAdapter
+listView.Adapter = new SimpleCursorAdapter (this, Android.Resource.Layout.SimpleListItem1, cursor,
+       fromColumns,
+       toControlIDs);
+</code></pre>
+<blockquote>
+<p>The main limitation of this option is that it can only bind column values to display controls, it does not allow you to change other aspects of the row layout (for example, showing/hiding controls or changing properties).</p>
+</blockquote>
+<h6 id="bsubclassingcursoradapter">b- Subclassing Cursor Adapter</h6>
+<p>A CursorAdapter subclass has the same performance benefits as the SimpleCursorAdapter, but it also gives you complete control over the creation and layout of each row view.</p>
+<p>We need to override two methods here<br>
+<strong>BindView</strong> – Given a view, update it to display the data in the provided cursor.</p>
+<p><strong>NewView</strong> – Called when the ListView requires a new view to display. The CursorAdapter will take care of recycling views (unlike the GetView method on regular Adapters).</p>
+<p><mark>View Holder Improvement</mark></p>
+<p>The cursor adapter itself supports recycling views as we said but if you want to improve it more, you can then apply the <a href="http://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder">view holder pattern</a>. This is will save us the cost of the multiple FindViewById calls that should be made each time the view is retrieved.</p>
+<p>To make things very clean, I'm providing a full sample code for a tweetlistadapter that subclasses CursorAdapter</p>
+<pre><code class="language-language-csharp">		
+	public class TweetListAdapter: CursorAdapter
+	{
+
+		Activity activity;
+		ICursor appliedCursor;
+		public TweetListAdapter(Activity context, ICursor resultCursor)
+			: base(context, resultCursor)
+		{
+			this.activity = context;
+			this.appliedCursor = resultCursor;
+		}
+
+		
+		public override void BindView(View view, Context context, ICursor cursor)
+		{
+			TweetViewHolder viewHolder = (TweetViewHolder) view.Tag;
+			
+			//For a cleaner code, I'm creating a tweet object that has the values for all properties needed for binding
+			Tweet selectedTweet = GetselectedTweet(cursor);
+
+			//Bind Data
+
+			viewHolder.tweetTextView.Text = selectedTweet.TweetText;
+			viewHolder.tweetDateTextView.Text = selectedTweet.Date.ToString(CultureInfo.CurrentCulture);
+			//Bind the rest of the properties
+			
+
+			//Retweet Button
+
+			viewHolder.detailsButton.Click += ((sender, args) =&gt;
+			{
+				//Event Handling Logic
+			});
+
+		}
+		public override View NewView(Context context, ICursor cursor, ViewGroup parent)
+		{
+			TweetViewHolder viewHolder = new TweetViewHolder();
+
+			View convertView = activity.LayoutInflater.Inflate(Resource.Layout.TweetListRowItem, parent, false);
+			viewHolder.InitializeControls(convertView);
+			convertView.Tag = viewHolder;
+
+			return convertView;
+		}
+		
+		
+		private Tweet GetSelectedItem(ICursor cursor)
+		{
+			return new FSOrderBinder
+			{
+				TweetText = (string)GetColumnValue(typeof(String), &quot;TweetText&quot;),
+				Status = (int)GetColumnValue(typeof(int), &quot;Status&quot;),
+				Date = (Double)GetColumnValue(typeof(double), &quot;Date&quot;),
+				//Get the remaining props
+			};
+		}
+
+		#region Cursor Data Extraction Helpers
+		private int GetColumnIndex(string columnName)
+		{
+			return appliedCursor.GetColumnIndex(columnName);
+		}
+		
+			private object GetColumnValue(Type type, string columnName)
+		{
+			if (type == typeof(String))
+			{
+				return appliedCursor.GetString(GetColumnIndex(columnName));
+
+			}
+			else if (type == typeof(int))
+			{
+				return appliedCursor.GetInt(GetColumnIndex(columnName));
+			}
+			else if (type == typeof(double))
+			{
+				return appliedCursor.GetDouble(GetColumnIndex(columnName));
+
+			}
+
+			return null;
+		}
+		#endregion
+		
+	class TweetViewHolder: Java.Lang.Object
+	{
+
+		public TextView tweetTextView;
+		public TextView authorTextView;
+		public ImageView profilePicImage;
+		public TextView tweetDate;
+		public ImageView retweetButton;
+
+		public void InitializeControls(View view)
+		{
+			 retweetButton = view.FindViewById&lt;ImageView&gt;(Resource.Id.RetweetButton);
+			 tweetTextView= view.FindViewById&lt;TextView&gt;(Resource.Id.TweetTextView);
+			 profilePicImage = view.FindViewById&lt;ImageView&gt;(Resource.Id.ProfilePicImage);
+			 authorTextView= view.FindViewById&lt;TextView&gt;(Resource.Id.AuthorTextView);
+			 tweetDate = view.FindViewById&lt;TextView&gt;(Resource.Id.TweetDate);
+		}
+	}
+		
+</code></pre>
+<h4 id="whichoneshouldiuse">Which one should I use?</h4>
+<p>Simple answer, go for the second choice.</p>
+<p><strong>Reason</strong>:<br>
+First, implementing CursorAdapter is not so hard at all as we saw. It is more flexible, SimpleCursorAdapter is simple in use and that is all.</p>
+<h4 id="resources">Resources</h4>
+<p><a href="http://developer.xamarin.com/guides/android/user_interface/working_with_listviews_and_adapters/part_4_-_using_cursoradapters/">1- Using Cursor Adapter - Xamarin Tutorials</a></p>
+<p><a href="https://github.com/codepath/android_guides/wiki/Populating-a-ListView-with-a-CursorAdapter">2- Populating a ListView with a CursorAdapter<br>
+</a></p>
+<p><a href="http://www.gustekdev.com/2013/05/custom-cursoradapter-and-why-not-use.html">3- Custom CursorAdapter and why not use SimpleCursorAdapter<br>
+</a></p>

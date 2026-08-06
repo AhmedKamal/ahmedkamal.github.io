@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[Clean Code] Designing Classes · Ahmed Kamal</title>
+	<meta name="description" content="In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters.">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/clean-code-designing-classes/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="[Clean Code] Designing Classes">
+	<meta property="og:description" content="In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters.">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/clean-code-designing-classes/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2015-07-07T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="[Clean Code] Designing Classes">
+	<meta name="twitter:description" content="In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters.">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>[Clean Code] Designing Classes</h1>
+			<p class="post-meta">
+				<time datetime="2015-07-07T00:00:00.000Z">Jul 7, 2015</time>
+				· 3 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2015 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters.</p>
+<p>In this post, I will try to share with you my own highlights on Classes Design chapter on Clean Code.</p>
+<ul>
+<li>
+<p>Classes should be small.</p>
+</li>
+<li>
+<p>Classes should be smaller than that :) .</p>
+</li>
+</ul>
+<p>Even a small class like this seems like a bad example because it has multiple responsibilities.</p>
+<pre><code class="language-language-java">public class SuperDashboard extends JFrame implements MetaDataUser
+    public Component getLastFocusedComponent() 
+    public void setLastFocused(Component lastFocused) 
+    public int getMajorVersionNumber() 
+    public int getMinorVersionNumber() 
+    public int getBuildNumber() 
+}
+</code></pre>
+<ul>
+<li>
+<p>Class names including weasel words like Processor or Manager or Super often  hint  at  unfortunate  aggregation  of responsablities.</p>
+</li>
+<li>
+<p>We should also be able to write a brief description of the class in about 25 words,<br>
+without  using  the  words  “if,”  “and,”  “or,”  or  “but.”</p>
+</li>
+</ul>
+<p>Class Orgnanization</p>
+<h4 id="howtoorganizeyourclass">How to organize your class?</h4>
+<p>Following the standard Java convention, a class should be order in the following way</p>
+<h4 id="1variables">1- Variables:</h4>
+<ul><li>a- public static constants.</li><li>b- private static variables</li><li>c- private instance variables.</li></ul>
+<h4 id="2functions">2- Functions:</h4>
+<p>a- Public Functions<br>
+b- Private utilities called by a public function right after the public function itself.</p>
+<h2 id="importantprinciples"><mark>Important Principles</mark></h2>
+<h4 id="thesingleresponsibilityprinciple">The Single Responsibility Principle:</h4>
+<p>ِِA class or module should have one, and only one, reason to change (One responsibility).</p>
+<p>The previous class has two reasons for change:<br>
+First, it tracks version information that would seemingly need to be updated every time the<br>
+software gets shipped. Second, it manages Java Swing components</p>
+<p>We should separate versioning information.</p>
+<pre><code class="language-language-java">public class Version {
+    public int getMajorVersionNumber() 
+    public int getMinorVersionNumber() 
+    public int getBuildNumber() 
+}
+</code></pre>
+<blockquote>
+<p>SRP is often the most abused class design<br>
+principle. We regularly encounter classes that do far too many things. Simply, getting software to work and making software clean are two very different activities.</p>
+</blockquote>
+<h4 id="cohesion">Cohesion</h4>
+<p>Classes should have a small number of instance variables. Each of the methods of a class should manipulate one or more of those variables.</p>
+<blockquote>
+<p>A class in which each variable is used by each method is maximally cohesive.</p>
+</blockquote>
+<p>Keeping your functions as short as possible in addition to maintaining a short parameter list will make you in need for creating shared parameters (instance variables) within your class.<br>
+Unfortunately, this also means that our classes lose cohesion because they accumulate more and more instance variables that exist solely to allow a few functions to share them which should make us think about splitting them.</p>
+<blockquote>
+<p>When classes lose cohesion, split them!</p>
+</blockquote>
+<h4 id="organizingforchange">Organizing For Change</h4>
+<p>For  most  systems,  change  is  continual.  Every  change  subjects  us  to  the  risk  that  the remainder of the system no longer works as intended. In a clean system we organize our classes so as to reduce the risk of change.</p>
+<p>A client class depending upon concrete details is at risk when those details change. We can introduce interfaces and abstract classes to help isolate the impact of those details.</p>
+<p>Dependencies upon concrete details create challenges for testing our system. If we’re building  a  Portfolio class  and  it  depends  upon  an  external  TokyoStockExchange API  to derive the portfolio’s value, our test cases are impacted by the volatility of such a lookup.<br>
+It’s hard to write a test when we get a different answer every ﬁve minutes! so we can build it on an interface so that we can create a testable implementation that emulate TokyoStockExchange.</p>
+<h4 id="finalnote">Final Note:</h4>
+<p>You don't need to rewrite your code to make it clean. The change is made by writing a test suite that veriﬁes the precise behavior of the<br>
+ﬁrst program. Then a myriad of tiny little changes are made, one at a time. After each change the program is executed to ensure that the behavior didn't not change. One tiny step after another, the ﬁrst program would be cleaned up and transformed into a better state.</p>
+<p>We want our systems to be composed of many small classes, not a few large ones. Each small class encapsulates a single responsibility, has a single reason to change, and collaborates with a few others to achieve the desired system behaviors.</p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

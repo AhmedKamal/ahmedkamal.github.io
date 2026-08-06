@@ -1,0 +1,127 @@
+---
+title: "[CleanCode] Meaningful Names [Part 1]"
+date: "2015-07-27"
+slug: "chapter-2-meaningful-names-part-1"
+description: "In this series of posts , I would try to share with you some of my highlights on Clean Code Chapters. Names are everywhere in software. We name our variables, our functions, our…"
+archived: true
+layout: "post.njk"
+tags_original: ["Learn", "clean-code", "naming-variables", "meaningful-names"]
+---
+<p>In this <a href="http://ahmedkamal.me/tag/clean-code/">series of posts</a>, I would try to share with you some of my highlights on Clean Code Chapters.<br>
+Names are everywhere in software. We name our variables, our functions, our arguments,<br>
+classes, and packages.Because we do so much of it, we’d better do it well. What follows are some simple rules for creating<br>
+good names.</p>
+<p>In this post my focus would be on Chapter 2.</p>
+<h4 id="1userintentionrevealingnames">1- User Intention-Revealing Names</h4>
+<ul>
+<li>
+<p>Names should reveal intents and we are serious about that.</p>
+</li>
+<li>
+<p>Your chosen name should answers the three main questions</p>
+<pre><code>why it exists, what it does, and how it is used
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>Good Names doesn't require comments to explain them</p>
+</blockquote>
+<p>Check the following code sample and try to deduce what is its purpose?</p>
+<pre><code class="language-language-java">public List&lt;int[]&gt; getThem() {
+List&lt;int[]&gt; list1 = new ArrayList&lt;int[]&gt;();
+for (int[] x: theList)
+if (x[0] == 4)
+list1.add(x);
+return list1;
+}
+</code></pre>
+<p>Was it difficult to understand the purpose of the code? What does the constant 4 refer to? What does list1 represent?</p>
+<p>Now, check it again after doing some renamings.</p>
+<pre><code class="language-language-java">public List&lt;int[]&gt; getFlaggedCells() {
+List&lt;int[]&gt; flaggedCells = new ArrayList&lt;int[]&gt;();
+for (int[] cell: gameBoard)
+if (cell[STATUS_VALUE] == FLAGGED)
+flaggedCells.add(cell);
+return flaggedCells;
+}
+</code></pre>
+<p>What about it now?</p>
+<pre><code class="language-language-java">public List&lt;Cell&gt; getFlaggedCells() {
+List&lt;Cell&gt; flaggedCells = new ArrayList&lt;Cell&gt;();
+for (Cell cell: gameBoard)
+if (cell.isFlagged())
+flaggedCells.add(cell);
+return flaggedCells;
+}
+</code></pre>
+<blockquote>
+<p>Choosing good names takes time but saves more than it takes.<br>
+So take care with your names and <strong>change them</strong> when you find better ones.</p>
+</blockquote>
+<h4 id="2avoiddisinformation">2- Avoid Disinformation</h4>
+<ul>
+<li>
+<p>We should avoid words whose meanings vary from our intended meaning. For example, if we have a group of accounts, we shouldn't call<br>
+them accountList unless they are really represented with a list. If the container holding the accounts is not actually a List, it may lead to false conclusions.1 So accountGroup or<br>
+bunchOfAccounts or just plain accounts would be better.</p>
+</li>
+<li>
+<p>Beware of using names which vary in small ways. How long does it take to spot the difference between invoicedOpenOrders and invoicedOpenOrder or between PDFEfficientStringsController and PDFEfficientListsController</p>
+</li>
+<li>
+<p>A truly awful example of disinformative names would be the use of lower-case L or<br>
+uppercase O as variable names, especially in combination. The problem, of course, is that they look almost entirely like the constants one and zero</p>
+</li>
+</ul>
+<h4 id="3makemeaningfuldistionctions">3- Make Meaningful Distionctions</h4>
+<p>Sometimes developers need to have two things with the same name and to satisfy the compiler they may add a noise word or a random number to the second name. In fact this may make the code compile but it is obviously a wrong attitude.</p>
+<blockquote>
+<p>If names must be different, then they should also mean something different.</p>
+</blockquote>
+<ul>
+<li>Number-series naming (a1, a2, .. aN) is the opposite of intentional naming. They are disinformative and they provide no clue to the author's intention.</li>
+</ul>
+<p>Compare the following sample with the one after it and see the difference</p>
+<pre><code class="language-language-java">public static void copyChars(char a1[], char a2[]) {
+for (int i = 0; i &lt; a1.length; i++) {
+a2[i] = a1[i];
+}
+}
+</code></pre>
+<p>Improved Version</p>
+<pre><code class="language-language-java">public static void copyChars(char source[], char destination[]) {
+for (int i = 0; i &lt; source.length; i++) {
+destination[i] = source[i];
+}
+}
+</code></pre>
+<ul>
+<li>Noise words are another meaningless distinction.</li>
+</ul>
+<p>Imagine that you have a Product class. If you have another called ProductInfo or ProductData, you have made the names different<br>
+without making them mean anything different. Info and Data are indistinct noise<br>
+words like a, an, and the.</p>
+<p>Note that there is nothing wrong with using prefix conventions like a and the so long as they make a meaningful distinction.</p>
+<blockquote>
+<p>Noise words are redundant. The word variable should never appear in a variable name. The word table should never appear in a table name. Would a Name ever be a floating point number? If so, it breaks an earlier rule about disinformation.</p>
+</blockquote>
+<h4 id="4usepronounceablenames">4- Use Pronounceable Names</h4>
+<p>If you can’t pronounce it, you can’t discuss it without sounding like an idiot. Can you pronounce this &quot;genymdhms&quot;? If not, then it would be difficult to discuss this code with your team mates.</p>
+<pre><code class="language-language-java">class Customer {
+private Date generationTimestamp;
+private Date modificationTimestamp;;
+private final String recordId = &quot;102&quot;;
+/* ... */
+};
+</code></pre>
+<p>Now, Imagine this conversation,  “Hey, Mikey, take a look at this record! The generation timestamp is set to tomorrow’s date! How can that be?”</p>
+<h4 id="5usesearchablenames">5- Use Searchable Names</h4>
+<p>Try to use names that would be less common to appear in search unless you are really searching for them.</p>
+<ul>
+<li>If a variable or constant might be seen or used in multiple places in a body of code,<br>
+it is imperative to give it a search-friendly name.</li>
+<li>Single-letter names can ONLY be used as local variables inside short methods.</li>
+<li>The name e is a poor choice for any variable for which a programmer might<br>
+need to search. It is the most common letter in the English language and likely to show up in every passage of text in every program.</li>
+</ul>
+<p>That is all for this part, in the next part I would complete the other attributes that your names should have. Feel free to add your own advises regarding naming variable and functions. Thanks a lot.</p>

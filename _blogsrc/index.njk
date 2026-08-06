@@ -1,0 +1,70 @@
+---
+layout: base.njk
+title: Writing
+permalink: /index.html
+---
+<main class="page">
+	<header class="page-head">
+		<h1>Writing</h1>
+		<p class="page-intro">
+			Notes on building data and AI systems, and on doing it from this part of
+			the world. I also write in Egyptian Arabic at
+			<a href="/ar/" hreflang="ar" lang="ar">قصاصات علي الطريق</a>,
+			and post more often on
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> and
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a>.
+		</p>
+		<p class="page-intro">
+			Outside of work, I keep a personal page:
+			<a href="/thoughts/">A Muslim's thoughts</a>.
+		</p>
+	</header>
+
+	{% set featured = collections.featured %}
+	{% if featured.length %}
+	<section class="start-here">
+		<h2>Start here</h2>
+		<ul>
+			{% for post in featured %}
+			<li>
+				<a href="{{ post.url | url }}">{{ post.data.title }}</a>
+				<span class="sh-year">{{ post.date | year }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	<section class="post-list">
+		{% for post in collections.writing %}
+		<article class="post-item">
+			<h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
+			<p class="meta">
+				<time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+				· {{ post.templateContent | readingTime }} min read
+			</p>
+			<p class="excerpt">{{ post.data.description }}</p>
+		</article>
+		{% endfor %}
+	</section>
+
+	{% set current = elsewhere | rejectattr("archived") %}
+	{% if current.length %}
+	<section class="elsewhere">
+		<h2>Published elsewhere</h2>
+		<ul>
+			{% for item in current %}
+			<li>
+				<a href="{{ item.url }}">{{ item.title }}</a>
+				<span class="el-venue">{{ item.venue }}, {{ item.date | year }}</span>
+				{% if item.note %}<span class="el-note">{{ item.note }}</span>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	<p class="archive-link">
+		<a href="{{ '/archive/' | url }}">Older writing, 2012–2021 →</a>
+	</p>
+</main>
