@@ -1,0 +1,14 @@
+{
+  "name": "ahmedkamal-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static blog generator for the /blog section of ahmedkamal.me",
+  "scripts": {
+    "dev": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "migrate": "python3 tools/migrate_ghost.py --db ../ghost-backup-2026-08-04_02-00-01/data/ghost.db --img ../ghost-backup-2026-08-04_02-00-01/images"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

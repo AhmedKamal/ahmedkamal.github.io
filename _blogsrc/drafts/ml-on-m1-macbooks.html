@@ -1,0 +1,14 @@
+---
+title: "ML on M1 Macbooks"
+slug: "ml-on-m1-macbooks"
+note: "Ghost draft, never published. Not built."
+---
+<p>Pip works for most things but catboost doesn't</p><p>Miniconda doesn't help with this but conda shall do.</p><pre><code>pyenv install 3.7.11</code></pre><pre><code>python3 -m venv ~/tensorflow-metal
+source ~/tensorflow-metal/bin/activate
+python -m pip install -U pip</code></pre><pre><code>python -m venv ~/PycharmProjects/yoda-projects/jobs/locations_search_v2
+source ~/PycharmProjects/yoda-projects/jobs/locations_search_v2/bin/activate
+python -m pip install -U pip</code></pre><pre><code>export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)" # This only sets up the path stuff.
+eval "$(pyenv init -)" # This makes pyenv work in the shell.
+eval "$(pyenv virtualenv-init -)" # Enabling virtualenv so it works natively.</code></pre><a class="link-card" href="https://medium.com/thinknum/how-to-install-python-under-rosetta-2-f98c0865e012" rel="noopener"><span class="lc-title">How to install Python under Rosetta 2</span><span class="lc-desc">Running frontend written in TypeScript is easy and can be done under M1. With Python backends it’s a bit more complicated: There are pip…</span><span class="lc-meta">Thinknum</span></a><a class="link-card" href="https://developer.apple.com/metal/tensorflow-plugin/" rel="noopener"><span class="lc-title">Tensorflow Plugin - Metal - Apple Developer</span><span class="lc-desc">Find presentations, documentation, sample code, and resources for building macOS, iOS, and tvOS apps with the Metal framework.</span><span class="lc-meta">Apple Developer</span></a><a class="link-card" href="https://laict.medium.com/install-python-on-macos-11-m1-apple-silicon-using-pyenv-12e0729427a9" rel="noopener"><span class="lc-title">Install Python on macOS 11 M1 (Apple Silicon) using pyenv</span><span class="lc-desc">Complete guide to install Python 3.7, 3.8, 3.9 on macOS 11 Apple Silicon M1</span><span class="lc-meta">Medium</span></a><a class="link-card" href="https://towardsdatascience.com/install-xgboost-and-lightgbm-on-apple-m1-macs-cb75180a2dda" rel="noopener"><span class="lc-title">Install XGBoost and LightGBM on Apple M1 Macs</span><span class="lc-desc">Install arm64 native version of XGBoost and LightGBM on Apple M1 Macs</span><span class="lc-meta">Towards Data Science</span></a><div class="video-embed" data-video="YHd7JB_bTrI"><button type="button" class="video-play" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play video</span></button></div>

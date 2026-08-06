@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Windows Metro , New Experience From Microsoft · Ahmed Kamal</title>
+	<meta name="description" content="Hi, In this post I want to talk about the new operating system from Microsoft. When I read about Windows 8 and how it can change our thoughts about OS, I decided to test this new…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/windows-metro-new-experience-from-microsoft/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Windows Metro , New Experience From Microsoft">
+	<meta property="og:description" content="Hi, In this post I want to talk about the new operating system from Microsoft. When I read about Windows 8 and how it can change our thoughts about OS, I decided to test this new…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/windows-metro-new-experience-from-microsoft/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2012-02-25T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Windows Metro , New Experience From Microsoft">
+	<meta name="twitter:description" content="Hi, In this post I want to talk about the new operating system from Microsoft. When I read about Windows 8 and how it can change our thoughts about OS, I decided to test this new…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>Windows Metro , New Experience From Microsoft</h1>
+			<p class="post-meta">
+				<time datetime="2012-02-25T00:00:00.000Z">Feb 25, 2012</time>
+				· 1 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2012 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>Hi, In this post I want to talk about the new operating system from Microsoft.  When I read about Windows 8 and how it can change our thoughts about OS, I decided to test this new operating system to be able to make a full opinion about it. So I opened Google and searched for it until I found the download links for different versions and then I installed it.</p>
+<p><span style="color:#000080;">You can download it from this link</span></p>
+<p><span style="color:#000080;"><a href="http://msdn.microsoft.com/en-us/windows/apps/br229516">http://msdn.microsoft.com/en-us/windows/apps/br229516</a></span></p>
+<p>When you open it you will find two main versions available for downloading</p>
+<p>1- <span style="color:#ff0000;">Windows Developer Preview with developer tools</span></p>
+<p>It is for developers who may want to develop applications (Metro Style Apps) using Visual Studio 11 and Expression Blend 5</p>
+<p>2- <span style="color:#ff0000;">Windows Developer Preview</span></p>
+<p>It is for the normal user who only wants to test the new features in this new OS</p>
+<figure><img src="/blog/media/2020/05/metro-apps-21.webp" alt="" loading="lazy"></figure>
+<p>One of the best things in this OS is that it is different from any Windows before. You will notice that from your first look after installing it. Also it supports ARM architecture and this is fantastic advantage that I will talk about later.</p>
+<p>I have made a simple video about how you can install windows developer preview in your machine if you have win 7 or win xp. The video is in Arabic.</p>
+<p>I'm waiting for your comments when you watch it. I'm sure that you will admire windows 8 !! :D</p>
+<div class="video-embed" data-video="qq8M1KvqT3Q"><button type="button" class="video-play" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play video</span></button></div>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>{{ title }}{% if title != site.title %} · {{ site.author }}{% endif %}</title>
+	<meta name="description" content="{{ description or site.description }}">
+	<meta name="author" content="{{ site.author }}">
+	<link rel="canonical" href="{{ site.origin }}{{ page.url | url }}">
+	<meta name="theme-color" content="#faf7f2">
+	{% if archived %}<meta name="robots" content="noindex, follow">{% endif %}
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="{{ '/feed.xml' | url }}">
+
+	<meta property="og:type" content="{% if layout == 'post.njk' %}article{% else %}website{% endif %}">
+	<meta property="og:site_name" content="{{ site.author }}">
+	<meta property="og:title" content="{{ title }}">
+	<meta property="og:description" content="{{ description or site.description }}">
+	<meta property="og:url" content="{{ site.origin }}{{ page.url | url }}">
+	<meta property="og:image" content="{{ image or site.ogImage }}">
+	{% if date %}<meta property="article:published_time" content="{{ date | isoDate }}">{% endif %}
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="{{ site.twitter }}">
+	<meta name="twitter:creator" content="{{ site.twitter }}">
+	<meta name="twitter:title" content="{{ title }}">
+	<meta name="twitter:description" content="{{ description or site.description }}">
+	<meta name="twitter:image" content="{{ image or site.ogImage }}">
+
+	{% if layout == 'post.njk' and not archived %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": {{ title | dump | safe }},
+		"datePublished": "{{ date | isoDate }}",
+		"description": {{ (description or site.description) | dump | safe }},
+		"url": "{{ site.origin }}{{ page.url | url }}",
+		"author": {
+			"@type": "Person",
+			"name": "Ahmed Kamal",
+			"url": "https://ahmedkamal.me/"
+		}
+	}
+	</script>
+	{% endif %}
+
+	{% include "analytics.njk" %}
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="{{ '/assets/blog.css' | url }}">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="{{ '/' | url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	{{ content | safe }}
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="{{ '/feed.xml' | url }}">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

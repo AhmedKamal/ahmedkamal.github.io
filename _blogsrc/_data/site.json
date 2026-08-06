@@ -1,0 +1,18 @@
+{
+  "title": "Writing",
+  "author": "Ahmed Kamal",
+  "origin": "https://ahmedkamal.me",
+  "blogUrl": "https://ahmedkamal.me/blog/",
+  "description": "Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.",
+  "ogImage": "https://ahmedkamal.me/og-image.jpg",
+  "twitter": "@_ahmdkamal_",
+
+  "_comment_ga4": "GA4 measurement ID. Empty = no analytics emitted at all. Replaced UA-124188722-1, which stopped collecting data in July 2023.",
+  "ga4_id": "G-7SGXTR10EE",
+
+  "_comment_disqus": "Disqus shortname from disqus.com admin (Settings > General). Empty = the comments block is omitted entirely.",
+  "disqus_shortname": "ahmed-kamal",
+
+  "_comment_disqus_counts": "Show 'N Comments' on the index. Off because it loads Disqus JS for every visitor to the index, which is the cost click-to-load avoids, and an index of '0 Comments' reads worse than no counts. Turn on once threads have activity.",
+  "disqus_counts": false
+}

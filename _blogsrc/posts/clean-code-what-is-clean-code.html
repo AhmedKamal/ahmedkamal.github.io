@@ -1,0 +1,35 @@
+---
+title: "[Clean Code] Some thoughts about Clean Code?"
+date: "2015-07-22"
+slug: "clean-code-what-is-clean-code"
+description: "In this series of posts , I would try to share with you some of my highlights on Clean Code Chapters."
+archived: true
+layout: "post.njk"
+tags_original: ["Learn", "clean-code", "Highlights"]
+---
+<p>In this <a href="http://ahmedkamal.me/tag/clean-code/">series of posts</a>, I would try to share with you some of my highlights on Clean Code Chapters.</p>
+<p>In this post my focus would be on chapter 1.</p>
+<p>We can define Clean code as code that always looks like it was written by someone who cares.</p>
+<blockquote>
+<p>&quot;I like my code to be elegant and efficient. The logic should be straightforward to make it hard for bugs to hide, the dependencies minimal to ease maintenance, error handling complete according to an articulated strategy, and performance close to optimal so as not to tempt people to make the code messy with unprincipled optimizations. Clean code does one thing well.&quot;, <em>Bjarne Stroustrup, inventor of C++</em></p>
+</blockquote>
+<h5 id="becksrulesofsimplecode">Beck’s rules of simple code.</h5>
+<p>In priority order, simple code:<br>
+• Runs all the tests</p>
+<p>• Contains no duplication</p>
+<p>• Expresses all the design ideas that are in the<br>
+system</p>
+<p>• Minimizes the number of entities such as classes,<br>
+methods, functions, and the like.</p>
+<h5 id="whatcausesduplication">What causes duplication?</h5>
+<p>When the same thing is done over and over, it’s a sign that there is an idea in our mind that is not well represented in the code. We should try to figure out what it is. Then try to express that idea more clearly.</p>
+<blockquote>
+<p>Clean code can be read, and enhanced by a developer other than its original author. It has unit and acceptance tests. It has meaningful<br>
+names. It provides one way rather than many ways for doing one thing. It has minimal dependencies, which are explicitly defined, and providess clear and minimal API. Code should be literate since depending on the language, not all necessary information can be expressed clearly in code alone., <em>Dave Thomas ,the god father of eclipse</em></p>
+</blockquote>
+<h5 id="finalnote">Final Note</h5>
+<p>The <strong>@author</strong> field of a Javadoc tells us who we are. <mark>We are authors</mark>. And one thing about authors is that they have readers. Indeed, authors are responsible for communicating well with their readers. The next time you write a line of code, remember you are an author, writing for readers who will judge your effort.</p>
+<p><mark>The ratio of time spent reading vs. writing is well</mark> <strong>over 10:1</strong>.<br>
+We are constantly reading old code as part of the effort to write new code.</p>
+<p>The code you are trying to write today will be hard or easy to write<br>
+depending on how hard or easy the surrounding code is to read. So if you want to go fast, if you want to get done quickly, if you want your code to be easy to write, make it easy to read. Make it a clean code.</p>

@@ -1,0 +1,27 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Ahmed Kamal · Writing</title>
+	<subtitle>{{ site.description | escapeXml | safe }}</subtitle>
+	<link href="{{ site.origin }}{{ '/feed.xml' | url }}" rel="self"/>
+	<link href="{{ site.blogUrl }}"/>
+	<updated>{{ collections.writing[0].date | isoDate }}</updated>
+	<id>{{ site.blogUrl }}</id>
+	<author>
+		<name>{{ site.author }}</name>
+		<uri>{{ site.origin }}</uri>
+	</author>
+	{% for post in collections.writing %}
+	<entry>
+		<title>{{ post.data.title | escapeXml | safe }}</title>
+		<link href="{{ site.origin }}{{ post.url | url }}"/>
+		<updated>{{ post.date | isoDate }}</updated>
+		<id>{{ site.origin }}{{ post.url | url }}</id>
+		<summary>{{ post.data.description | escapeXml | safe }}</summary>
+		<content type="html">{{ post.templateContent | escapeXml | safe }}</content>
+	</entry>
+	{% endfor %}
+</feed>

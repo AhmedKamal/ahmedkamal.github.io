@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Archive · Ahmed Kamal</title>
+	<meta name="description" content="Older writing from 2012 to 2021, kept online as a record.">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/archive/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Archive">
+	<meta property="og:description" content="Older writing from 2012 to 2021, kept online as a record.">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/archive/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Archive">
+	<meta name="twitter:description" content="Older writing from 2012 to 2021, kept online as a record.">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<main class="page">
+	<header class="page-head">
+		<h1>Archive</h1>
+		<p class="page-intro">
+			I have been writing in public since 2012. These posts are from earlier
+			eras of my work: the Microsoft stack, competitive programming, then the
+			Hadoop and Spark years. Much of the technical detail is out of date. They
+			stay online because they happened.
+		</p>
+		<p class="page-intro">
+			<a href="/blog/">Current writing is here →</a>
+		</p>
+	</header>
+
+	
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+		
+		
+	
+
+	
+	<section class="archive-year">
+		<h2>2021</h2>
+		<ul>
+			
+				
+				<li>
+					<a href="/blog/books-to-read-during-2021/">Books to read in 2021</a>
+					<span class="ay-date">Jan 13, 2021</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2020</h2>
+		<ul>
+			
+				
+			
+				
+				<li>
+					<a href="/blog/the-remote-work-wave/">The remote-work startups&#39; wave</a>
+					<span class="ay-date">May 22, 2020</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2018</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/clean-code-clean-code-debate/">[Clean Code] Clean Code Debate!</a>
+					<span class="ay-date">Feb 26, 2018</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2016</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/productionizing-apache-spark-data-pipelines/">Productionizing Apache Spark data pipelines</a>
+					<span class="ay-date">Jul 21, 2016</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/using-spark-for-data-exploration/">Using Spark For Data Exploration</a>
+					<span class="ay-date">Jul 21, 2016</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/hive-a-must-known-tool-for-any-data-engineer/">Hive, a must known tool for any data engineer</a>
+					<span class="ay-date">May 10, 2016</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/the-best-language-for/">The best language for data scientists/engineers!?</a>
+					<span class="ay-date">Apr 12, 2016</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/simpe-redis-a-simple-interface-for-using-redis/">Simpe Redis: A Simple Interface For Using Redis</a>
+					<span class="ay-date">Mar 28, 2016</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2015</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/redis-installation-configuration-and-usage/">Redis : Installation and configuration</a>
+					<span class="ay-date">Oct 22, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/cleancode-meaningful-names-part-2/">[CleanCode] Meaningful Names [Part 2]</a>
+					<span class="ay-date">Jul 29, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/chapter-2-meaningful-names-part-1/">[CleanCode] Meaningful Names [Part 1]</a>
+					<span class="ay-date">Jul 27, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/clean-code-what-is-clean-code/">[Clean Code] Some thoughts about Clean Code?</a>
+					<span class="ay-date">Jul 22, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/cursor-adapter-in-android/">Cursor Adapter in Android</a>
+					<span class="ay-date">Jul 20, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/clean-code-designing-classes/">[Clean Code] Designing Classes</a>
+					<span class="ay-date">Jul 7, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/lessons-to-learn-from-parse-about-api-design/">Lessons to learn from Parse about API design</a>
+					<span class="ay-date">May 15, 2015</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/intro-to-hadoop-and-hdinsight-in-microsoft-azure/">Intro to Hadoop and HDInsight in Microsoft Azure</a>
+					<span class="ay-date">Mar 30, 2015</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2014</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/transferring-data-between-silverlight-and-html/">Transferring Data between Silverlight and HTML</a>
+					<span class="ay-date">Dec 12, 2014</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/sorting-elements-coming-from-db-without-repeating-code/">Sorting elements coming from db without repeating code</a>
+					<span class="ay-date">Oct 5, 2014</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/how-to-get-the-hijri-date-in-windows-8-1-accurately/">How to get the Hijri Date in Windows 8.1 Accurately?</a>
+					<span class="ay-date">Apr 3, 2014</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/acm-solution-manual/">ACM Solution Manual</a>
+					<span class="ay-date">Feb 20, 2014</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2013</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/how-could-you-master-any-technology-easily/">How could you master any technology easily?</a>
+					<span class="ay-date">Jul 28, 2013</span>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</section>
+	
+	<section class="archive-year">
+		<h2>2012</h2>
+		<ul>
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+				<li>
+					<a href="/blog/the-difference-between-class-and-struct/">The Difference Between Class and Struct</a>
+					<span class="ay-date">Oct 23, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/resources-for-acm-competition/">Resources for ACM Competition</a>
+					<span class="ay-date">Oct 17, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/razor-syntax/">Razor Syntax</a>
+					<span class="ay-date">Aug 4, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/how-to-prepare-your-business-model/">How to prepare your business model</a>
+					<span class="ay-date">Jul 11, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/the-day-when-i-knew-the-meaning-of-true-learning/">The day when I knew the meaning of true learning</a>
+					<span class="ay-date">Jul 9, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/what-is-a-project/">What Is a Project?</a>
+					<span class="ay-date">Mar 13, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/do-you-know-xaml/">Do you know XAML?</a>
+					<span class="ay-date">Mar 2, 2012</span>
+				</li>
+				
+			
+				
+				<li>
+					<a href="/blog/windows-metro-new-experience-from-microsoft/">Windows Metro , New Experience From Microsoft</a>
+					<span class="ay-date">Feb 25, 2012</span>
+				</li>
+				
+			
+		</ul>
+	</section>
+	
+
+	
+	
+	<section class="archive-year">
+		<h2>Also on Medium</h2>
+		<ul>
+			
+			<li>
+				<a href="https://medium.com/@ahmdkamal/clean-code-debate-e1bd5eab2538">Clean Code Debate!</a>
+				<span class="ay-date">Feb 19, 2018</span>
+			</li>
+			
+			<li>
+				<a href="https://medium.com/@ahmdkamal/how-to-make-windows-developer-friendly-again-c7d85fad824d">How to make Windows developer friendly again?!</a>
+				<span class="ay-date">Feb 12, 2017</span>
+			</li>
+			
+			<li>
+				<a href="https://medium.com/@ahmdkamal/why-should-you-care-about-big-data-data-science-cbf3ea5c7aef">Why should you care about big data &amp; data science?</a>
+				<span class="ay-date">Jan 2, 2016</span>
+			</li>
+			
+			<li>
+				<a href="https://medium.com/@ahmdkamal/it-isnt-a-football-match-3ac8a3129d12">It isn&#39;t just a football match!</a>
+				<span class="ay-date">Jan 1, 2015</span>
+			</li>
+			
+		</ul>
+	</section>
+	
+</main>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

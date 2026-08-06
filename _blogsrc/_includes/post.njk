@@ -1,0 +1,49 @@
+---
+layout: base.njk
+---
+<div class="post-wrap">
+	<!-- TOC -->
+
+	<article>
+		<header class="post-head">
+			<h1>{{ title }}</h1>
+			<p class="post-meta">
+				<time datetime="{{ date | isoDate }}">{{ date | readableDate }}</time>
+				· {{ content | readingTime }} min read
+			</p>
+			{% if archived %}
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in {{ date | year }} and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="{{ '/' | url }}">Current writing is here</a>.
+			</aside>
+			{% endif %}
+		</header>
+
+		<div class="post-body">
+			{{ content | safe }}
+		</div>
+
+		<footer class="post-foot">
+			<a href="{{ '/' | url }}">← All writing</a>
+		</footer>
+
+		{% if not archived %}{% include "comments.njk" %}{% endif %}
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>

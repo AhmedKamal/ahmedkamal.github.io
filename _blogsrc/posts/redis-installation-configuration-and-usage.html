@@ -1,0 +1,34 @@
+---
+title: "Redis : Installation and configuration"
+date: "2015-10-22"
+slug: "redis-installation-configuration-and-usage"
+description: "Redis is a famous caching layer and in-memory database that is used in a lot of large-scale projects. Redis is used by Twitter GitHub, Pinterest, Snapchat, StackOverflow and Flickr."
+archived: true
+layout: "post.njk"
+tags_original: ["BigData", "nosql", "inmemory-database", "redis"]
+---
+<p>Redis is a famous caching layer and in-memory database that is used in a lot of large-scale projects. Redis is <a href="http://techstacks.io/tech/redis">used by</a> Twitter  GitHub, Pinterest, Snapchat, StackOverflow and Flickr.</p>
+<p>It supports data structures such as strings, hashes, lists, sets, sorted sets, bitmaps and geospatial indexes with radius queries.</p>
+<p>Some common usage scenarios can be found <a href="http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html">here</a></p>
+<h4 id="installation">Installation</h4>
+<p>Whether you are using Ubuntu or Centos on your machine/server, these steps should help you install Redis.</p>
+<p>In the terminal run the following statements:</p>
+<p><code>wget http://download.redis.io/redis-stable.tar.gz tar xvzf redis-stable.tar.gz cd redis-stable make</code></p>
+<p>Make sure that your make was sucessfull by running<br>
+<code>make test</code> inside the terminal</p>
+<p>You now have access to:</p>
+<ul>
+<li>redis-server is the Redis Server itself.</li>
+<li>redis-sentinel is the Redis Sentinel executable (monitoring and failover).</li>
+<li>redis-cli is the command line interface utility to talk with Redis.</li>
+<li>redis-benchmark is used to check Redis performances.</li>
+<li>redis-check-aof and redis-check-dump are useful in the rare event of corrupted data files.</li>
+</ul>
+<p>Run <code>make install</code> to put the Redis server and cli to their proper locations.</p>
+<p>Now you can run <strong>redis-server</strong> now to get the server up and running.</p>
+<p><code>$ redis-server [28550] 01 Aug 19:29:28 # Warning: no config file specified, using the default config. In order to specify a config file use 'redis-server /path/to/redis.conf' [28550] 01 Aug 19:29:28 * Server started, Redis version 2.2.12 [28550] 01 Aug 19:29:28 * The server is now ready to accept connections on port 6379 </code></p>
+<h4 id="checkifredisisworking">Check if Redis is working</h4>
+<p><code>$ redis-cli                                                                 redis 127.0.0.1:6379&gt; ping PONG redis 127.0.0.1:6379&gt; set mykey somevalue OK redis 127.0.0.1:6379&gt; get mykey &quot;somevalue&quot;</code></p>
+<h4 id="gettingtherightdriverclient">Getting the right driver/client</h4>
+<p>For each language there may be a client for dealing with Redis. You can find the full list from <a href="http://redis.io/clients">here</a></p>
+<p>In the next post, I will try to provide more details about using Redis from Java and more details about Redis itself. Thanks a lot for reading!</p>

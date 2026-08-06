@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Intro to Hadoop and HDInsight in Microsoft Azure · Ahmed Kamal</title>
+	<meta name="description" content="Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/intro-to-hadoop-and-hdinsight-in-microsoft-azure/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Intro to Hadoop and HDInsight in Microsoft Azure">
+	<meta property="og:description" content="Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/intro-to-hadoop-and-hdinsight-in-microsoft-azure/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2015-03-30T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Intro to Hadoop and HDInsight in Microsoft Azure">
+	<meta name="twitter:description" content="Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>Intro to Hadoop and HDInsight in Microsoft Azure</h1>
+			<p class="post-meta">
+				<time datetime="2015-03-30T00:00:00.000Z">Mar 30, 2015</time>
+				· 3 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2015 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>Hi, in this blog post, I will try to give you some info about Hadoop and Microsoft distribution of Hadoop which is called HDInsight. Hadoop is one of the most famous No Sql and big data solutions. Hadoop is already used by big entities like Facebook,  Twitter, yahoo and many other companies that have a lot of data to store and process.<br>
+Let’s dive in a little deeper. If you don’t know what Hadoop is, let me give you one of the definitions that you can get easily from google :)</p>
+<blockquote>
+<p>Hadoop is a free, Java-based programming framework that supports the<br>
+processing of large data sets in a distributed computing environment</p>
+</blockquote>
+<p>One of the scenarios when the usage of a technology like Hadoop is essential is when you have large amount of data that you want to analyze to get some information.<br>
+For example, if you are working on a solution that tries to give your customer some information about people’s conversation about their companies in twitter. In this example, we have a large amount of data (tweet feeds) and at the same time you have to do a lot of processing (sentimental analysis) to be able to understand these tweets and decide if they are satisfied about the company or not. This would requires distributing this processing between multiple machines so that we could get the results in a reasonable amount of time.<br>
+Also In this example the data we are getting are unstructured that’s why storing them in a relational database won’t be useful and won’t help at all.</p>
+<p>Back to Hadoop, the core of Apache Hadoop consists of two things:</p>
+<p>1-	Storage Part which is called <strong>HDFS</strong> (Hadoop Distributed File System)</p>
+<p>2-	Processing Part which is Map Reduce</p>
+<blockquote>
+<p><strong>MapReduce</strong> is a programming model for processing and generating large data sets with a parallel, distributed algorithm on a cluster. A<br>
+MapReduce program is composed of a Map() procedure that performs<br>
+filtering and sorting (such as sorting students by first name into<br>
+queues, one queue for each name) and a Reduce() procedure that<br>
+performs a summary operation (such as counting the number of students  in each queue, yielding name frequencies).</p>
+</blockquote>
+<p>To process the data, Hadoop Map/Reduce transfers code (specifically Jar files) to nodes that have the required data, which the nodes then process in parallel.</p>
+<h2 id="therearemultipleprojectsthatcanbeusedontopofhadooplike">There are multiple projects that can be used on top of Hadoop like:</h2>
+<p><strong>Mahout™</strong>: A Scalable machine learning and data mining library.</p>
+<p><strong>Hive™</strong>: A data warehouse infrastructure that provides data summarization and ad hoc querying.</p>
+<p><strong>Pig™</strong>: A high-level data-flow language and execution framework for parallel computation.</p>
+<p><strong>Spark™</strong>: A fast and general compute engine for Hadoop data. Spark provides a simple and expressive programming model that supports a wide range of applications, including machine learning, stream processing, and graph computation.</p>
+<p><strong>Storm™</strong>: A free and open source distributed realtime computation system. Storm makes it easy to reliably process unbounded streams of data, doing for realtime processing what Hadoop did for batch processing.</p>
+<p>and many other projects that are concerned with big data in general.</p>
+<p>Microsoft has worked with Hortonworks (the creator of Hadoop) to deliver <strong>HDInsight</strong> which is provided through Azure or as on premise solution. HDInsight is a framework for the Microsoft Azure cloud implementation of Hadoop. It includes implementations of Storm, Pig, Hive, Sqoop and so on.</p>
+<p>HDInsight also integrates with business intelligence (BI) tools such as Excel, SQL Server Analysis Services, and SQL Server Reporting Services.</p>
+<p>In the next blog posts, I will try to dive deeper into HDinsight in Azure. Thanks for reading :) Feel free to comment or contact me if you have any questions.</p>
+<h2 id="references">References:</h2>
+<p><a href="http://en.wikipedia.org/wiki/Apache_Hadoop">http://en.wikipedia.org/wiki/Apache_Hadoop</a></p>
+<p><a href="http://en.wikipedia.org/wiki/MapReduce">http://en.wikipedia.org/wiki/MapReduce</a></p>
+<p><a href="http://hadoop.apache.org/">http://hadoop.apache.org/</a></p>
+<p><a href="http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/">http://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-introduction/</a></p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

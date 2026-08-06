@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Productionizing Apache Spark data pipelines · Ahmed Kamal</title>
+	<meta name="description" content="This is the second post about Running Spark On Production, you can read the first post from here">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/productionizing-apache-spark-data-pipelines/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Productionizing Apache Spark data pipelines">
+	<meta property="og:description" content="This is the second post about Running Spark On Production, you can read the first post from here">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/productionizing-apache-spark-data-pipelines/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2016-07-21T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Productionizing Apache Spark data pipelines">
+	<meta name="twitter:description" content="This is the second post about Running Spark On Production, you can read the first post from here">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>Productionizing Apache Spark data pipelines</h1>
+			<p class="post-meta">
+				<time datetime="2016-07-21T00:00:00.000Z">Jul 21, 2016</time>
+				· 5 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2016 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>This is the second post about Running Spark On Production, you can read the first post from <a href="/blog/using-spark-for-data-exploration/">here</a></p>
+<p>In the first post, we talked briefly about spark and then discussed the data exploration use case and compared between the available different tools. In this post, we would discuss the second use which is building data pipelines.</p>
+<h2 id="2productionsparkpipelinesusecase">2- Production Spark Pipelines Use Case:</h2>
+<p>Due to Spark 1.6.0 documentation the only provided way to submit Spark jobs is through Spark-Submit script.</p>
+<p>You have to bundle your application’s dependencies and pass it to Spark-Submit to run it.</p>
+<p>Depending on Spark Submit can be a challenging task for different reasons. Generally, having a REST API for jobs submission should:</p>
+<p>1- Give us a single shared endpoint for any Spark user without the need to setup Spark on every single client machine.</p>
+<p>2- Allocate the Spark driver on the machine having the REST API server, not the one you are submitting from. (This applies to client mode where the driver process is created in the machine submitting the job.)</p>
+<p>3- Allow retaining a shared context between different jobs which is very useful for low-latency jobs.</p>
+<p>4- Allow interacting with Spark from different languages.</p>
+<p>5- Make job tracking and monitoring much easier.</p>
+<p>I am just trying to show the possibilities that the REST API option would enable. The availability of specific features at the end depends on the API implementation.</p>
+<p>Currently, there are three available options when it comes to using Spark through an API/job server:</p>
+<p>1- <a href="https://github.com/spark-jobserver/spark-jobserver">Ooyala ‘s Spark Job Server</a></p>
+<p>Spark Job Server describes itself as “a RESTful interface for submitting and managing <a href="http://spark-project.org/">Apache Spark</a> jobs, jars, and job contexts”.</p>
+<p>Some notes about Spark Job Server (sometimes we call it SJS).</p>
+<ul>
+<li>
+<p>Spark Job Server is not part of the official Apache Spark repo and there are <a href="https://issues.apache.org/jira/browse/SPARK-818">no plans</a> to include it.</p>
+</li>
+<li>
+<p>Deploying SJS can somehow be annoying, as there aren’t any explicit instructions for the steps you need to follow, especially with Cloudera’s Spark version, due to some dependencies conflicts. This makes upgrading Spark more difficult and time consuming.</p>
+</li>
+<li>
+<p>There isn’t a High Availability setup available for SJS until now so you may consider making some efforts to guarantee its availability.</p>
+</li>
+<li>
+<p>Based on our experience using one shared context in SJS</p>
+</li>
+<li>
+<p>We had faced issues with high load of hundreds of concurrent jobs. So the team here developed a queuing layer between our engine and SJS to handle this issue. So you may need to consider having queuing layer if you want to use it.</p>
+</li>
+<li>
+<p>We had to reset the context sometime just to make sure that the resources are freed especially when a problem happens to one of the running jobs.</p>
+</li>
+</ul>
+<p>2- Spark Internal REST API</p>
+<p>Spark Internal REST API was developed with the intent to provide a standard endpoint for Spark jobs submission in standalone cluster mode. It was later extended to support <a href="https://issues.apache.org/jira/browse/SPARK-5338">Mesos</a> Cluster mode too. It is available since Spark 1.3+ and the REST API url is provided in the Spark master web interface as shown.</p>
+<p>It supports submitting (Submit and Kill) and getting status of running jobs although it is missing the error details of any exception occurring inside the driver in case of job failure like what SJS provides.</p>
+<p>There is a <a href="https://github.com/ywilkof/spark-jobs-rest-client">java client</a> developed by the community for easier usage in addition to a <a href="https://github.com/yohanliyanage/jenkins-spark-deploy">jenkins plugin</a> based on it.</p>
+<p>The main aim for the REST API development was to be an internal endpoint for job submission between Spark Submit and Spark Master to facilitate maintaining backward and forward compatibility but there is an <a href="https://issues.apache.org/jira/browse/SPARK-12528">open issue</a> (during the writing of this post) requesting to publicize the API and to put it in the official documentation.</p>
+<p>I’ve benchmarked the REST API through the submission of 1000 concurrent simple Spark Jobs and it was very stable and completed all of them successfully.</p>
+<p>3- <a href="https://github.com/cloudera/livy">Cloudera’s Livy</a></p>
+<p>Cloudera has developed a job server too after they found that the available options doesn’t satisfy Cloudera’s Hue needs. Livy is built with the idea of interactive execution in mind (like the Spark Notebook mentioned earlier). Basically, it supports two modes of execution</p>
+<p>1- <a href="http://gethue.com/how-to-use-the-livy-spark-rest-job-server-for-interactive-spark-2-2">Interactive Execution</a></p>
+<p>2- <a href="http://gethue.com/how-to-use-the-livy-spark-rest-job-server-api-for-submitting-batch-jar-python-and-streaming-spark-jobs/">Batch Execution</a></p>
+<table>
+<thead>
+<tr>
+<th>Interactive Execution</th>
+<th>Batch Execution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is based on Spark Different Shells</td>
+<td>Offers a wrapper around spark-submit</td>
+</tr>
+<tr>
+<td>Supports Scala, Python and R</td>
+<td>Supports Java, Scala (Packaged in Jars) and Python</td>
+</tr>
+</tbody>
+</table>
+<p>Livy is written in Scala. It was a part of Hue Project but it is now a <a href="https://github.com/cloudera/livy">separate project</a>.</p>
+<p>Livy supports two deployment modes:</p>
+<ul>
+<li>Local</li>
+<li>YARN</li>
+</ul>
+<p>Comparison Between SJS, Spark Internal REST API and Cloudera’s Livy</p>
+<table>
+<thead>
+<tr>
+<th>Spark Job Server</th>
+<th>Internal REST API</th>
+<th>Cloudera Livy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A lot of configurations/adjustments needed before cluster deployment especially with modified Spark releases like in Cloudera.</td>
+<td>Out of the box support (Forward and Backward compatibility starting from Spark 1.3+)</td>
+<td>Some configurations is needed especially if you want to run it with modes other than YARN</td>
+</tr>
+<tr>
+<td>Provides Error message of failed jobs</td>
+<td>Just reports the failure status.</td>
+<td>Just reports the failure status.</td>
+</tr>
+<tr>
+<td>Supports Sharing One Context between different jobs</td>
+<td>Only One context per job.</td>
+<td><a href="http://gethue.com/how-to-use-the-livy-spark-rest-job-server-api-for-sharing-spark-rdds-and-contexts/">Supports Sharing One Context between different jobs</a></td>
+</tr>
+<tr>
+<td>Spark Jobs’ code has to implement a certain interface defined by SJS to be suitable for submission.</td>
+<td>No modifications required</td>
+<td>No modifications required</td>
+</tr>
+<tr>
+<td>Standalone, YARN and Mesos modes (Client Modes) are supported although configuration is required.</td>
+<td>Standalone and Mesos (Cluster Modes) are supported out of the box.</td>
+<td>YARN and local modes</td>
+</tr>
+<tr>
+<td>No HA arrangements are available.</td>
+<td>Depends on the Spark master availability.</td>
+<td>No HA arrangements are available.</td>
+</tr>
+<tr>
+<td>Sharing RDDs among different jobs in the same context as well as Named RDD support.</td>
+<td>Not available although Alluxio (formerly Tachyon) can be used for similar results.</td>
+<td>Sharing RDDs among different users and contexts</td>
+</tr>
+<tr>
+<td>Scala and Java Jobs are supported</td>
+<td>Scala and Java Jobs are supported</td>
+<td>Scala, Java and Python are supported</td>
+</tr>
+</tbody>
+</table>
+<p>Spark Jobs as a part of a workflow</p>
+<p>Running your jobs as a part of a bigger workflow is important. Although there may be a lot of option to make design your data workflows, Apache Oozie is one of the most used frameworks in this area.</p>
+<p>Let’s how to run Spark as a part of an Oozie workflow?</p>
+<p>Oozie Spark Node</p>
+<p>Oozie can handle the Spark jobs management through its Oozie Spark node. The node is basically using Spark Submit script behind the scenes to initiate Spark jobs either on On Yarn or locally. Spark Jobs are treated like any other hadoop map reduce job inside oozie.</p>
+<p>In case you are using any of pre-mentioned APIs and don’t want to use the oozie provided node, you can create a custom oozie node to fit your needs. While using Spark Job Server we developed our own Oozie Spark Node and it worked perfectly (We may consider open sourcing it if we found a need from the community).</p>
+<p>References:</p>
+<p><a href="http://arturmkrtchyan.com/apache-spark-hidden-rest-api">http://arturmkrtchyan.com/apache-Spark-hidden-rest-api</a></p>
+<p><a href="http://gethue.com/spark/">http://gethue.com/spark/</a></p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

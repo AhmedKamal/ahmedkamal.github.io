@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>What Is a Project? · Ahmed Kamal</title>
+	<meta name="description" content="For Example : Say you have an office that offer designs for houses. Each construction project is just a unique project. Weather can change your design. Also may be you should change…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/what-is-a-project/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="What Is a Project?">
+	<meta property="og:description" content="For Example : Say you have an office that offer designs for houses. Each construction project is just a unique project. Weather can change your design. Also may be you should change…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/what-is-a-project/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2012-03-13T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="What Is a Project?">
+	<meta name="twitter:description" content="For Example : Say you have an office that offer designs for houses. Each construction project is just a unique project. Weather can change your design. Also may be you should change…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	<nav class="toc" aria-label="Table of contents"><p class="toc-head">Contents</p><ul><li class="toc-l2"><a href="#unique">Unique</a></li><li class="toc-l2"><a href="#specific-goal">Specific Goal</a></li><li class="toc-l2"><a href="#beginning-and-end">Beginning and End</a></li><li class="toc-l2"><a href="#budget">Budget</a></li></ul></nav>
+
+	<article>
+		<header class="post-head">
+			<h1>What Is a Project?</h1>
+			<p class="post-meta">
+				<time datetime="2012-03-13T00:00:00.000Z">Mar 13, 2012</time>
+				· 1 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2012 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<img loading="lazy" decoding="async" class="aligncenter" src="http://b.vimeocdn.com/ps/157/022/1570227_300.jpg" alt="" width="300" height="300" />
+<strong><span style="color:#0000ff;">A project is a unique thing that has a specific goal and a beginning and an end in addition to a budget.</span></strong>
+<p>Let's try to break down this definition into small pieces.<br>
+<br/></p>
+<h2 id="unique"><span style="color:#ff0000;">Unique </span></h2>
+Every project is different. This is a rule.  Even If you do something more than one time, you should know that you won't face the same difficulties and problems.
+<p><span style="color:#0000ff;">For Example</span>: Say you have an office that offer designs for houses. Each construction project is just a unique project. Weather can change your design. Also may be you should change the concrete used depending on where it is built  or you may need to change the roof structure to handle snow.</p>
+<figure><img src="/blog/media/2020/05/img_7647.webp" alt="" loading="lazy"></figure>
+<h2 id="specific-goal"><span style="color:#ff0000;">Specific Goal</span></h2>
+Each project should has a specific goal to accomplish. May be the project is needed to solve a problem in your company like reducing the costs or marketing your products in different way to increase sales.
+<figure><img src="/blog/media/2020/05/7eeef5e30ea8f91de9402fd0ff49e0be.webp" alt="" loading="lazy"></figure>
+<h2 id="beginning-and-end"><span style="color:#ff0000;">Beginning and End</span></h2>
+If  the project doesn't has an end, this is because the goal isn't clear enough. The goal of project is crucial to identify when it is needed to be done.
+<h2 id="budget"><span style="color:#ff0000;">Budget</span></h2>
+Most of  the time we are thinking of budget as money but in fact it can be the resources needed for your projects and time.
+<p>Note: You should note that there is difference between a project and normal operations</p>
+<p><span style="color:#000080;">Example</span>: If you are a student, your default work is to study every day, attend lectures, do assignments and reports but if the professor asked you to do a research about a new topic. This can be called a project in that case.</p>
+<p>Regards,</p>
+<p>Ahmed</p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

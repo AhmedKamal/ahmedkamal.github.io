@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Simpe Redis: A Simple Interface For Using Redis · Ahmed Kamal</title>
+	<meta name="description" content="In my last post , I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from…">
+	<meta name="author" content="Ahmed Kamal">
+	<link rel="canonical" href="https://ahmedkamal.me/blog/simpe-redis-a-simple-interface-for-using-redis/">
+	<meta name="theme-color" content="#faf7f2">
+	<meta name="robots" content="noindex, follow">
+
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="alternate" type="application/atom+xml" title="Ahmed Kamal · Writing" href="/blog/feed.xml">
+
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Ahmed Kamal">
+	<meta property="og:title" content="Simpe Redis: A Simple Interface For Using Redis">
+	<meta property="og:description" content="In my last post , I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from…">
+	<meta property="og:url" content="https://ahmedkamal.me/blog/simpe-redis-a-simple-interface-for-using-redis/">
+	<meta property="og:image" content="https://ahmedkamal.me/og-image.jpg">
+	<meta property="article:published_time" content="2016-03-28T00:00:00.000Z">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@_ahmdkamal_">
+	<meta name="twitter:creator" content="@_ahmdkamal_">
+	<meta name="twitter:title" content="Simpe Redis: A Simple Interface For Using Redis">
+	<meta name="twitter:description" content="In my last post , I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from…">
+	<meta name="twitter:image" content="https://ahmedkamal.me/og-image.jpg">
+
+	
+
+	
+	<!-- Google Analytics 4 -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+
+	// Local previews must not land in the property. Without this, every
+	// `npm run dev` session shows up as real traffic from a real reader.
+	if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+		console.info('[analytics] local preview: GA4 disabled (G-7SGXTR10EE)');
+	} else {
+		var s = document.createElement('script');
+		s.async = true;
+		s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SGXTR10EE';
+		document.head.appendChild(s);
+		gtag('js', new Date());
+		gtag('config', 'G-7SGXTR10EE');
+	}
+
+	// GA4 enhanced measurement already reports page_view, outbound clicks, file
+	// downloads and a single 90% scroll event. These add the read-depth detail
+	// that tells you whether long posts are actually being read.
+	document.addEventListener('DOMContentLoaded', function () {
+		var article = document.querySelector('.post-body');
+		if (!article) return;
+		var fired = {};
+		var marks = [25, 50, 75, 100];
+		var start = Date.now();
+
+		function check() {
+			var box = article.getBoundingClientRect();
+			var seen = window.innerHeight - box.top;
+			var pct = Math.min(100, Math.max(0, (seen / box.height) * 100));
+			marks.forEach(function (m) {
+				if (pct >= m && !fired[m]) {
+					fired[m] = true;
+					gtag('event', 'read_depth', {
+						percent: m,
+						post: document.title,
+						seconds: Math.round((Date.now() - start) / 1000)
+					});
+				}
+			});
+		}
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(function () { check(); ticking = false; });
+		}, { passive: true });
+		check();
+	});
+	</script>
+
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&display=swap"></noscript>
+	<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
+	<div class="post-wrap">
+	
+
+	<article>
+		<header class="post-head">
+			<h1>Simpe Redis: A Simple Interface For Using Redis</h1>
+			<p class="post-meta">
+				<time datetime="2016-03-28T00:00:00.000Z">Mar 28, 2016</time>
+				· 2 min read
+			</p>
+			
+			<aside class="archived-note">
+				<strong>From the archive.</strong> Written in 2016 and kept
+				online as a record. The technical detail has almost certainly aged.
+				<a href="/blog/">Current writing is here</a>.
+			</aside>
+			
+		</header>
+
+		<div class="post-body">
+			<p>In my <a href="http://ahmedkamal.me/redis-installation-configuration-and-usage/">last post</a>, I talked briefly about Redis and how to install it. In this post, I will try to go deeper and will introduce a very simple interface for using Redis in seconds from Java.</p>
+<p>At first I would like to introduce you to some important commands in Redis.</p>
+<p>Redis has a very nice documentation so I will only list them with reference links for each one. If you are interested in playing with these commands, you can use the interactive web redis command line from <a href="http://try.redis.io">here</a></p>
+<p><strong>String Value Storage Commands</strong></p>
+<p>Mainly for very basic scenaios</p>
+<ul>
+<li><a href="http://redis.io/commands/set">SET</a></li>
+<li><a href="http://redis.io/commands/get">GET</a></li>
+<li><a href="http://redis.io/commands/delete">DELETE</a></li>
+</ul>
+<p><strong>Hashed Value Storage Commands</strong></p>
+<p>Mainly with data structures and complex objects</p>
+<ul>
+<li><a href="http://redis.io/commands/hset">HSET</a></li>
+<li><a href="http://redis.io/commands/hget">HGET</a></li>
+<li><a href="http://redis.io/commands/hdelete">HDELETE</a></li>
+</ul>
+<p><strong>Administration Commands</strong></p>
+<p>Good To know :)</p>
+<ul>
+<li><a href="http://redis.io/commands/ping">PING</a></li>
+<li><a href="http://redis.io/commands/flushdb">Flushdb</a></li>
+<li><a href="http://redis.io/commands/flushall">FlushAll</a></li>
+</ul>
+<p>For the full list of commands, check <a href="http://redis.io/commands/">this</a>.</p>
+<p>The next step from here should be using Redis as part of your project. As I mentioned in the previous blog, <a href="http://redis.io/clients">a lot of clients</a> are available for redis for different languages. But I will focus here on Java users.</p>
+<p>One of the best libraries available for Java is <a href="https://github.com/mp911de/lettuce">Lettuce</a>. It may seems complex some how but it shines very well when it comes to scalability scenarios.</p>
+<p>One of the missing things in Lettuce is a simple interface for very basic usage scenarios (without having to write too much code or be aware of the very specific details of the library.)</p>
+<p>Here comes my interface <mark><a href="https://github.com/AhmedKamal/simple-redis">simple-redis</a></mark>.</p>
+<p>Let's see a code snippet!</p>
+
+<p>You just need to pass a redis client object from lettuce and you can in seconds cache, retrieve and clear your data without caring about anything else. A default provided java serializer allows Simple-Redis to handle java objects just like Strings.</p>
+<p>Using Simple-Redis won't prevent you from making use of all lettuce power. <a href="https://github.com/AhmedKamal/simple-redis">Simple-Redis</a> is opensource and available on github. I hope you would consider it in your next projects, especially when you have simple caching scenario to implement.</p>
+<p>If you have any feedback, please don't hesitate to reach me either through mail or the comments inside this post. Thanks a lot!</p>
+
+		</div>
+
+		<footer class="post-foot">
+			<a href="/blog/">← All writing</a>
+		</footer>
+
+		
+	</article>
+</div>
+
+<script>
+// Click-to-play for migrated video embeds: no YouTube JS until the reader asks.
+document.querySelectorAll('.video-embed').forEach(function (box) {
+	box.querySelector('.video-play').addEventListener('click', function () {
+		var f = document.createElement('iframe');
+		f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1';
+		f.title = 'Video';
+		f.loading = 'lazy';
+		f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+		f.allowFullscreen = true;
+		box.replaceChildren(f);
+		if (window.gtag) gtag('event', 'video_play', { video: box.dataset.video });
+	});
+});
+</script>
+
+
+	<footer class="site-foot">
+		<p>
+			<a href="/">Ahmed Kamal</a> ·
+			<a href="/blog/feed.xml">RSS</a> ·
+			<a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a> ·
+			<a href="https://www.twitter.com/_ahmdkamal_">X</a> ·
+			<a href="/thoughts/">A Muslim's thoughts</a>
+		</p>
+	</footer>
+</body>
+</html>

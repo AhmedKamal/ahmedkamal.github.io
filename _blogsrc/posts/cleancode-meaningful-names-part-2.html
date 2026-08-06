@@ -1,0 +1,111 @@
+---
+title: "[CleanCode] Meaningful Names [Part 2]"
+date: "2015-07-29"
+slug: "cleancode-meaningful-names-part-2"
+description: "In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters."
+archived: true
+layout: "post.njk"
+tags_original: ["Learn", "clean-code", "meaningful-names"]
+---
+<p>In this series of posts, I would try to share with you some of my highlights on Clean Code Chapters.</p>
+<p>In this post my focus would be on Chapter 2. This is the second post discussing Chapter 2 so if you didn't read the <a href="http://ahmedkamal.me/chapter-2-meaningful-names-part-1/">first one</a>, please go and check it before continuing.</p>
+<h4 id="6avoiduselessprefixes">6- Avoid useless prefixes</h4>
+<p>With the rise of the new generation of powerful compilers and IDEs, a lot of things become easier. We nearly don't have any limitations on the name length and we can easily get the data type of any variable mentioned in code easily.</p>
+<ul>
+<li>You now don't have to encode your names to make them shorter so please don't.</li>
+<li>You don’t need to prefix member variables with m_ anymore. You should be using an editing environment that highlights or colorizes members to make them distinct.</li>
+</ul>
+<pre><code class="language-language-java">public class Part {
+private String m_dsc; // The textual description
+void setName(String name) {
+m_dsc = name;
+}
+}
+</code></pre>
+<pre><code class="language-language-java">public class Part {
+String description;
+void setDescription(String description) {
+this.description = description;
+}
+}
+</code></pre>
+<h4 id="7avoidmentalmapping">7- Avoid Mental Mapping</h4>
+<ul>
+<li>
+<p>Readers shouldn’t have to mentally translate your names into other names they already know. This problem generally arises from a choice to use neither problem domain terms nor solution domain terms.</p>
+</li>
+<li>
+<p>Make your names representative for the actual concept without the asking your reader to mentally map between variable c and the product cost without taxes for example! We all now that programmers are smart but we need you to be professional too.</p>
+</li>
+</ul>
+<blockquote>
+<p>One difference between a smart programmer and a professional programmer is that the professional understands that clarity is king. Professionals use their powers for good<br>
+and write code that others can understand.</p>
+</blockquote>
+<h4 id="8classnaming">8- Class Naming</h4>
+<p>Classes and objects should have noun or noun phrase names like Customer, WikiPage, Account, and AddressParser. Avoid words like Manager, Processor, Data, or Info in the name of a class.</p>
+<blockquote>
+<p>A class name should not be a verb.</p>
+</blockquote>
+<h4 id="9methodnaming">9- Method Naming</h4>
+<p>Methods should have verb or verb phrase names like postPayment, deletePage, or save.</p>
+<p>Accessors, mutators, and predicates should be named for their value and prefixed with get, set, and is according to the javabean</p>
+<p>If you are writing in C#, you should depend on the language built in accessors.</p>
+<pre><code class="language-language-java">string name = employee.getName();
+customer.setName(&quot;mike&quot;);
+if (paycheck.isPosted())...
+</code></pre>
+<ul>
+<li>When constructors are overloaded, use static factory methods with names that<br>
+describe the arguments. For example,</li>
+</ul>
+<pre><code class="language-language-java">Complex fulcrumPoint = Complex.FromRealNumber(23.0);
+</code></pre>
+<p>is generally better than</p>
+<pre><code class="language-language-java">Complex fulcrumPoint = new Complex(23.0);
+</code></pre>
+<h4 id="10dontbecute">10- Don't be cute</h4>
+<ul>
+<li>Don't use funny names or any sort of slang while naming your items.</li>
+<li>Don't use culture dependent jokes.</li>
+</ul>
+<p>Again, focus on the clarity. Say what you mean, Mean what you say.</p>
+<h4 id="11pickonewordperconcept">11- Pick one word per Concept</h4>
+<ul>
+<li>
+<p>Pick one word for one abstract concept and stick with it. For instance, it’s confusing to have fetch, retrieve, and get as equivalent methods of different classes.</p>
+</li>
+<li>
+<p>Function Names have to be consistent in order for you to pick the correct method without any additional exploration.</p>
+</li>
+</ul>
+<p><strong>Example</strong>: What is the essential difference between a DeviceManager and a Protocol-Controller? Why are both not controllers or both not managers? The name leads you to expect two objects that have very different type as well as<br>
+having different classes.</p>
+<blockquote>
+<p>A consistent lexicon is a great boon to the programmers who must use your code.</p>
+</blockquote>
+<p>At the same time, you shouldn't do the reverse of this which is to use the same word for different ideas.</p>
+<p><strong>For example</strong>, One might decide to use the word add for “consistency” when he or she is not in fact adding in the same sense.<br>
+Let’s say we have many classes where add will create a new value by adding or concatenating two existing values. Now let’s say we are writing a new class that has a method that puts its single parameter into a collection. Should we call this method add? It might seem consistent because we have so many other add methods, but in this case, the semantics are different, so we should use a name like insert or append instead. To call the new method add would be a pun.</p>
+<h4 id="12usesolutiondomainnames">12- Use Solution Domain Names</h4>
+<p>People who read your code will be programmers. So go ahead and use<br>
+computer science (CS) terms, algorithm names, pattern names, math terms, and so forth.</p>
+<p>What programmer would not know what a JobQueue was? There are<br>
+lots of very technical things that programmers have to do. Choosing technical names for those things is usually the most appropriate course.</p>
+<h4 id="13useproblemdomainnames">13- Use Problem Domain Names</h4>
+<p>When there isn't an equivalent programming word/concept for what you’re doing, use the name from the problem domain. At least the programmer who maintains your code can ask a domain expert what it means.</p>
+<blockquote>
+<p>Separating solution and problem domain concepts is part of the job of a good programmer and designer. The code that has more to do with problem domain concepts should have names drawn from the problem domain.</p>
+</blockquote>
+<h4 id="14addmeaningfulcontext">14- Add Meaningful Context</h4>
+<ul>
+<li>You need to place names in context for your reader by enclosing them in well-named classes, functions, or namespaces. When all else fails, then prefixing the name may be necessary as a last resort.</li>
+</ul>
+<p>Imagine that you have variables named firstName, lastName, street, houseNumber, city, state, and zipcode. Taken together it’s pretty clear that they form an address. But what if you just saw the state variable being used alone in a method? Would you automatically infer that it was part of an address?</p>
+<p>You can add context by using prefixes: addrFirstName, addrLastName, addrState, and so on but having an <strong>Address</strong> class is more better</p>
+<h4 id="finalwords">Final Words:</h4>
+<blockquote>
+<p>Our goal, as authors, is to make our code as easy as possible to understand. We want our code to be a quick skim, not an intense study. We want to use the popular paperback model whereby the author is responsible for making himself clear and not the academic model where it is the scholar’s job to dig the meaning out of the paper.</p>
+</blockquote>
+<p>The hardest thing about choosing good names is that it requires good descriptive skills and a shared cultural background. This can come by practicing and continuous refactoring</p>
+<p>If you are maintaining someone else’s code, use refactoring tools to help resolve these problems. It will pay off in the short term and continue to pay in the long run.</p>

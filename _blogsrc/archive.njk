@@ -1,0 +1,58 @@
+---
+layout: base.njk
+title: Archive
+description: Older writing from 2012 to 2021, kept online as a record.
+permalink: /archive/index.html
+archived: true
+---
+<main class="page">
+	<header class="page-head">
+		<h1>Archive</h1>
+		<p class="page-intro">
+			I have been writing in public since 2012. These posts are from earlier
+			eras of my work: the Microsoft stack, competitive programming, then the
+			Hadoop and Spark years. Much of the technical detail is out of date. They
+			stay online because they happened.
+		</p>
+		<p class="page-intro">
+			<a href="{{ '/' | url }}">Current writing is here →</a>
+		</p>
+	</header>
+
+	{% set years = [] %}
+	{% for post in collections.archived %}
+		{% set y = post.date | year %}
+		{% if y not in years %}{% set years = (years.push(y), years) %}{% endif %}
+	{% endfor %}
+
+	{% for y in years %}
+	<section class="archive-year">
+		<h2>{{ y }}</h2>
+		<ul>
+			{% for post in collections.archived %}
+				{% if (post.date | year) == y %}
+				<li>
+					<a href="{{ post.url | url }}">{{ post.data.title }}</a>
+					<span class="ay-date">{{ post.date | readableDate }}</span>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</section>
+	{% endfor %}
+
+	{% set old = elsewhere | selectattr("archived") %}
+	{% if old.length %}
+	<section class="archive-year">
+		<h2>Also on Medium</h2>
+		<ul>
+			{% for item in old %}
+			<li>
+				<a href="{{ item.url }}">{{ item.title }}</a>
+				<span class="ay-date">{{ item.date | readableDate }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+</main>
