@@ -38,12 +38,15 @@ PROMOTED = [
     "how-to-effectively-manage-teams-as-your-organization-scales",
 ]
 
-# "Start here" trio on the blog index.
-FEATURED = {
-    "how-to-be-a-machine-learning-engineer",
-    "my-reflections-on-careem-deal-with-uber",
-    "managing-emr-cluster-logs",
-}
+# "Start here" picks on the blog index. Empty on purpose: with only 5 curated
+# posts, highlighting 3 of them is repetition, not curation. The index template
+# hides the section when nothing is featured; add a slug here (or featured: true
+# in a post's front matter) once there is an anchor piece worth pointing at.
+FEATURED = set()
+
+# Kept in the stream, but sunk to the bottom of the index regardless of date:
+# posts worth having but not worth setting the tone of the page.
+DEMOTE = {"managing-emr-cluster-logs"}
 
 # Published posts that are not worth keeping online at all: Ghost meta-posts and
 # sub-150-word troubleshooting stubs.
@@ -561,6 +564,8 @@ def main():
             }
             if slug in FEATURED:
                 meta["featured"] = True
+            if slug in DEMOTE:
+                meta["demote"] = True
             if tags_by_slug.get(slug):
                 meta["tags_original"] = tags_by_slug[slug]
             write_post(posts_dir, slug, meta, body)

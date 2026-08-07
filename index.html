@@ -107,8 +107,51 @@
 			color: #2a2823;
 			line-height: 1.65;
 			font-size: 18.5px;
-			padding: 72px 24px 80px;
+			padding: 26px 24px 80px;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-rendering: optimizeLegibility;
 		}
+
+		.site-head {
+			max-width: 760px;
+			margin: 0 auto 56px;
+			padding-bottom: 18px;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 20px;
+			border-bottom: 1px solid #ece7de;
+		}
+
+		.site-name {
+			font-family: "Fraunces", Georgia, serif;
+			font-size: 19px;
+			font-weight: 500;
+			font-variation-settings: "opsz" 24, "SOFT" 40;
+			color: #1a1815;
+			text-decoration: none;
+			letter-spacing: -0.01em;
+			white-space: nowrap;
+		}
+
+		.site-name:hover { color: #a04f3c; }
+
+		.site-nav {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			gap: 8px 18px;
+			font-size: 14.5px;
+		}
+
+		.site-nav a {
+			color: #6b6455;
+			text-decoration: none;
+			transition: color 0.15s;
+		}
+
+		.site-nav a:hover { color: #a04f3c; }
 
 		main {
 			max-width: 760px;
@@ -139,6 +182,13 @@
 		.header-text { flex: 1; }
 
 		@media (max-width: 640px) {
+			body { padding-top: 22px; }
+
+			.site-head {
+				padding-bottom: 16px;
+				margin-bottom: 44px;
+			}
+
 			.header {
 				flex-direction: column;
 				align-items: flex-start;
@@ -244,6 +294,16 @@
 	</style>
 </head>
 <body>
+	<header class="site-head">
+		<a class="site-name" href="/">Ahmed Kamal</a>
+		<nav class="site-nav">
+			<a href="/blog/">Writing</a>
+			<a href="/speaking/">Speaking</a>
+			<a href="/thoughts/">A Muslim's thoughts</a>
+			<a href="/ar/" hreflang="ar" lang="ar">العربية</a>
+		</nav>
+	</header>
+
 	<main>
 		<div class="header">
 			<div class="photo" role="img" aria-label="Ahmed Kamal"></div>

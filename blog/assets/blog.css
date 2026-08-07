@@ -44,9 +44,11 @@ body {
 /* --- Chrome ------------------------------------------------------------- */
 
 .site-head {
-	max-width: var(--measure);
+	/* One bar, one spec, on every page: matches the homepage header exactly.
+	   Content columns below stay at their own reading widths. */
+	max-width: 760px;
 	margin: 0 auto;
-	padding: 30px 0 22px;
+	padding: 26px 0 18px;
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
@@ -56,7 +58,7 @@ body {
 
 .site-name {
 	font-family: var(--serif);
-	font-size: 20px;
+	font-size: 19px;
 	font-weight: 500;
 	font-variation-settings: "opsz" 24, "SOFT" 40;
 	color: var(--ink-strong);
@@ -69,7 +71,9 @@ body {
 
 .site-nav {
 	display: flex;
-	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 8px 18px;
 	font-size: 14.5px;
 }
 
@@ -82,7 +86,7 @@ body {
 .site-nav a[aria-current="page"] { color: var(--ink-strong); font-weight: 500; }
 
 .site-foot {
-	max-width: var(--measure);
+	max-width: 760px;
 	margin: 72px auto 0;
 	padding-top: 24px;
 	border-top: 1px solid var(--rule-light);
@@ -361,6 +365,30 @@ a:hover { color: var(--accent-dark); text-decoration-color: var(--accent); }
 
 .speak-note { margin-top: 24px; font-size: 16.5px; color: #4a4640; }
 
+/* Stage photos: evidence of real rooms, not portraits. Shown whole — no crop,
+   no upscaling — because the room is the point. */
+.speak-photos { margin: 34px 0 8px; }
+
+.speak-photos ul {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: start;
+	gap: 10px;
+}
+
+.speak-photos img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+	.speak-photos ul { grid-template-columns: 1fr; }
+}
+}
+
 .speak-invite p, .speak-kit p { font-size: 17.5px; margin-bottom: 14px; }
 
 .speak-invite ul { padding-left: 24px; font-size: 17px; color: #4a4640; }
@@ -376,6 +404,45 @@ a:hover { color: var(--accent-dark); text-decoration-color: var(--accent); }
 }
 
 .speak-kit blockquote p + p { margin-top: 14px; }
+
+.copy-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 14px;
+	flex-wrap: wrap;
+}
+
+.copy-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: var(--sans);
+	font-size: 13px;
+	color: var(--ink-soft);
+	background: none;
+	border: 1px solid var(--rule);
+	border-radius: 100px;
+	padding: 5px 13px;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: border-color 0.15s, color 0.15s;
+}
+
+.copy-btn svg {
+	width: 13px;
+	height: 13px;
+	fill: currentColor;
+	flex-shrink: 0;
+}
+
+.copy-btn:hover { border-color: var(--accent-soft); color: var(--accent); }
+
+.copy-btn.copied {
+	color: var(--accent);
+	border-color: var(--accent-soft);
+	background: rgba(160, 79, 60, 0.05);
+}
 
 .bio-short-label { margin-top: 26px; }
 

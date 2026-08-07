@@ -32,86 +32,6 @@
 	</entry>
 	
 	<entry>
-		<title>Your absolute guide to managing Hadoop logging configurations</title>
-		<link href="https://ahmedkamal.me/blog/managing-emr-cluster-logs/"/>
-		<updated>2019-04-23T00:00:00.000Z</updated>
-		<id>https://ahmedkamal.me/blog/managing-emr-cluster-logs/</id>
-		<summary>Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…</summary>
-		<content type="html">&lt;p&gt;Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera, Databricks and AWS. The distribution managed by AWS is named EMR. This distribution is supposdly fully managed by AWS (&lt;a href=&quot;https://forums.aws.amazon.com/thread.jspa?threadID=263139&quot;&gt;Not everything&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;One of the things that has to be properly managed in order to get a scalable performance from Hadoop and Spark is the logs written by YARN and Spark. In this post, I will walk you through the different configurations that have to be twaeked in YARN and Spark in order to ensure getting clear visibility through logs without bottlnecking the scalability of your setup.&lt;/p&gt;
-&lt;h2 id=&quot;yarnlogs&quot;&gt;YARN Logs&lt;/h2&gt;
-&lt;p&gt;By default, YARN writes all the applications logs on the local disk of each worker instance.&lt;/p&gt;
-&lt;h3 id=&quot;healthservice&quot;&gt;Health Service&lt;/h3&gt;
-&lt;p&gt;These logs keeps adding up overtime till the disk gets full. By default, YARN will mark nodes as unhealthy once the disk space utilization pass 90% threshold. This config and others could be configured through yarn-site.xml file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;property&amp;gt;
-  &amp;lt;name&amp;gt;yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage&amp;lt;/name&amp;gt;
-  &amp;lt;value&amp;gt;98.5&amp;lt;/value&amp;gt;
-&amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;More params to check,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;yarn.nodemanager.disk-health-checker.min-healthy-disks&lt;/li&gt;
-&lt;li&gt;yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;logsaggregation&quot;&gt;Logs Aggregation&lt;/h3&gt;
-&lt;p&gt;In order to clean these logs while keeping the disk storage within required limits, YARN does allow regular logs aggregation and storage on HDFS.&lt;/p&gt;
-&lt;p&gt;By default, it is enabled on EMR&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.log-aggregation-enable&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Everytime, YARN does the aggregation, it cleans the local disk once the data is stored on HDFS. The cleaning is controlled by two main attributes that could also be tweaked.&lt;/p&gt;
-&lt;p&gt;The cleaning of the local disk is controlled by:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.nodemanager.delete.debug-delay-sec&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;0&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;While the cleaning of the aggregated data on HDFS is controlled by:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.log-aggregation.retain-seconds&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;172800&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Since EMR AMI 4.3.0, YARN Log aggregation and EMR log aggregation can work together. EMR basically introduced a patch described in &lt;a href=&quot;https://issues.apache.org/jira/browse/YARN-3929&quot;&gt;https://issues.apache.org/jira/browse/YARN-3929&lt;/a&gt; exclusivly as part of EMR Hadoop.&lt;/p&gt;
-&lt;p&gt;After this patch, the local files are kept on the local file system to allow EMR based aggregation to collec the data.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
-    &amp;lt;name&amp;gt;yarn.log-aggregation.enable-local-cleanup&amp;lt;/name&amp;gt;
-    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
-  &amp;lt;/property&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This property is not public and can only be set on EMR distributions. This option is by default set to False which means the cleanup on local machines will not take place.&lt;/p&gt;
-&lt;p&gt;Logpusher will need this logs on local machines to push to S3 and LogPusher is the one which is responsible for removing those local logs after they are copied over and after certain retention period (4 hours for containers ). This &lt;a href=&quot;https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-debugging.html&quot;&gt;configuration could be very useful&lt;/a&gt; if you rely on ephemeral clusters as any data on HDFS would be lost if not moved to S3.&lt;/p&gt;
-&lt;h2 id=&quot;accessingyarnlogs&quot;&gt;Accessing YARN Logs&lt;/h2&gt;
-&lt;p&gt;YARN logs can be accessed in different ways depending on the configurations set. If automatic aggregation isn&apos;t enabled. You can gather the logs from the Hadoop UI&lt;/p&gt;
-&lt;p&gt;Otherwise, you can easily rely on YARN CLI after passing the application Id.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yarn logs -applicationId application_1432041223735_0001 &amp;gt; appID_1432041223735_0001.log
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;sparklogs&quot;&gt;Spark Logs&lt;/h2&gt;
-&lt;p&gt;In addition to the traditional yarn logs, Apache Spark does writeJob history files on filesystem. Cleaning these files regularly is also necessary to avoid filling up the space. Spark configs (spark-defaults) allows us to enable the history server to periodically clean up event logs from storage.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;spark.hadoop.yarn.timeline-service.enabled true&lt;/li&gt;
-&lt;li&gt;spark.history.fs.cleaner.maxAge	1d&lt;/li&gt;
-&lt;li&gt;spark.history.fs.cleaner.interval 1d&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;yarncache&quot;&gt;YARN Cache&lt;/h2&gt;
-&lt;p&gt;NodeManager maintains and manages serveral local-cache of all the files downloaded for any job. The resources are uniquely identified based on the remote-url originally used while copying that file. There are a lot of configs that control resource localization and caching in general but the important note here is that there is also a limit that can be set to auto trigger the cleaning of the cache before the disk fills up unncessarily.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;yarn.nodemanager.localizer.cache.target-size-mb = 4GB.&lt;/li&gt;
-&lt;li&gt;yarn.nodemanager.localizer.cache.cleanup.interval-ms = 300000&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;YARN and Spark have a lot of interesting configurations that drasitcally change the performance of the execution engine in a surprising way. By investing some time to understand more the ins and outs of different pieces, you can easily save yourself a lot of headache and ensure a smooth and consistent scalable performance.&lt;/p&gt;
-&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&quot;&gt;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://datameer.zendesk.com/hc/en-us/articles/207221216&quot;&gt;https://datameer.zendesk.com/hc/en-us/articles/207221216&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spark.apache.org/docs/latest/monitoring.html&quot;&gt;https://spark.apache.org/docs/latest/monitoring.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-	</entry>
-	
-	<entry>
 		<title>My reflections on the Careem–Uber deal</title>
 		<link href="https://ahmedkamal.me/blog/my-reflections-on-careem-deal-with-uber/"/>
 		<updated>2019-03-27T00:00:00.000Z</updated>
@@ -190,6 +110,86 @@ We can list 6 profiles that together compose a capable data team able to push it
 
 &lt;h2 id=&quot;wrapup&quot;&gt;Wrap Up&lt;/h2&gt;
 &lt;p&gt;I tried to give some answers for the what, where and how questions about machine learning engineering positions. It would be nice if you can share your experience getting into the field. As always thanks for reading!&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Your absolute guide to managing Hadoop logging configurations</title>
+		<link href="https://ahmedkamal.me/blog/managing-emr-cluster-logs/"/>
+		<updated>2019-04-23T00:00:00.000Z</updated>
+		<id>https://ahmedkamal.me/blog/managing-emr-cluster-logs/</id>
+		<summary>Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera,…</summary>
+		<content type="html">&lt;p&gt;Hadoop became an essential componenet of the infrastructure of any company nowadays. There are different distributions maintained and managed by different companies like Cloudera, Databricks and AWS. The distribution managed by AWS is named EMR. This distribution is supposdly fully managed by AWS (&lt;a href=&quot;https://forums.aws.amazon.com/thread.jspa?threadID=263139&quot;&gt;Not everything&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;One of the things that has to be properly managed in order to get a scalable performance from Hadoop and Spark is the logs written by YARN and Spark. In this post, I will walk you through the different configurations that have to be twaeked in YARN and Spark in order to ensure getting clear visibility through logs without bottlnecking the scalability of your setup.&lt;/p&gt;
+&lt;h2 id=&quot;yarnlogs&quot;&gt;YARN Logs&lt;/h2&gt;
+&lt;p&gt;By default, YARN writes all the applications logs on the local disk of each worker instance.&lt;/p&gt;
+&lt;h3 id=&quot;healthservice&quot;&gt;Health Service&lt;/h3&gt;
+&lt;p&gt;These logs keeps adding up overtime till the disk gets full. By default, YARN will mark nodes as unhealthy once the disk space utilization pass 90% threshold. This config and others could be configured through yarn-site.xml file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;98.5&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More params to check,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;yarn.nodemanager.disk-health-checker.min-healthy-disks&lt;/li&gt;
+&lt;li&gt;yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;logsaggregation&quot;&gt;Logs Aggregation&lt;/h3&gt;
+&lt;p&gt;In order to clean these logs while keeping the disk storage within required limits, YARN does allow regular logs aggregation and storage on HDFS.&lt;/p&gt;
+&lt;p&gt;By default, it is enabled on EMR&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation-enable&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Everytime, YARN does the aggregation, it cleans the local disk once the data is stored on HDFS. The cleaning is controlled by two main attributes that could also be tweaked.&lt;/p&gt;
+&lt;p&gt;The cleaning of the local disk is controlled by:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.nodemanager.delete.debug-delay-sec&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;0&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While the cleaning of the aggregated data on HDFS is controlled by:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation.retain-seconds&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;172800&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since EMR AMI 4.3.0, YARN Log aggregation and EMR log aggregation can work together. EMR basically introduced a patch described in &lt;a href=&quot;https://issues.apache.org/jira/browse/YARN-3929&quot;&gt;https://issues.apache.org/jira/browse/YARN-3929&lt;/a&gt; exclusivly as part of EMR Hadoop.&lt;/p&gt;
+&lt;p&gt;After this patch, the local files are kept on the local file system to allow EMR based aggregation to collec the data.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;yarn.log-aggregation.enable-local-cleanup&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;true&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This property is not public and can only be set on EMR distributions. This option is by default set to False which means the cleanup on local machines will not take place.&lt;/p&gt;
+&lt;p&gt;Logpusher will need this logs on local machines to push to S3 and LogPusher is the one which is responsible for removing those local logs after they are copied over and after certain retention period (4 hours for containers ). This &lt;a href=&quot;https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-debugging.html&quot;&gt;configuration could be very useful&lt;/a&gt; if you rely on ephemeral clusters as any data on HDFS would be lost if not moved to S3.&lt;/p&gt;
+&lt;h2 id=&quot;accessingyarnlogs&quot;&gt;Accessing YARN Logs&lt;/h2&gt;
+&lt;p&gt;YARN logs can be accessed in different ways depending on the configurations set. If automatic aggregation isn&apos;t enabled. You can gather the logs from the Hadoop UI&lt;/p&gt;
+&lt;p&gt;Otherwise, you can easily rely on YARN CLI after passing the application Id.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yarn logs -applicationId application_1432041223735_0001 &amp;gt; appID_1432041223735_0001.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;sparklogs&quot;&gt;Spark Logs&lt;/h2&gt;
+&lt;p&gt;In addition to the traditional yarn logs, Apache Spark does writeJob history files on filesystem. Cleaning these files regularly is also necessary to avoid filling up the space. Spark configs (spark-defaults) allows us to enable the history server to periodically clean up event logs from storage.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;spark.hadoop.yarn.timeline-service.enabled true&lt;/li&gt;
+&lt;li&gt;spark.history.fs.cleaner.maxAge	1d&lt;/li&gt;
+&lt;li&gt;spark.history.fs.cleaner.interval 1d&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;yarncache&quot;&gt;YARN Cache&lt;/h2&gt;
+&lt;p&gt;NodeManager maintains and manages serveral local-cache of all the files downloaded for any job. The resources are uniquely identified based on the remote-url originally used while copying that file. There are a lot of configs that control resource localization and caching in general but the important note here is that there is also a limit that can be set to auto trigger the cleaning of the cache before the disk fills up unncessarily.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;yarn.nodemanager.localizer.cache.target-size-mb = 4GB.&lt;/li&gt;
+&lt;li&gt;yarn.nodemanager.localizer.cache.cleanup.interval-ms = 300000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;YARN and Spark have a lot of interesting configurations that drasitcally change the performance of the execution engine in a surprising way. By investing some time to understand more the ins and outs of different pieces, you can easily save yourself a lot of headache and ensure a smooth and consistent scalable performance.&lt;/p&gt;
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&quot;&gt;https://hadoop.apache.org/docs/r2.8.4/hadoop-yarn/hadoop-yarn-site/NodeManager.html#Health_checker_service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://datameer.zendesk.com/hc/en-us/articles/207221216&quot;&gt;https://datameer.zendesk.com/hc/en-us/articles/207221216&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spark.apache.org/docs/latest/monitoring.html&quot;&gt;https://spark.apache.org/docs/latest/monitoring.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
 	</entry>
 	

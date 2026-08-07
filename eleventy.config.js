@@ -41,11 +41,16 @@ module.exports = function (eleventyConfig) {
 
 	// --- Collections --------------------------------------------------------
 
-	// The curated stream. Newest first.
+	// The curated stream. Newest first, except posts marked `demote: true` in
+	// their front matter, which sink to the bottom regardless of date — for
+	// pieces that are worth keeping but shouldn't set the tone of the index.
 	eleventyConfig.addCollection("writing", (api) =>
 		api.getFilteredByGlob("_blogsrc/posts/*.html")
 			.filter((p) => !p.data.archived)
-			.sort((a, b) => b.date - a.date));
+			.sort((a, b) => {
+				const demoted = (a.data.demote ? 1 : 0) - (b.data.demote ? 1 : 0);
+				return demoted !== 0 ? demoted : b.date - a.date;
+			}));
 
 	// "Start here" trio on the index.
 	eleventyConfig.addCollection("featured", (api) =>
