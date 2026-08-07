@@ -375,6 +375,12 @@ a:hover { color: var(--accent-dark); text-decoration-color: var(--accent); }
 	color: #4a4640;
 }
 
+.speak-kit blockquote p + p { margin-top: 14px; }
+
+.bio-short-label { margin-top: 26px; }
+
+.speak-kit blockquote.bio-short { font-size: 16.5px; }
+
 .kit-facts { list-style: none; font-size: 16.5px; }
 
 .kit-facts li {

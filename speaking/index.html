@@ -148,7 +148,7 @@
 		<section class="speak-invite">
 			<h2>Inviting me</h2>
 			<p>
-				Email me at <a class="email-link" data-u="me" data-d="ahmedkamal.me" href="#">me@ahmedkamal.me</a>
+				Email me at <a class="email-link" data-u="me" data-d="ahmedkamal.me" data-show href="#">me [at] ahmedkamal.me</a>
 				or reach me on <a href="https://www.linkedin.com/in/ahmdkamal">LinkedIn</a>.
 				It helps to include:
 			</p>
@@ -163,20 +163,33 @@
 
 		<section class="speak-kit">
 			<h2>For organizers</h2>
-			<p>Short bio, free to copy into your programme:</p>
+			<p>Bio, free to copy into your programme:</p>
 			<blockquote>
-				Ahmed Kamal is a tech executive who builds and leads distributed teams
-				shipping data and AI products used by hundreds of millions of people. He
-				founded and leads the Data and AI organization at
-				<a href="https://hudhud.sa">Hudhud Maps</a>, more than 60 people across
-				data infrastructure, map generation, computer vision, data science, and
-				map operations, and took Hudhud from proof of concept to public launch in
-				12 months as part of the executive team. Before Hudhud he co-founded and
-				led the data and ML platform teams at
-				<a href="https://careem.com">Careem</a>, the MENA super-app serving 50+
-				million users, acquired by Uber for $3.1B, then led AI moderation at
-				<a href="https://getstream.io">Stream</a>. He advises startups,
-				corporates, and NGOs on data and AI products, platforms, and teams.
+				<p>Ahmed Kamal builds zero-to-one data and AI platforms. On the founding
+				team at <a href="https://hudhud.sa">Hudhud Maps</a>, where he serves as
+				Chief Data &amp; AI Officer, he is building the region's first local
+				mapping platform, taking it from proof of concept to public launch in
+				Saudi Arabia in 12 months.</p>
+
+				<p>Earlier, he co-founded <a href="https://careem.com">Careem</a>'s data
+				platform team to build its first big data infrastructure, then founded
+				its AI team to create
+				<a href="https://medium.com/careem-tech/yoda-scaling-machine-learning-careem-d4bc8b1be195">Yoda</a>,
+				a machine learning platform serving millions of daily predictions across
+				more than 100 cities through Careem's $3.1B acquisition by Uber. At
+				<a href="https://getstream.io">Stream</a>, he founded and sold the AI
+				Moderation product for infrastructure reaching over a billion users
+				worldwide. He holds special-talent AI residencies in both Saudi Arabia
+				and the UAE.</p>
+			</blockquote>
+
+			<p class="bio-short-label">If your programme has a word limit:</p>
+			<blockquote class="bio-short">
+				Ahmed Kamal builds zero-to-one data and AI platforms. He built Careem's
+				first big data infrastructure and its machine learning platform, Yoda,
+				through the $3.1B acquisition by Uber, founded and sold Stream's AI
+				Moderation, and now leads Data &amp; AI on the founding team of Hudhud
+				Maps, the region's first local mapping platform.
 			</blockquote>
 			<ul class="kit-facts">
 				<li><strong>Name</strong> Ahmed Kamal</li>
@@ -200,10 +213,15 @@
 	</footer>
 
 	<script>
+	// The address is assembled in the browser, so the served HTML never contains
+	// it as a scrapable string. data-show renders it visibly for organizers who
+	// need to copy it; without JS the [at] form is still readable by a human.
 	document.querySelectorAll('.email-link').forEach(function (el) {
+		var address = el.dataset.u + '@' + el.dataset.d;
+		if (el.hasAttribute('data-show')) el.textContent = address;
 		el.addEventListener('click', function (e) {
 			e.preventDefault();
-			window.location.href = 'mailto:' + el.dataset.u + '@' + el.dataset.d;
+			window.location.href = 'mailto:' + address;
 		});
 	});
 	</script>
