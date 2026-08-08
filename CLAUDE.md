@@ -50,7 +50,12 @@ gets one sentence, never branding. Never mention KACST.
 - Ahmed's LinkedIn export is at `../Profile.pdf`. It needs a real PDF extractor
   (`pypdf` in a venv); `pdftoppm` is absent and Spotlight returns null. It is the
   authoritative source for bio copy, titles, and dates.
-- `_blogsrc/drafts/` never builds.
+- **This repo is public. Drafts do not live here.** Drafting happens in Ahmed's
+  Obsidian vault, under `Notebook/Blogging/Writing Pipeline/`. Only finished
+  posts move into `_blogsrc/posts/`. The 26 old Ghost drafts were migrated out
+  in Aug 2026 because a `_blogsrc/drafts/` file never builds but is still
+  readable by anyone on GitHub. `eleventy.config.js` still ignores
+  `_blogsrc/drafts/**`, so a local, untracked drafts folder is safe.
 - Do not invent facts, metrics, or artifact links. Use `[ADD: ...]` placeholders.
 
 ## Config
