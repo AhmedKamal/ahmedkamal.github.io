@@ -27,7 +27,8 @@ import sys
 # Promoted: migrated into the curated blog stream.
 PROMOTED = [
     "how-to-be-a-machine-learning-engineer",
-    "managing-emr-cluster-logs",
+    # managing-emr-cluster-logs was promoted, then archived: it is 2019 YARN and
+    # EMR config advice, and the stream should read as current work.
     # Both Spark posts are archived, not promoted. They are the two Publications
     # on Ahmed's LinkedIn, but the tooling they recommend (Spark 1.6, Ooyala's
     # Spark Job Server, early Livy, Zeppelin-era notebooks) has been superseded
@@ -46,7 +47,7 @@ FEATURED = set()
 
 # Kept in the stream, but sunk to the bottom of the index regardless of date:
 # posts worth having but not worth setting the tone of the page.
-DEMOTE = {"managing-emr-cluster-logs"}
+DEMOTE = set()
 
 # Published posts that are not worth keeping online at all: Ghost meta-posts and
 # sub-150-word troubleshooting stubs.
