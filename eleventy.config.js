@@ -45,7 +45,7 @@ module.exports = function (eleventyConfig) {
 	// their front matter, which sink to the bottom regardless of date — for
 	// pieces that are worth keeping but shouldn't set the tone of the index.
 	eleventyConfig.addCollection("writing", (api) =>
-		api.getFilteredByGlob("_blogsrc/posts/*.html")
+		api.getFilteredByGlob("_blogsrc/posts/*.{html,md}")
 			.filter((p) => !p.data.archived)
 			.sort((a, b) => {
 				const demoted = (a.data.demote ? 1 : 0) - (b.data.demote ? 1 : 0);
@@ -54,13 +54,13 @@ module.exports = function (eleventyConfig) {
 
 	// "Start here" trio on the index.
 	eleventyConfig.addCollection("featured", (api) =>
-		api.getFilteredByGlob("_blogsrc/posts/*.html")
+		api.getFilteredByGlob("_blogsrc/posts/*.{html,md}")
 			.filter((p) => p.data.featured)
 			.sort((a, b) => b.date - a.date));
 
 	// Older writing, kept online but noindex and out of the index and feed.
 	eleventyConfig.addCollection("archived", (api) =>
-		api.getFilteredByGlob("_blogsrc/posts/*.html")
+		api.getFilteredByGlob("_blogsrc/posts/*.{html,md}")
 			.filter((p) => p.data.archived)
 			.sort((a, b) => b.date - a.date));
 
