@@ -223,3 +223,6 @@ Profile.pdf
 # Node (Eleventy blog build)
 node_modules/
 .cache/
+
+# Obsidian, when _blogsrc/ is opened as a vault for editing posts
+.obsidian/
