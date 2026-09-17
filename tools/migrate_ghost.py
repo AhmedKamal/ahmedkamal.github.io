@@ -36,7 +36,11 @@ PROMOTED = [
     # advice costs more credibility with senior engineers than it earns.
     "the-future-of-remote-work",
     "my-reflections-on-careem-deal-with-uber",
-    "how-to-effectively-manage-teams-as-your-organization-scales",
+    # how-to-effectively-manage-teams-as-your-organization-scales was promoted,
+    # then archived: 211 words of generic advice with its only concrete point
+    # borrowed from Will Larson, and nothing in it from Ahmed's own work. The
+    # piece worth writing instead is staffing a data and AI function where the
+    # local hiring pool does not exist.
 ]
 
 # "Start here" picks on the blog index. Empty on purpose: with only 5 curated

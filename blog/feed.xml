@@ -4,22 +4,12 @@
 	<subtitle>Notes on AI, data platforms, and building serious technology in the region. By Ahmed Kamal.</subtitle>
 	<link href="https://ahmedkamal.me/blog/feed.xml" rel="self"/>
 	<link href="https://ahmedkamal.me/blog/"/>
-	<updated>2025-04-05T00:00:00.000Z</updated>
+	<updated>2020-10-09T00:00:00.000Z</updated>
 	<id>https://ahmedkamal.me/blog/</id>
 	<author>
 		<name>Ahmed Kamal</name>
 		<uri>https://ahmedkamal.me</uri>
 	</author>
-	
-	<entry>
-		<title>How to manage teams as your organization scales</title>
-		<link href="https://ahmedkamal.me/blog/how-to-effectively-manage-teams-as-your-organization-scales/"/>
-		<updated>2025-04-05T00:00:00.000Z</updated>
-		<id>https://ahmedkamal.me/blog/how-to-effectively-manage-teams-as-your-organization-scales/</id>
-		<summary>As your team grows both horizontally (more people) and vertically (more management levels), new challenges arise. One of the biggest is maintaining alignment across teams without…</summary>
-		<content type="html">&lt;p&gt;As your team grows both horizontally (more people) and vertically (more management levels), new challenges arise. One of the biggest is maintaining alignment across teams without constant meetings and check-ins.&lt;/p&gt;&lt;p&gt;Here are a few insights I&apos;ve gathered:&lt;/p&gt;&lt;p&gt;Focus on the roadmap: As a leader, you naturally focus on the roadmap, but as your organization scales quickly, it becomes harder to dive into every detail.&lt;/p&gt;&lt;p&gt;Regular reviews: While regular check-ins ensure that big projects are on track, they often become more about fixing project trajectories than about maintaining org alignment.&lt;/p&gt;&lt;p&gt;Use writing as a leadership tool: The big lesson I’ve learned from &lt;a href=&quot;https://www.linkedin.com/in/will-larson-a44b543/&quot;&gt;Will Larson&lt;/a&gt;’s writings is the importance of writing as a scalable leadership tool. Sharing a clear vision and strategy with the team helps keep everyone aligned in an async manner.&lt;/p&gt;&lt;p&gt;- Vision: Provides an inspiring picture of the future, giving broad guidelines without overwhelming details.&lt;/p&gt;&lt;p&gt;- Strategy: Tackles specific challenges in a practical, detailed way, helping teams know what needs to be done.&lt;/p&gt;&lt;p&gt;A well-crafted vision leaves room for teams to adjust as they face challenges, empowering them to navigate obstacles while staying aligned with the overall goal. Before sharing the vision and strategy, gather input from your team leaders to ensure the alignment and quality of the message.&lt;/p&gt;
-</content>
-	</entry>
 	
 	<entry>
 		<title>The virtual workspace: how AI is shaping the future of remote work</title>
