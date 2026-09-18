@@ -4,7 +4,7 @@ date: "2026-09-17"
 slug: "the-best-engineers-are-writing-less-code"
 description: "Most of the room used AI coding tools every day. Nobody trusted the output enough to ship it. That gap is a process problem, and it closes when you change what you think you are writing."
 archived: false
-image: "https://ahmedkamal.me/og/the-best-engineers-are-writing-less-code.png"
+image: "https://ahmedkamal.me/og/best-engineers-card-2.png"
 ---
 
 I asked a room of engineers two questions.
