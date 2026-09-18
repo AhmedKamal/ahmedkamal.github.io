@@ -2,14 +2,14 @@
 title: "The best engineers are writing less code"
 date: "2026-09-17"
 slug: "the-best-engineers-are-writing-less-code"
-description: "A third of the room used AI coding tools every day. Nobody trusted the output enough to ship it. That gap is a process problem, and it closes when you change what you think you are writing."
+description: "Most of the room used AI coding tools every day. Nobody trusted the output enough to ship it. That gap is a process problem, and it closes when you change what you think you are writing."
 archived: false
 image: "https://ahmedkamal.me/og/the-best-engineers-are-writing-less-code.png"
 ---
 
 I asked a room of engineers two questions.
 
-First: who uses AI coding tools every day? About a third of the hands went up.
+First: who uses AI coding tools every day? Most of the hands went up.
 
 Second: who trusts the output enough to ship it without reviewing? Not a single hand.
 
