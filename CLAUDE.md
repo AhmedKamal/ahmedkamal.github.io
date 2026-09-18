@@ -57,6 +57,9 @@ gets one sentence, never branding. Never mention KACST.
   readable by anyone on GitHub. `eleventy.config.js` still ignores
   `_blogsrc/drafts/**`, so a local, untracked drafts folder is safe.
 - Do not invent facts, metrics, or artifact links. Use `[ADD: ...]` placeholders.
+- Every post ships with its own social card: `python3 tools/make-og-card.py <slug>`
+  before publishing. Never overwrite an already-shared card in place (scrapers
+  cache by URL) — use `--replace`. See PUBLISHING.md.
 
 ## Config
 

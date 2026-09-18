@@ -42,6 +42,30 @@ image: "https://ahmedkamal.me/blog/media/2026/stage.jpg"   # optional OG image
 
 Write in Markdown.
 
+## The social card (required)
+
+Every post gets its own og:image before it is pushed:
+
+```bash
+python3 tools/make-og-card.py <slug>                      # title-only card
+python3 tools/make-og-card.py <slug> --subtitle "..."     # with a one-line hook
+```
+
+This renders `og/<slug>.png` (2400x1260, site palette, Fraunces) and writes
+the `image:` line into the post's front matter. Without it, shared links fall
+back to the site-wide og-image, which is a personal photo.
+
+Two rules learned the hard way:
+
+- **2x or it pixelates.** Platforms re-encode cards to JPEG and downscale;
+  the script already renders at 2400x1260 for this reason. Do not hand-make
+  cards at 1200x630.
+- **Never overwrite a shared card in place.** Scrapers cache the image by its
+  URL. If the card was already shared and needs changing, rerun with
+  `--replace`: it writes a suffixed filename and repoints the front matter.
+  For the page URL itself, a fresh `?v=N` param forces a re-scrape; LinkedIn
+  also has a manual refresh at linkedin.com/post-inspector.
+
 ## A section heading
 ```
 

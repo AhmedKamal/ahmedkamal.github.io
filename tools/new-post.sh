@@ -42,6 +42,7 @@ EOF
 echo "created $FILE"
 echo
 echo "next:"
+echo "  python3 tools/make-og-card.py ${SLUG}   # social card (required before publish)"
 echo "  npm run dev      # preview at http://localhost:8080/blog/"
 echo "  npm run build    # regenerate blog/"
 echo "  git add -A && git commit -m \"Post: ${TITLE}\" && git push"
