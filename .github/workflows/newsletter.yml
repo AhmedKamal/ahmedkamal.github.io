@@ -1,0 +1,42 @@
+# Emails Kit subscribers when a new post is published.
+#
+# Fires on pushes that ADD a file under _blogsrc/posts/ (edits never
+# re-send). The broadcast is scheduled 30 minutes out, so a mistake can
+# still be cancelled in Kit. Idempotent: an existing broadcast with the
+# same subject means skip. Does NOT touch the Pages deployment.
+#
+# Requires the KIT_API_SECRET repo secret (Settings > Secrets > Actions).
+name: newsletter
+on:
+  push:
+    branches: [master]
+    paths: ["_blogsrc/posts/**"]
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Post slug to broadcast (manual test)"
+        required: true
+
+jobs:
+  broadcast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Find newly added posts
+        id: new
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            echo "slugs=${{ github.event.inputs.slug }}" >> "$GITHUB_OUTPUT"
+          else
+            added=$(git diff --diff-filter=A --name-only HEAD^ HEAD -- '_blogsrc/posts/*.md' '_blogsrc/posts/*.html' | xargs -n1 basename 2>/dev/null | sed 's/\.[^.]*$//' | tr '\n' ' ')
+            echo "slugs=$added" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Schedule broadcasts
+        if: steps.new.outputs.slugs != ''
+        env:
+          KIT_API_SECRET: ${{ secrets.KIT_API_SECRET }}
+        run: |
+          for slug in ${{ steps.new.outputs.slugs }}; do
+            python3 tools/send_broadcast.py "$slug" || true
+          done

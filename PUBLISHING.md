@@ -66,20 +66,27 @@ Two rules learned the hard way:
   For the page URL itself, a fresh `?v=N` param forces a re-scrape; LinkedIn
   also has a manual refresh at linkedin.com/post-inspector.
 
-## The email (manual, by design)
+## The email (automated)
 
-RSS subscribers get new posts automatically via feed.xml. Email subscribers
-get nothing until a Kit broadcast is sent -- the free tier has no RSS-to-email,
-and at a few posts a year the manual send is fine:
+Email subscribers are handled by .github/workflows/newsletter.yml: any push
+that ADDS a file under _blogsrc/posts/ schedules a Kit broadcast 30 minutes
+out -- title as subject, the first paragraphs as teaser, link to the post.
+No manual step. RSS subscribers get the post via feed.xml regardless.
 
-1. kit.com -> Send a Broadcast
-2. Subject: the post title. Body: the first two or three paragraphs, then a
-   "read the rest" link to the post.
-3. Teaser + link, never the full essay pasted in: readers should land on the
-   site, where analytics and the subscribe block live.
+Properties worth knowing:
 
-The subscribe block itself is automatic: kit_form_id in site.json renders it
-on the index and at the foot of every live post.
+- Edits to existing posts never re-send; only newly added files fire.
+- Idempotent: if a broadcast with the same subject exists, it skips.
+- The 30-minute delay is the undo window: a mistaken send can be cancelled
+  in Kit before it goes out.
+- Opt a post out with `newsletter: false` in its front matter. Archived
+  posts are skipped automatically.
+- Needs the KIT_API_SECRET repo secret (GitHub Settings > Secrets > Actions).
+  If it is missing the workflow fails quietly and nothing is sent -- the
+  manual fallback is Kit > Send a Broadcast, teaser + link, never the full
+  essay.
+- This workflow does not touch the Pages deployment; the site still deploys
+  straight from the branch.
 
 ## A section heading
 ```
