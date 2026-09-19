@@ -66,6 +66,21 @@ Two rules learned the hard way:
   For the page URL itself, a fresh `?v=N` param forces a re-scrape; LinkedIn
   also has a manual refresh at linkedin.com/post-inspector.
 
+## The email (manual, by design)
+
+RSS subscribers get new posts automatically via feed.xml. Email subscribers
+get nothing until a Kit broadcast is sent -- the free tier has no RSS-to-email,
+and at a few posts a year the manual send is fine:
+
+1. kit.com -> Send a Broadcast
+2. Subject: the post title. Body: the first two or three paragraphs, then a
+   "read the rest" link to the post.
+3. Teaser + link, never the full essay pasted in: readers should land on the
+   site, where analytics and the subscribe block live.
+
+The subscribe block itself is automatic: kit_form_id in site.json renders it
+on the index and at the foot of every live post.
+
 ## A section heading
 ```
 
