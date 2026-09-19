@@ -73,6 +73,11 @@ that ADDS a file under _blogsrc/posts/ schedules a Kit broadcast 30 minutes
 out -- title as subject, the first paragraphs as teaser, link to the post.
 No manual step. RSS subscribers get the post via feed.xml regardless.
 
+After pushing, run /social-post <slug> in Claude Code: it drafts the
+LinkedIn post, the Arabic+English tweets, DM one-liners, image choice and
+timing into the vault (Social kits/), consistency-checked against the essay.
+Drafts only -- nothing auto-posts; the judgment calls stay human.
+
 Channel attribution: the broadcast link carries utm_source=newsletter
 automatically. When sharing manually, tag the link yourself --
 ?utm_source=linkedin or ?utm_source=x -- so GA4 can attribute readers;
