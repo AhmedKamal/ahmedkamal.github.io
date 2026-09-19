@@ -28,6 +28,8 @@ layout: base.njk
 			<a href="{{ '/' | url }}">← All writing</a>
 		</footer>
 
+		{% if not archived %}{% include "subscribe.njk" %}{% endif %}
+
 		{% if not archived %}{% include "comments.njk" %}{% endif %}
 	</article>
 </div>

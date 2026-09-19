@@ -766,6 +766,42 @@ a:hover { color: var(--accent-dark); text-decoration-color: var(--accent); }
 .comments-open:hover { border-color: var(--accent-soft); color: var(--accent); }
 .comments-open[disabled] { cursor: default; opacity: 0.6; }
 
+/* --- Subscribe ----------------------------------------------------------- */
+
+.subscribe {
+	margin: 56px 0 8px;
+	padding: 26px 0 30px;
+	border-top: 1px solid var(--accent-soft);
+}
+.subscribe-pitch {
+	margin: 0 0 14px;
+	color: var(--ink-soft);
+	font-size: 16.5px;
+}
+.subscribe-form { display: flex; gap: 10px; max-width: 460px; }
+.subscribe-form input {
+	flex: 1;
+	font: inherit;
+	font-size: 16px;
+	padding: 9px 12px;
+	color: var(--ink);
+	background: #fff;
+	border: 1px solid var(--accent-soft);
+	border-radius: 4px;
+}
+.subscribe-form input:focus { outline: none; border-color: var(--accent); }
+.subscribe-form button {
+	font: inherit;
+	font-size: 15.5px;
+	padding: 9px 18px;
+	color: #fff;
+	background: var(--accent);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.subscribe-form button:hover { background: var(--accent-dark); }
+
 /* --- Small screens ------------------------------------------------------ */
 
 @media (max-width: 640px) {
@@ -782,12 +818,13 @@ a:hover { color: var(--accent-dark); text-decoration-color: var(--accent); }
 	.start-here li { flex-direction: column; gap: 2px; }
 	.archive-year li { flex-direction: column; gap: 2px; }
 	.post-body pre { font-size: 13.5px; padding: 14px 16px; }
+	.subscribe-form { flex-direction: column; }
 }
 
 /* --- Print -------------------------------------------------------------- */
 
 @media print {
 	body { background: #fff; font-size: 12pt; }
-	.site-head, .site-nav, .site-foot, .toc, .comments, .post-foot { display: none; }
+	.site-head, .site-nav, .site-foot, .toc, .comments, .post-foot, .subscribe { display: none; }
 	.post-body a { text-decoration: none; color: inherit; }
 }

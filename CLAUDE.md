@@ -64,7 +64,9 @@ gets one sentence, never branding. Never mention KACST.
 ## Config
 
 `_blogsrc/_data/site.json` — `ga4_id` is live (`G-7SGXTR10EE`);
-`disqus_shortname` is still empty, and empty means the block is omitted entirely.
+`disqus_shortname` is live; `kit_form_id` (email subscribe via Kit, plain HTML
+form, no JS) is empty until the Kit form exists — empty means the subscribe
+block is omitted entirely, same convention as Disqus.
 The hand-written pages (`index.html`, `ar/**`, `thoughts/`) carry the same GA4
 snippet inline, including its localhost guard: keep those in sync by hand when the
 include changes.

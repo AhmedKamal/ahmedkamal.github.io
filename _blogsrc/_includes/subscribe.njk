@@ -1,0 +1,17 @@
+{# Email subscribe block. Renders nothing until site.kit_form_id is set —
+   same convention as disqus_shortname. Plain HTML POST to Kit: no JS. #}
+{% if site.kit_form_id %}
+<aside class="subscribe">
+	<p class="subscribe-pitch">
+		I write a few essays a year on building data and AI systems.
+		New ones by email — or via <a href="{{ '/feed.xml' | url }}">RSS</a>.
+	</p>
+	<form class="subscribe-form"
+	      action="https://app.kit.com/forms/{{ site.kit_form_id }}/subscriptions"
+	      method="post">
+		<input type="email" name="email_address" placeholder="you@example.com"
+		       required aria-label="Email address">
+		<button type="submit">Subscribe</button>
+	</form>
+</aside>
+{% endif %}

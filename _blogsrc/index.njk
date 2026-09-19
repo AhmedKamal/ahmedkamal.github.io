@@ -45,6 +45,8 @@ permalink: /index.html
 		{% endfor %}
 	</section>
 
+	{% include "subscribe.njk" %}
+
 	{% set current = elsewhere | rejectattr("archived") %}
 	{% if current.length %}
 	<section class="elsewhere">
