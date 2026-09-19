@@ -54,7 +54,7 @@ def main():
     title = get("title"); url = f"{SITE}/blog/{slug}/"
     paras = first_paragraphs(body)
     content = "".join(f"<p>{p}</p>" for p in paras) + \
-        f'<p><a href="{url}">Read the whole essay &rarr;</a></p>' + \
+        f'<p><a href="{url}?utm_source=newsletter&utm_medium=email">Read the whole essay &rarr;</a></p>' + \
         '<p style="color:#8a7f6d;font-size:14px">You subscribed at ahmedkamal.me. ' \
         'If there is no essay, there is no email.</p>'
 

@@ -73,6 +73,12 @@ that ADDS a file under _blogsrc/posts/ schedules a Kit broadcast 30 minutes
 out -- title as subject, the first paragraphs as teaser, link to the post.
 No manual step. RSS subscribers get the post via feed.xml regardless.
 
+Channel attribution: the broadcast link carries utm_source=newsletter
+automatically. When sharing manually, tag the link yourself --
+?utm_source=linkedin or ?utm_source=x -- so GA4 can attribute readers;
+the param doubles as the cache-buster that forces platforms to re-scrape
+the social card.
+
 Properties worth knowing:
 
 - Edits to existing posts never re-send; only newly added files fire.
