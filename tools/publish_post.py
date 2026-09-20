@@ -32,8 +32,21 @@ def main():
     for ext in (".md", ".html"):
         if os.path.exists(f"_blogsrc/posts/{slug}{ext}"): post = f"_blogsrc/posts/{slug}{ext}"
     if not post: sys.exit(f"no such post: {slug} (checked repo and vault Drafts)")
-    if 'image: "' not in open(post, encoding="utf-8").read():
-        subprocess.run(f"python3 tools/make-og-card.py {slug}", shell=True)
+    body = open(post, encoding="utf-8").read()
+    if 'image: "' not in body:
+        if os.path.exists(f"og/{slug}.png"):   # card exists from an earlier staging
+            body = body.replace("archived: false",
+                f'archived: false\nimage: "https://ahmedkamal.me/og/{slug}.png"', 1)
+            open(post, "w", encoding="utf-8").write(body)
+        else:
+            subprocess.run(f"python3 tools/make-og-card.py {slug}", shell=True)
+    # keep the vault draft truthful: mirror the image line back
+    if os.path.exists(vault_src):
+        img = re.search(r'^image:.*$', open(post, encoding="utf-8").read(), re.M)
+        v = open(vault_src, encoding="utf-8").read()
+        if img and "image:" not in v:
+            open(vault_src, "w", encoding="utf-8").write(
+                v.replace("archived: false", "archived: false\n" + img.group(0), 1))
     if os.path.exists(vault_src) and "--stage-only" in sys.argv:
         print(f"staged {slug} into repo (build/preview it; not published)"); return
 
