@@ -11,6 +11,9 @@ Pushing triggers the newsletter workflow automatically.
 import os, re, subprocess, sys, tempfile, shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+VAULT_DRAFTS = os.path.expanduser(
+    "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ahmed-notebook 2/"
+    "Notebook/Projects/My Personal Brand/Writing Pipeline/Drafts")
 os.chdir(ROOT)
 
 def sh(cmd, **kw):
@@ -23,9 +26,16 @@ def main():
     slug = re.sub(r"^.*/|\.md$|\.html$", "", sys.argv[1])
     dry = "--dry-run" in sys.argv
     post = None
+    vault_src = os.path.join(VAULT_DRAFTS, f"{slug}.md")
+    if os.path.exists(vault_src):                      # vault is the drafting home
+        shutil.copy2(vault_src, f"_blogsrc/posts/{slug}.md")
     for ext in (".md", ".html"):
         if os.path.exists(f"_blogsrc/posts/{slug}{ext}"): post = f"_blogsrc/posts/{slug}{ext}"
-    if not post: sys.exit(f"no such post: {slug}")
+    if not post: sys.exit(f"no such post: {slug} (checked repo and vault Drafts)")
+    if 'image: "' not in open(post, encoding="utf-8").read():
+        subprocess.run(f"python3 tools/make-og-card.py {slug}", shell=True)
+    if os.path.exists(vault_src) and "--stage-only" in sys.argv:
+        print(f"staged {slug} into repo (build/preview it; not published)"); return
 
     src = open(post, encoding="utf-8").read()
     title = re.search(r'^title:\s*"(.+?)"', src, re.M).group(1)
@@ -69,6 +79,8 @@ def main():
         sh("git add -A")
         sh(f'git commit -m "Publish: {title}" -m "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"')
         sh("git push origin master")
+        if os.path.exists(vault_src):
+            shutil.move(vault_src, os.path.join(VAULT_DRAFTS, "Published", f"{slug}.md"))
         print(f"PUBLISHED: {title}\nhttps://ahmedkamal.me/blog/{slug}/\nNewsletter broadcast will schedule itself ~30 min out.")
     finally:
         for f in os.listdir(tmp):
