@@ -29,8 +29,24 @@ def main():
 
     src = open(post, encoding="utf-8").read()
     title = re.search(r'^title:\s*"(.+?)"', src, re.M).group(1)
+
+    # ---- preflight: refuse to ship a lying file -------------------------
+    from datetime import date as _date
+    problems = []
     if 'image: "' not in src:
-        sys.exit(f"no social card in front matter. Run: python3 tools/make-og-card.py {slug}")
+        problems.append(f"no social card. Run: python3 tools/make-og-card.py {slug}")
+    fm_date = (re.search(r'^date:\s*"([0-9-]+)"', src, re.M) or [None, ""])[1]
+    if fm_date != str(_date.today()) and "--allow-date" not in sys.argv:
+        problems.append(f"front-matter date is {fm_date}, today is {_date.today()} "
+                        f"(stale ordering games?). Fix the date or pass --allow-date.")
+    if "[ADD:" in src:
+        problems.append("draft still contains [ADD: ...] placeholders")
+    if "One sentence. Shows on the index" in src:
+        problems.append("description is still the scaffold placeholder")
+    if problems and not dry:
+        sys.exit("PREFLIGHT FAILED:\n- " + "\n- ".join(problems))
+    if problems:
+        print("preflight would fail:\n- " + "\n- ".join(problems))
 
     untracked = sh("git ls-files --others --exclude-standard _blogsrc/posts/").split()
     park = [p for p in untracked if not p.endswith(f"{slug}.md") and not p.endswith(f"{slug}.html")]
